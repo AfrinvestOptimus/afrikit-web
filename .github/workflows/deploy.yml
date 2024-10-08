@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '22'  # Or adjust to your preferred version
+          node-version: '22'
           cache: 'yarn'
 
       # Step 3: Configure npm to use the authentication token
@@ -31,24 +31,29 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
 
-      # Step 5: Build the project (using Yarn or Nuxt/React-specific build)
+      # Step 5: Build the project
       - name: Build project
         run: yarn build
 
-      # Step 6: Publish the package to npm
+      # Step 6: Bump version automatically (patch by default, can be changed to minor/major)
+      - name: Bump version and commit changes
+        run: |
+          yarn version --patch --no-git-tag-version  # Bump version
+          git config --global user.email "developers@afrinvest.com"
+          git config --global user.name "Afrinvest"
+          git add package.json
+          git commit -m "Bump version [skip ci]"
+          git push origin HEAD:main
+
+      # Step 7: Push the tag to GitHub
+      - name: Tag version and push
+        run: |
+          VERSION=$(cat package.json | jq -r '.version')  # Get the new version
+          git tag "v$VERSION"  # Create a new tag
+          git push origin "v$VERSION"  # Push the tag
+
+      # Step 8: Publish the package to npm
       - name: Publish package
         run: yarn publish --non-interactive --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # Step 7: Push version changes and tags to GitHub
-      - name: Push tags and changes
-        run: |
-          git config --global user.email "developers@afrinvest.com"
-          git config --global user.name "Afrinvest"
-          git add .
-          git commit -m "Bump version [skip ci]"
-          git push origin HEAD:main
-          git push --tags
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
