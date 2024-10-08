@@ -1,0 +1,54 @@
+name: Publish afrikit-web to npm
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the main branch
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'  # Or adjust to your preferred version
+          cache: 'yarn'
+
+      # Step 3: Configure npm to use the authentication token
+      - name: Configure npm to use the token
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: yarn install
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+
+      # Step 5: Build the project (using Yarn or Nuxt/React-specific build)
+      - name: Build project
+        run: yarn build
+
+      # Step 6: Publish the package to npm
+      - name: Publish package
+        run: yarn publish --non-interactive --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Step 7: Push version changes and tags to GitHub
+      - name: Push tags and changes
+        run: |
+          git config --global user.email "developers@afrinvest.com"
+          git config --global user.name "Afrinvest"
+          git add .
+          git commit -m "Bump version [skip ci]"
+          git push origin HEAD:main
+          git push --tags
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
