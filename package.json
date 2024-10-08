@@ -21,8 +21,8 @@
     "typecheck": "tsc",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "tsc",
-    "prepublishOnly": "npm run build"
+    "build": "vite build",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.1",
