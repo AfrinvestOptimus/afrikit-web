@@ -7,6 +7,7 @@ import AppSidebar from './molecules/AppSideBar'
 import AppTopBar from './molecules/AppTopBar'
 import { TSideBarItem } from './types'
 import { DropdownItemProps } from './types/TAppDropdownMenu'
+import AppLoader from './atoms/AppLoader'
 
 interface FormData {
   email: string
@@ -299,6 +300,7 @@ function App() {
         buttonOne={false}
         backBtn
       />
+      <AppLoader />
       <div className="flex flex-col justify-center items-center min-h-screen">
         <form className="max-w-md mx-auto">
           <Controller
