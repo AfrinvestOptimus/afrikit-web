@@ -46,8 +46,8 @@ const Link = (props: {link: string, linkProps: TAppTextProps}) => {
 const Icon = (props: { iconClass: string }) => {
     const { iconClass } = props
     return (
-      <div className="w-3xl h-3xl rounded-sm-max bg-light-surface-gray dark:bg-dark-surface-gray gap-lg justify-center items-center flex">
-        <i className={clsx('', iconClass)} />
+      <div className="w-3xl h-3xl rounded-sm-max bg-light-surface-gray dark:bg-dark-surface-gray gap-lg justify-center items-center flex shadow-inner">
+        <i className={clsx('text-xl', iconClass)} />
       </div> // TODO: To be replaced with AppIcon component when available
     )
   }

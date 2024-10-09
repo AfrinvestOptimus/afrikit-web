@@ -45,8 +45,8 @@ const Brand = () => (
 const Icon = ({ prop }: { prop: { iconClass: string } }) => {
   const { iconClass } = prop
   return (
-    <div className="w-3xl h-3xl rounded-sm-max bg-light-surface-gray dark:bg-dark-surface-gray gap-lg justify-center items-center flex">
-      <i className={clsx('', iconClass)} />
+    <div className="w-3xl h-3xl rounded-sm-max bg-light-surface-gray dark:bg-dark-surface-gray gap-lg justify-center items-center flex shadow-inner">
+      <i className={clsx('text-xl', iconClass)} />
     </div>
   )
 }
