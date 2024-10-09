@@ -3,7 +3,7 @@ import { Controller, useForm } from 'react-hook-form'
 import AppInput from '../molecules/AppInput'
 
 export default {
-  title: 'AppInput',
+  title: 'Molecules/AppInput',
   component: AppInput,
   //   parameters: {
   //     controls: {

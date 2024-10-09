@@ -3,7 +3,7 @@ import SideBarBaseItem from '../../components/SideBarBaseItem'
 import { TSideBarBaseItemProps } from '../../types'
 
 const meta: Meta<typeof SideBarBaseItem> = {
-  title: 'Sidebar/SideBarBaseItem',
+  title: 'Molecules/Sidebar/SideBarBaseItem',
   component: SideBarBaseItem,
   tags: ['autodocs'],
   argTypes: {

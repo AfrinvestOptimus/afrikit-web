@@ -3,7 +3,7 @@ import { Controller, useForm } from 'react-hook-form'
 import AppInputPassword from '../molecules/AppInputPassword'
 
 export default {
-  title: 'AppInputPassword',
+  title: 'Molecules/AppInputPassword',
   component: AppInputPassword,
   //   parameters: {
   //     controls: {
