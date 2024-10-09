@@ -2,6 +2,7 @@ import { Controller, useForm } from 'react-hook-form'
 import AppButton from './molecules/AppButton'
 import AppCodeInput from './molecules/AppCodeInput'
 import DropdownComponent from './molecules/AppDropdownMenu'
+import { AppFileUploader } from './molecules/AppFileUpload'
 import AppPhoneInput from './molecules/AppPhoneInput'
 import AppSidebar from './molecules/AppSideBar'
 import AppTopBar from './molecules/AppTopBar'
@@ -269,6 +270,16 @@ const items3: DropdownItemProps[] = [
   },
 ]
 
+// Return the URL of the uploaded image
+const mockUpload = async (file: File): Promise<string> => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      // Returning a mock URL after the delay
+      resolve('images/jpg/avatar.jpeg' + file.name)
+    }, 2000) // 2 seconds delay
+  })
+}
+
 function App() {
   const {
     control,
@@ -323,14 +334,12 @@ function App() {
             )}
           />
         </form>
-
         <AppCodeInput
           length={6}
           errorMessage=""
           secureEntry
           // onChange={handleCodeChange}
         />
-
         <AppButton text="Continue" color="accent" size={4} />
         <div className="flex flex-col space-y-lg mt-md">
           <AppButton
@@ -356,6 +365,13 @@ function App() {
 
           <AppButton text="Continue" color="accent" />
         </div>
+        <AppFileUploader
+          maxSize={800 * 400}
+          allowedTypes={['image/svg+xml', 'image/png', 'image/jpeg', 'image/gif']}
+          onUpload={mockUpload}
+          width="600px"
+          height="160px"
+        />
       </div>
     </div>
   )
