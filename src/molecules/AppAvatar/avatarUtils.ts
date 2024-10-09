@@ -145,8 +145,15 @@ export const highContrastTextColors: Record<AvatarColor, Record<AvatarVariant, s
   },
 }
 
-export const getInitials = (initials: string = '', numberOfInitials: number = 1) => {
-    // Ensure input is a string and trim whitespace
+/**
+ * Extracts initials from a given string.
+ *
+ * @param {string} initials - The input string from which to extract initials.
+ * @param {number} numberOfInitials - The number of initials to extract.
+ * @returns {string} The extracted initials in uppercase.
+ */
+export const getInitials = (initials: string = '', numberOfInitials: number = 1): string => {
+  // Ensure input is a string and trim whitespace
   if (!initials || typeof initials !== 'string') {
     return '' // Handle empty or invalid input
   }
