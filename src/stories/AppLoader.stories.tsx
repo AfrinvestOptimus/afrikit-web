@@ -24,7 +24,7 @@ export const Default: Story = {
 // Loader with Custom Class
 export const WithCustomClass: Story = {
   args: {
-    className: 'custom-loader-class',
+    className: 'text-light-accent9',
   },
 }
 
