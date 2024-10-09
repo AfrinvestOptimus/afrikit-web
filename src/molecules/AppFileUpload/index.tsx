@@ -44,8 +44,6 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
   const uploadFile = async (file: File) => {
     setIsUploading(true);
     setUploadProgress(0);
-
-    // Simulating the upload process
     progressIntervalRef.current = setInterval(() => {
       setUploadProgress(prev => {
         if (prev >= 100) {
