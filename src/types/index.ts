@@ -8,5 +8,5 @@ export type {
   TSideBarItem,
 } from './TAppSidebar'
 export type { TAppTextProps } from './TAppTextProps'
-export type { TAppListItemProps } from './TAppListItemProps'
+export type { TAppListItemProps, TListItemPrefixProps, TListItemSuffixProps } from './TAppListItemProps'
 export type { IAppAvatarProps, AvatarSize, AvatarVariant, AvatarColor, AvatarFallback, NumberOfInitials } from './TAppAvatar'
