@@ -72,7 +72,7 @@ export default {
 
       sizes.forEach(size => {
         styles.forEach(style => {
-          newUtilities[`.text-${size}-${style}`] = {
+          newUtilities[`.type-${size}-${style}`] = {
             fontSize: theme(`fontSize.${size}`),
             lineHeight: theme(`lineHeight.${size}`),
             fontWeight: theme(`fontWeight.${styleFontWeightMap[style]}`),

@@ -3,7 +3,7 @@ import SidebarDropdownBaseItem from '../../components/SidebarDropdownBaseItem'
 import { TSidebarDropdownBaseItemProps } from '../../types'
 
 const meta: Meta<typeof SidebarDropdownBaseItem> = {
-  title: 'Sidebar/DropdownBaseItem',
+  title: 'Molecules/Sidebar/DropdownBaseItem',
   component: SidebarDropdownBaseItem,
   tags: ['autodocs'],
   argTypes: {

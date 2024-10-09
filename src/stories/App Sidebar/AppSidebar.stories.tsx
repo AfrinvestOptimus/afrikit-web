@@ -4,7 +4,7 @@ import { TSideBarItem } from '../../types'
 import AppSidebar from '../../molecules/AppSideBar'
 
 const meta: Meta<typeof AppSidebar> = {
-  title: 'Sidebar/AppSidebar',
+  title: 'Organisms/Sidebar/AppSidebar',
   component: AppSidebar,
   tags: ['autodocs'],
   argTypes: {

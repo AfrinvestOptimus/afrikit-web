@@ -4,7 +4,7 @@ import { TAppTopBarProps } from '../types/TAppTopBarProps'
 import 'remixicon/fonts/remixicon.css'
 
 const meta: Meta<typeof AppTopbar> = {
-  title: 'AppTopBar',
+  title: 'Molecules/AppTopBar',
   component: AppTopbar,
   tags: ['autodocs'],
   argTypes: {

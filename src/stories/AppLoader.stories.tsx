@@ -3,7 +3,7 @@ import 'remixicon/fonts/remixicon.css'
 import AppLoader from '../atoms/AppLoader'
 
 const meta: Meta<typeof AppLoader> = {
-  title: 'AppLoader',
+  title: 'Atoms/AppLoader',
   component: AppLoader,
   tags: ['autodocs'],
   argTypes: {

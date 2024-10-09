@@ -4,7 +4,7 @@ import { ButtonColor, ButtonSize, ButtonState, ButtonVariant } from '../molecule
 
 // Meta configuration for the AppButton
 const meta: Meta<typeof AppButton> = {
-  title: 'AppButton',
+  title: 'Molecules/AppButton',
   component: AppButton,
   argTypes: {
     size: {

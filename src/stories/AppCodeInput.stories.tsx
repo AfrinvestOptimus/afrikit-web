@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import AppCodeInput from '../molecules/AppCodeInput'
 
 const AppCodeInputMeta: Meta<typeof AppCodeInput> = {
-  title: 'AppCodeInput',
+  title: 'Molecules/AppCodeInput',
   component: AppCodeInput,
   argTypes: {
     length: {
