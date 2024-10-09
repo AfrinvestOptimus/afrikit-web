@@ -52,7 +52,7 @@ type TrailingPropTypes = {
 type subTriggered =
   | {
     subTrigger?: true
-    trailing: 'none'
+    trailing?: 'none'
   }
   | {
     subTrigger?: false
