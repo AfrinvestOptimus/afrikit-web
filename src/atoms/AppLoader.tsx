@@ -1,6 +1,5 @@
-import * as React from 'react'
 import clsx from 'clsx'
-import { Loader2 } from 'lucide-react'
+import 'remixicon/fonts/remixicon.css'
 
 export interface IAppLoaderProps {
   className?: string | string[]
@@ -16,6 +15,8 @@ export interface IAppLoaderProps {
  */
 export default function AppLoader({ className }: IAppLoaderProps) {
   return (
-    <Loader2 className={clsx('w-xl h-xl animate-spin text-black dark:text-white', className)} />
+      <div className="w-xl h-xl animate-spin rounded-xs-max flex items-center justify-center">
+        <i className={clsx('text-xl text-black dark:text-white ri-loader-4-line', className)} />
+      </div>
   )
 }
