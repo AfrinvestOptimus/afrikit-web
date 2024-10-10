@@ -9,6 +9,7 @@ import AppTopBar from './molecules/AppTopBar'
 import { TSideBarItem } from './types'
 import { DropdownItemProps } from './types/TAppDropdownMenu'
 import AppLoader from './atoms/AppLoader'
+import AppModal from './molecules/AppModal/AppModal'
 
 interface FormData {
   email: string
@@ -299,82 +300,32 @@ function App() {
   }
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
-      <AppSidebar links={links} />
-      <AppTopBar
-        theme="filled"
-        isOnboarding={false}
-        pageTitle="Page title"
-        subtitle="Find all your payment transactions here"
-        actions={true}
-        buttonThree
-        buttonTwo
-        buttonOne={false}
-        backBtn
-      />
-      <AppLoader />
-      <div className="flex flex-col justify-center items-center min-h-screen">
-        <form className="max-w-md mx-auto">
-          <Controller
-            name="email"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <AppPhoneInput
-                label="Testing"
-                // placeholder="meeeee"
-                onInput={e => {
-                  // Cast EventTarget to HTMLInputElement
-                  const input = e.target as HTMLInputElement
-                  // Prevent non-numeric input
-                  input.value = input.value.replace(/[^0-9]/g, '')
-                  field.onChange(input.value) // Update the form value
-                }}
-                {...field} // Pass field props which includes value and onChange
-                // error={errors.email?.message}
-                onClear={handleClearEmail}
-              />
-            )}
-          />
-        </form>
-        <AppCodeInput
-          length={6}
-          errorMessage=""
-          secureEntry
-          // onChange={handleCodeChange}
-        />
-        <AppButton text="Continue" color="accent" size={4} />
-        <div className="flex flex-col space-y-lg mt-md">
-          <AppButton
-            text="Continue"
-            color="accent"
-            size={4}
-            onClick={() => console.log('Button click works!!!')}
-          />
-          {/* Dropdown List Items with Remix icon classes */}
-          <DropdownComponent items={items} separator={false} showArrow={true} variant="primary" />
+     
 
-          {/* Dropdown List Items with Remix icon classes */}
-          <DropdownComponent items={items2} separator={false} showArrow={true} variant="primary" />
-
-          {/* Dropdown with custom trigger and Remix icon list  */}
-          <DropdownComponent
-            items={items2}
-            separator={false}
-            showArrow={true}
-            variant="primary"
-            trigger={<span className="cursor-pointer">Custom Trigger</span>}
-          />
-
-          <AppButton text="Continue" color="accent" />
+        <AppModal title='Title Goes here...'>
+        <div className="p-4">
+          <p className="mb-4">We only need access to your</p>
+          <ul className="space-y-2 mb-4">
+            <li className="flex items-center">
+              <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
+              Full name
+            </li>
+            <li className="flex items-center">
+              <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
+              Phone number
+            </li>
+            <li className="flex items-center">
+              <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
+              Date of Birth
+            </li>
+          </ul>
+          <div className="flex items-center mb-4">
+            <i className="ri-lock-fill text-gray-500 mr-2"></i>
+            <p className="text-sm text-gray-600">Your BVN does not give us access to your bank accounts or transactions.</p>
+          </div>
         </div>
-        <AppFileUploader
-          maxSize={800 * 400}
-          allowedTypes={['image/svg+xml', 'image/png', 'image/jpeg', 'image/gif']}
-          onUpload={mockUpload}
-          width="600px"
-          height="160px"
-        />
-      </div>
+        </AppModal>
+        
     </div>
   )
 }
