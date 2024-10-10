@@ -46,7 +46,7 @@ interface SubTriggerProps extends VariantProps<typeof subTriggerStyles> {
   showArrow?: boolean
   hasAvatar?: boolean
   hasIcon?: boolean
-  iconSize?: 'sm' | 'md' | 'lg' | null
+  iconSize?: "sm" | "md" | "lg" | null 
   avatarSrc?: string
   icon?: string
   subLabel?: string
