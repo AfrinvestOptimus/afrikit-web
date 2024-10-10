@@ -7,7 +7,7 @@ import Avatar from '../Avatar'
 import SubTrigger from './SubTrigger'
 
 export const dropdownItemStyles = cva(
-  'flex items-center justify-between px-lg outline-none cursor-pointer px-lg my-lg py-sm text-primary',
+  'flex items-center justify-between outline-none cursor-pointer px-lg my-lg py-sm text-primary',
   {
     variants: {
       size: {
@@ -102,7 +102,7 @@ export const DropdownItem: React.FC<DropdownItemProps> = ({
     <div className="flex items-center justify-center space-x-sm">
       {hasAvatar && <Avatar src={avatarSrc} />}
       {hasIcon && (
-        <div className={`${submenuItemStyles({ size: iconSize })} text-xl`}>
+        <div className={`${submenuItemStyles({ size: iconSize as 'sm' | 'md' | 'lg' | '2xl' })} text-xl`}>
           <i className={`${icon} ${size}`} aria-hidden="true"></i>
         </div>
       )}
