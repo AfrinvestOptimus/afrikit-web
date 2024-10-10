@@ -13,13 +13,12 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "declaration": true,
-    "declarationDir": "dist",
-    "emitDeclarationOnly": true,
-    "outDir": "dist",
+    "declaration": true, // Enable declaration file generation
+    "declarationDir": "dist", // Specify output directory for declaration files
+    "emitDeclarationOnly": true, // Only emit declaration files, no JavaScript
+    "outDir": "dist", // Output directory for all emitted files
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*"], // Ensure all source files are included for declarations
-  "exclude": ["node_modules"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
