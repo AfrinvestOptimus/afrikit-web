@@ -4,13 +4,14 @@
   "main": "dist/afrikit-web.umd.js",
   "module": "dist/afrikit-web.es.js",
   "type": "module",
+  "types": "dist/index.d.ts",
+
   "description": "Houses all components used in the web application",
   "author": "Afrinvest",
   "license": "MIT",
   "files": [
     "dist/**/*"
   ],
-  "types": "src/index.ts",
   "publishConfig": {
     "access": "public"
   },
