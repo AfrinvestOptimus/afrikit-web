@@ -65,7 +65,6 @@ export const submenuItemStyles = cva('flex items-center justify-between px-3 py-
       sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg',
-      '2xl': 'text-xl',
     },
     variant: {
       default:
@@ -89,7 +88,7 @@ export const DropdownItem: React.FC<DropdownItemProps> = ({
   subLabel,
   hasIcon = false,
   hasAvatar = false,
-  iconSize = '2xl',
+  iconSize = 'lg',
   showCheck = true,
   avatarSrc = 'images/jpg/avatar1.jpeg',
   icon = 'ri-heart-line',
@@ -145,12 +144,9 @@ export const DropdownSubmenuItem: React.FC<DropdownSubmenuItemProps> = ({
           {item.subContent &&
             item.subContent.length > 0 &&
             item.subContent.map((subItem, index) => (
-              <>
-                <DropdownMenu.Item key={index} className={`${submenuItemStyles()} p-sm`}>
-                  {subItem}
-                </DropdownMenu.Item>
-                {/* <DropdownMenu.Separator className="my-2 h-[1px] bg-light-gray4" /> */}
-              </>
+              <DropdownMenu.Item key={index} className={`${submenuItemStyles()} p-sm`}>
+                {subItem}
+              </DropdownMenu.Item>
             ))}
           <DropdownMenu.Arrow />
         </DropdownMenu.SubContent>

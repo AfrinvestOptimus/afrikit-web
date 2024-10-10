@@ -1,22 +1,24 @@
 import React from 'react';
-import { AppFileUploader } from '../molecules/AppFileUpload';
+import { StoryFn, Meta } from '@storybook/react'; // Correct imports for Storybook types
+import { AppFileUploader, FileUploaderProps } from '../molecules/AppFileUpload'; // Ensure correct import for types
 
 // Simulate an upload function
-const mockUpload = (file: File) => {
-  return new Promise<string>((resolve) => {
+const mockUpload = (file: File): Promise<string> => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(URL.createObjectURL(file)); // Simulate returning the file URL
     }, 1000); // Simulate a 1-second upload
   });
 };
 
+// Define metadata for the component
 export default {
-  title: 'Components/AppFileUploader',
+  title: 'AppFileUploader',
   component: AppFileUploader,
-};
+} as Meta<typeof AppFileUploader>; // Provide the proper type for the default export
 
-// Template for the stories
-const Template = (args) => <AppFileUploader {...args} />;
+// Template for the stories, explicitly typing `args` using `FileUploaderProps`
+const Template: StoryFn<FileUploaderProps> = (args) => <AppFileUploader {...args} />;
 
 // Default story
 export const Default = Template.bind({});
@@ -40,6 +42,6 @@ ExceedFileSize.args = {
 // Invalid file type story
 export const InvalidFileType = Template.bind({});
 InvalidFileType.args = {
-  allowedTypes: ['image/png'], // Only allow PNG
+  allowedTypes: ['image/png'], // Only allow PNG files
   onUpload: mockUpload,
 };
