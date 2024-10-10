@@ -1,9 +1,6 @@
 import clsx from 'clsx'
 import 'remixicon/fonts/remixicon.css'
-
-export interface IAppLoaderProps {
-  className?: string | string[]
-}
+import { TAppLoaderProps } from '../types'
 
 /**
  * AppLoader component renders a spinning loader icon.
@@ -13,7 +10,7 @@ export interface IAppLoaderProps {
  *
  * @returns {JSX.Element} The rendered loader component.
  */
-export default function AppLoader({ className }: IAppLoaderProps) {
+export default function AppLoader({ className }: TAppLoaderProps) {
   return (
       <div className="w-xl h-xl animate-spin rounded-xs-max flex items-center justify-center">
         <i className={clsx('text-xl text-black dark:text-white ri-loader-4-line', className)} />

@@ -1,5 +1,5 @@
 import { TAppTextProps } from '../types'
-import { tv, VariantProps } from 'tailwind-variants'
+import { tv } from 'tailwind-variants'
 import { useMemo } from 'react'
 import clsx from 'clsx'
 
@@ -280,9 +280,7 @@ const textVariants = tv({
   },
 })
 
-type AppTextVariant = VariantProps<typeof textVariants>
 
-type AppTextProps = TAppTextProps & Omit<AppTextVariant, keyof TAppTextProps>
 
 /**
  * AppText Component
@@ -310,7 +308,7 @@ export default function AppText({
   children,
   className,
   rest,
-}: AppTextProps) {
+}: TAppTextProps): JSX.Element {
   const variantClasses = useMemo(
     () => textVariants({ size, weight, align, color, highContrast }),
     [size, weight, align, color, highContrast],

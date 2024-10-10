@@ -44,7 +44,7 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
 
     digits.forEach((digit, index) => {
       if (inputs.current[index]) {
-        inputs.current[index].value = digit
+        inputs.current[index]!.value = digit
         if (index < inputs.current.length - 1) {
           inputs.current[index + 1]?.focus()
         }

@@ -1,13 +1,13 @@
 import React from 'react'
 import { type VariantProps } from 'class-variance-authority'
-import { dropdownItemStyles } from '../components/molecules/AppDropdownMenu/DropdownListItem'
+import { dropdownItemStyles } from '../molecules/AppDropdownMenu/DropdownListItem'
 
 export interface DropdownItemProps extends VariantProps<typeof dropdownItemStyles> {
   label: string
   subLabel?: string
   hasIcon?: boolean
   hasAvatar?: boolean
-  iconSize?: 'sm' | 'md' | 'lg' | '2xl'
+  iconSize?: 'sm' | 'md' | 'lg' | null
   showCheck?: boolean
   avatarSrc?: string
   icon?: string
@@ -17,7 +17,7 @@ export interface DropdownItemProps extends VariantProps<typeof dropdownItemStyle
 
 export interface DropdownSubmenuItemProps {
   item: DropdownItemProps
-  size?: 'sm' | 'md' | 'lg' | '2xl' | null | undefined
+  size?: 'sm' | 'md' | 'lg' | null | undefined
   variant?: 'default' | 'primary' | 'secondary' | null | undefined
   alignment?: 'left' | 'center' | 'right' | null | undefined
 }
