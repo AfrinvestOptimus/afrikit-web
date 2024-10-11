@@ -101,7 +101,7 @@ export const DropdownItem: React.FC<DropdownItemProps> = ({
     <div className="flex items-center justify-center space-x-sm">
       {hasAvatar && <Avatar src={avatarSrc} />}
       {hasIcon && (
-        <div className={`${submenuItemStyles({ size: iconSize as 'sm' | 'md' | 'lg' | '2xl' })} text-xl`}>
+        <div className={`${submenuItemStyles({ size: iconSize as 'sm' | 'md' | 'lg' })} text-xl`}>
           <i className={`${icon} ${size}`} aria-hidden="true"></i>
         </div>
       )}
