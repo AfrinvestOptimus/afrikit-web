@@ -1,14 +1,6 @@
 import React, { useEffect } from 'react';
 import AppButton from '../AppButton'; // Import your reusable button component
-
-interface AppModalProps {
-  isOpen: boolean; // Boolean to control whether modal is open
-  onClose: () => void; // Function to close the modal
-  onConfirm?: () => void; // Optional function for confirm action
-  title: string; // Title of the modal
-  subtitle?: string; // Optional subtitle
-  children: React.ReactNode; // Modal content
-}
+import { AppModalProps } from '../../types/AppModal';
 
 const AppModal: React.FC<AppModalProps> = ({
   isOpen,
