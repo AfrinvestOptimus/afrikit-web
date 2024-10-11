@@ -28,7 +28,7 @@ const DropdownComponent: React.FC<DropdownComponentProps> = ({
                 {!item.subContent || item.subContent.length === 0 ? (
                   <>
                     <DropdownItem
-                      {...item} // Ensure all item props are passed
+                      {...item}
                       size={size}
                       variant={variant}
                       alignment={alignment}
@@ -40,10 +40,10 @@ const DropdownComponent: React.FC<DropdownComponentProps> = ({
                 ) : (
                   <>
                     <DropdownSubmenuItem
-                      item={item} // Pass the entire item
-                      size={size} // Ensure size is passed
-                      variant={variant} // Ensure variant is passed
-                      alignment={alignment} // Ensure alignment is passed
+                      item={item} 
+                      size={size} 
+                      variant={variant}
+                      alignment={alignment}
                     />
                     {separator && (
                       <DropdownMenu.Separator className="my-2 h-[1px] bg-light-gray4" />

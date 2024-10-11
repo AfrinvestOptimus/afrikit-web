@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-interface FileUploaderProps {
+export interface FileUploaderProps {
   maxSize?: number; // in bytes
   allowedTypes?: string[];
   onUpload: (file: File) => Promise<string>; // Function to handle file upload, returns image URL
