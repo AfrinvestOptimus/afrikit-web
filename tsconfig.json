@@ -13,10 +13,10 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "declaration": true, // Generate .d.ts files
-    "declarationDir": "dist", // Output the .d.ts files into the dist folder
-    "emitDeclarationOnly": true, // Only emit .d.ts files, no JavaScript
-    "outDir": "dist", // Output the .d.ts and any emitted files to dist
+    "declaration": true,
+    "declarationDir": "types-dist",
+    "emitDeclarationOnly": true,
+    "outDir": "types-dist",
     "jsx": "react-jsx"
   },
   "include": ["src/**/*"],
