@@ -1,382 +1,68 @@
-import { Controller, useForm } from 'react-hook-form'
-import AppButton from './molecules/AppButton'
-import AppCodeInput from './molecules/AppCodeInput'
-import DropdownComponent from './molecules/AppDropdownMenu'
-import { AppFileUploader } from './molecules/AppFileUpload'
-import AppPhoneInput from './molecules/AppPhoneInput'
-import AppSidebar from './molecules/AppSideBar'
-import AppTopBar from './molecules/AppTopBar'
-import { TSideBarItem } from './types'
-import { DropdownItemProps } from './types/TAppDropdownMenu'
-import AppLoader from './atoms/AppLoader'
-
-interface FormData {
-  email: string
-}
-
-const links: TSideBarItem[] = [
-  {
-    id: '1',
-    text: 'Get started',
-    icon: true,
-    iconName: 'ri-map-pin-time-fill',
-    color: 'accent',
-    position: 'top',
-    badge: false,
-    hasDropdown: false,
-  },
-  {
-    id: '2',
-    text: 'Home',
-    icon: true,
-    iconName: 'ri-home-6-fill',
-    color: 'accent',
-    position: 'top',
-    badge: false,
-    hasDropdown: false,
-  },
-  {
-    id: '4',
-    text: 'Portfolio',
-    icon: true,
-    iconName: 'ri-bar-chart-fill',
-    color: 'accent',
-    position: 'top',
-    badge: false,
-    hasDropdown: false,
-  },
-  {
-    id: '5',
-    text: 'Savings',
-    icon: true,
-    iconName: 'ri-bank-card-2-fill',
-    color: 'accent',
-    position: 'top',
-    badge: false,
-    current: true,
-    hasDropdown: true,
-    openDropdown: true,
-    dropDownElement: [
-      {
-        text: 'Dashboard',
-      },
-      {
-        text: 'Open Savings',
-      },
-      {
-        text: 'Fund Wallet',
-      },
-    ],
-  },
-  {
-    id: '6',
-    text: 'Invest',
-    icon: true,
-    iconName: 'ri-copper-coin-fill',
-    color: 'accent',
-    position: 'top',
-    badge: false,
-    hasDropdown: true,
-    openDropdown: true,
-    dropDownElement: [
-      {
-        text: 'Nigeria Stocks',
-      },
-      {
-        text: 'US Stocks',
-      },
-      {
-        text: 'Commercial papers',
-      },
-    ],
-  },
-  {
-    id: '7',
-    text: 'Send Money',
-    icon: true,
-    iconName: 'ri-send-plane-fill',
-    color: 'accent',
-    position: 'top',
-    badge: false,
-    hasDropdown: false,
-  },
-  {
-    id: '8',
-    text: 'Wallets',
-    icon: true,
-    iconName: 'ri-wallet-fill',
-    color: 'accent',
-    position: 'top',
-    badge: false,
-    hasDropdown: true,
-    openDropdown: true,
-    dropDownElement: [
-      {
-        text: 'Naira Wallet',
-      },
-      {
-        text: 'Dollar Wallet',
-      },
-      {
-        text: 'Main Wallet',
-      },
-    ],
-  },
-  {
-    id: '9',
-    text: 'Learn',
-    icon: true,
-    iconName: 'ri-graduation-cap-fill',
-    color: 'accent',
-    position: 'bottom',
-    badge: false,
-    hasDropdown: false,
-  },
-  {
-    id: '10',
-    text: 'Support',
-    icon: true,
-    iconName: 'ri-lifebuoy-fill',
-    color: 'accent',
-    position: 'bottom',
-    badge: false,
-    hasDropdown: false,
-  },
-  {
-    id: '12',
-    text: 'Settings',
-    icon: true,
-    iconName: 'ri-settings-5-fill',
-    color: 'accent',
-    position: 'bottom',
-    badge: false,
-    hasDropdown: false,
-  },
-]
-
-//Dropdown List Items With Avatar Image
-const items: DropdownItemProps[] = [
-  {
-    label: 'Item 1',
-    hasIcon: false,
-    hasAvatar: true,
-    showCheck: false,
-    state: 'active',
-    subLabel: 'SubLabel',
-  },
-  {
-    label: 'Item 2',
-    hasIcon: false,
-    hasAvatar: true,
-    showCheck: false,
-    state: 'active',
-    subLabel: 'SubLabel',
-    avatarSrc: 'images/jpg/avatar1.jpeg',
-    subContent: ['Sub menu 1', 'Sub menu 2'],
-  },
-  {
-    label: 'Item 3',
-    hasIcon: false,
-    hasAvatar: true,
-    showCheck: false,
-    state: 'active',
-    subLabel: 'SubLabel',
-    avatarSrc: 'images/jpg/avatar1.jpeg',
-    subContent: ['Sub menu 1', 'Sub menu 2'],
-  },
-  {
-    label: 'Item 4',
-    hasIcon: false,
-    hasAvatar: true,
-    showCheck: true,
-    subLabel: 'SubLabel',
-    state: 'active', // Must be 'active', 'disabled', or 'default'
-  },
-]
-//Dropdown List Items with Remix icon classes
-const items2: DropdownItemProps[] = [
-  {
-    label: 'Item 1',
-    hasIcon: true,
-    hasAvatar: false,
-    showCheck: false,
-    state: 'active',
-    subLabel: 'SubLabel',
-  },
-  {
-    label: 'Item 2',
-    hasIcon: true,
-    hasAvatar: false,
-    showCheck: false,
-    state: 'active',
-    subLabel: 'SubLabel',
-    avatarSrc: 'images/jpg/avatar1.jpeg',
-    subContent: ['Sub menu 1', 'Sub menu 2', 'Sub menu 3', 'Sub menu 4', 'Sub menu 5'],
-  },
-  {
-    label: 'Item 3',
-    hasIcon: true,
-    hasAvatar: false,
-    showCheck: false,
-    state: 'active',
-    subLabel: 'SubLabel',
-    avatarSrc: 'images/jpg/avatar1.jpeg',
-    subContent: ['Sub menu 1', 'Sub menu 2', 'Sub menu 3', 'Sub menu 4', 'Sub menu 5'],
-  },
-  {
-    label: 'Item 4',
-    hasIcon: true,
-    hasAvatar: false,
-    showCheck: true,
-    subLabel: 'SubLabel',
-    state: 'active', // Must be 'active', 'disabled', or 'default'
-  },
-]
-const items3: DropdownItemProps[] = [
-  {
-    label: 'Item 1',
-    hasIcon: true,
-    hasAvatar: false,
-    showCheck: false,
-    state: 'disabled',
-    subLabel: 'SubLabel',
-  },
-  {
-    label: 'Item 2',
-    hasIcon: true,
-    hasAvatar: false,
-    showCheck: false,
-    state: 'disabled',
-    subLabel: 'SubLabel',
-    avatarSrc: 'images/jpg/avatar1.jpeg',
-    subContent: ['Sub menu 1', 'Sub menu 2', 'Sub menu 3', 'Sub menu 4', 'Sub menu 5'],
-  },
-  {
-    label: 'Item 3',
-    hasIcon: true,
-    hasAvatar: false,
-    showCheck: false,
-    state: 'disabled',
-    subLabel: 'SubLabel',
-    avatarSrc: 'images/jpg/avatar1.jpeg',
-    subContent: ['Sub menu 1', 'Sub menu 2', 'Sub menu 3', 'Sub menu 4', 'Sub menu 5'],
-  },
-  {
-    label: 'Item 4',
-    hasIcon: true,
-    hasAvatar: false,
-    showCheck: true,
-    subLabel: 'SubLabel',
-    state: 'disabled', // Must be 'active', 'disabled', or 'default'
-  },
-]
-
-// Return the URL of the uploaded image
-const mockUpload = async (file: File): Promise<string> => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      // Returning a mock URL after the delay
-      resolve('images/jpg/avatar.jpeg' + file.name)
-    }, 2000) // 2 seconds delay
-  })
-}
+import React, { useState } from 'react';
+import AppModal from './molecules/AppModal'; // Assuming AppModal is properly imported
 
 function App() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    getValues,
-    setValue,
-  } = useForm<FormData>({
-    defaultValues: {
-      email: '',
-    },
-  })
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
-  const handleClearEmail = () => {
-    setValue('email', '') // Clear the email value
-  }
+  // Function to open the modal
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Function to close the modal
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  // Function to handle confirm action
+  const handleConfirm = () => {
+    console.log('Confirm button clicked!');
+    handleCloseModal(); 
+  };
+
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
-      <AppSidebar links={links} />
-      <AppTopBar
-        theme="filled"
-        isOnboarding={false}
-        pageTitle="Page title"
-        subtitle="Find all your payment transactions here"
-        actions={true}
-        buttonThree
-        buttonTwo
-        buttonOne={false}
-        backBtn
-      />
-      <AppLoader />
-      <div className="flex flex-col justify-center items-center min-h-screen">
-        <form className="max-w-md mx-auto">
-          <Controller
-            name="email"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <AppPhoneInput
-                label="Testing"
-                // placeholder="meeeee"
-                onInput={e => {
-                  // Cast EventTarget to HTMLInputElement
-                  const input = e.target as HTMLInputElement
-                  // Prevent non-numeric input
-                  input.value = input.value.replace(/[^0-9]/g, '')
-                  field.onChange(input.value) // Update the form value
-                }}
-                {...field} // Pass field props which includes value and onChange
-                // error={errors.email?.message}
-                onClear={handleClearEmail}
-              />
-            )}
-          />
-        </form>
-        <AppCodeInput
-          length={6}
-          errorMessage=""
-          secureEntry
-          // onChange={handleCodeChange}
-        />
-        <AppButton text="Continue" color="accent" size={4} />
-        <div className="flex flex-col space-y-lg mt-md">
-          <AppButton
-            text="Continue"
-            color="accent"
-            size={4}
-            onClick={() => console.log('Button click works!!!')}
-          />
-          {/* Dropdown List Items with Remix icon classes */}
-          <DropdownComponent items={items} separator={false} showArrow={true} variant="primary" />
+      {/* Button to trigger modal opening */}
+      <button
+        onClick={handleOpenModal} 
+        className="bg-blue-500 text-white p-3 rounded-lg">
+        Open Modal
+      </button>
 
-          {/* Dropdown List Items with Remix icon classes */}
-          <DropdownComponent items={items2} separator={false} showArrow={true} variant="primary" />
-
-          {/* Dropdown with custom trigger and Remix icon list  */}
-          <DropdownComponent
-            items={items2}
-            separator={false}
-            showArrow={true}
-            variant="primary"
-            trigger={<span className="cursor-pointer">Custom Trigger</span>}
-          />
-
-          <AppButton text="Continue" color="accent" />
-        </div>
-        <AppFileUploader
-          maxSize={800 * 400}
-          allowedTypes={['image/svg+xml', 'image/png', 'image/jpeg', 'image/gif']}
-          onUpload={mockUpload}
-          width="600px"
-          height="160px"
-        />
-      </div>
+      {/* Conditionally render the AppModal based on the state */}
+     
+        <AppModal
+          isOpen={isModalOpen} 
+          onClose={handleCloseModal}
+          onConfirm={handleConfirm}
+          title="Choose how to verify your BVN"
+          subtitle="Are you sure you want to proceed?"
+        >
+          <div className="p-4">
+            <p className="mb-4">We only need access to your</p>
+            <ul className="space-y-2 mb-4">
+              <li className="flex items-center">
+                <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
+                Full name
+              </li>
+              <li className="flex items-center">
+                <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
+                Phone number
+              </li>
+              <li className="flex items-center">
+                <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
+                Date of Birth
+              </li>
+            </ul>
+            <div className="flex items-center mb-4">
+              <i className="ri-lock-fill text-gray-500 mr-2"></i>
+              <p className="text-sm text-gray-600">Your BVN does not give us access to your bank accounts or transactions.</p>
+            </div>
+          </div>
+        </AppModal>
+      
     </div>
   )
 }
 
-export default App
+export default App;
