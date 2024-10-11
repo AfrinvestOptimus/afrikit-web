@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import SideBarBaseItem from '../components/SideBarBaseItem'
 import optimusLogo from '../assets/optimusLogo.svg'
 import { TSideBarItem } from '../types'
+import clsx from 'clsx'
 
 type AppSidebarProps = {
   links: TSideBarItem[]
+  className?: string
 }
 
 /**
@@ -32,9 +34,9 @@ type AppSidebarProps = {
  *
  * <AppSidebar links={links} />
  */
-const AppSidebar: React.FC<AppSidebarProps> = ({ links }) => {
+const AppSidebar: React.FC<AppSidebarProps> = ({ links, className }) => {
   return (
-    <div className="w-[18rem] mr-auto h-screen bg-white py-xl flex flex-col">
+    <div className={clsx("w-[18rem] mr-auto h-screen bg-white py-xl flex flex-col", className)}>
       <div className="pt-xl pb-3xl px-lg">
         <img src={optimusLogo} className="" />
       </div>
