@@ -84,11 +84,11 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
           <TopBarRightContent
             search={search}
             actions={actions}
-            {...(hasActions(props)
+            {...(hasActions(props) &&  'buttonOne' in props
               ? {
-                  buttonOne: props.buttonOne,
-                  buttonTwo: props.buttonTwo,
-                  buttonThree: props.buttonThree,
+                  buttonOne: props?.buttonOne,
+                  buttonTwo: props?.buttonTwo,
+                  buttonThree: props?.buttonThree,
                 }
               : {})}
           />
