@@ -25,6 +25,7 @@ const AppButton: React.FC<AppButtonProps> = ({
   iconEndName = 'ri-home-line', // Class name for the end icon
   text, // Text to display in the button
   onClick, // Function to call on button click
+  classname
 }) => {
   // Get the corresponding styles based on the provided props
   const sizeStyle = buttonSizes[size] // Get size styles
@@ -60,8 +61,8 @@ const AppButton: React.FC<AppButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center ${combinedButtonStyles}`} // Set combined styles
-      disabled={state === 'disabled'} // Disable button based on state
+      className={`flex items-center justify-center ${combinedButtonStyles} ${classname}`} // Set combined styles
+      disabled={state === 'disabled'} 
     >
       <div className="flex items-center justify-between space-x-lg">
         {iconStart && ( // Conditionally render left icon
