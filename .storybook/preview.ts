@@ -12,12 +12,12 @@ const preview: Preview = {
         { name: 'Dark', value: '#333333' },
       ],
     },
-    // controls: {
-    //   matchers: {
-    //     color: /(background|color)$/i,
-    //     date: /Date$/i,
-    //   },
-    // },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
     
   },
 
