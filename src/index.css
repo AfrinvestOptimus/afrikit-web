@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+
+body {
+  background-color: #333333 !important;
+  color: #ffffff;           
+}
+
+[data-theme='light'] {
+  background-color: #ffffff !important; 
+  color: #000000;         
+}
+
+
 @keyframes slideUp {
   from {
     height: var(--radix-collapsible-content-height);
