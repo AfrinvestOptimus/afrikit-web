@@ -24,11 +24,14 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
     return (
       <div className="flex space-x-sm items-center">
         <div className="flex flex-col relative">
-          <div className={`flex align-baseline mb-lg`}>
+          <div className={`flex align-baseline mb-sm`}>
             <input
-              className={` ${isFocused && !error ? 'border-b-2 border-solid border-light-edge-accent-strong dark:border-dark-edge-accent-strong rounded-b-[0px] transition-all duration-400' : ''} rounded-l-[0px] ${error !== undefined ? 'border-b-2 border-solid border-light-type-error rounded-b-[0px] dark:border-dark-type-error' : ''}
-               bg-light-surface-gray dark:bg-dark-surface-gray text-light-type-gray dark:text-dark-type-gray outline-none rounded-md focus:outline-none focus:z-10 appearance-none w-full min-w-[415px] h-[56px] px-md pb-lg !pt-2xl border-0 focus:ring-0 text-sm
-                peer`}
+              className={` ${isFocused && !error ? 'border-b-2 border-solid border-light-edge-accent-strong dark:border-dark-edge-accent-strong rounded-br-[0px] transition-all duration-400' : 
+                isFocused && error !== undefined ? 'border-b-2 border-solid border-light-type-error rounded-b-[0px] dark:border-dark-type-error' : 
+                !isFocused && error !== undefined ? '!border border-solid border-light-type-error dark:border-dark-type-error rounded-r-md' : ''}
+                bg-light-surface-gray dark:bg-dark-surface-gray text-light-type-gray dark:text-dark-type-gray outline-none rounded-r-md 
+                focus:outline-none focus:z-10 appearance-none w-full min-w-[415px] h-[56px] px-md pb-lg !pt-2xl border-0 focus:ring-0 text-sm
+                  peer`}
               placeholder={placeholder}
               value={value}
               onFocus={() => setIsFocused(true)}
@@ -39,7 +42,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
               autoComplete="off"
             />
             <label
-              className={`absolute inline-flex left-[11px] top-md transition-all duration-200 pt-xs text-sm
+              className={`absolute inline-flex left-[11px] top-[11px] transition-all duration-200 pt-sm text-sm
                 peer-focus:transform 
                 peer-focus:origin-top-left 
                 peer-focus:translate-x-[0px] 
@@ -56,7 +59,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
               {label}
             </label>
           </div>
-          {error && <span className="text-light-type-error  text-sm">{error}</span>}
+          {error && <span className="text-light-type-error text-sm">{error}</span>}
         </div>
       </div>
     )
