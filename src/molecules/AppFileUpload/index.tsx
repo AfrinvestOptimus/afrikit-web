@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 export interface FileUploaderProps {
   maxSize?: number; // in bytes
   allowedTypes?: string[];
-  onUpload: (file: File) => Promise<string>; // Function to handle file upload, returns image URL
+  onUpload?: (file: File) => Promise<string>; // Function to handle file upload, returns image URL
   width?: string;
   height?: string;
 }
@@ -88,7 +88,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
 
   return (
     <div
-      className={`border-2 border-dashed rounded-lg p-4 flex flex-col items-center justify-center transition-colors
+      className={`bg-dark-background-neutral-light dark:bg-dark-background-neutral-light border border-dashed border-light-type-gray dark:border-dark-type-gray rounded-xl p-4 flex flex-col items-center justify-center transition-colors
         ${isDragging || isHovering ? 'border-light-blue8 bg-blue-50' : 'border-gray-300'}
         ${isUploading ? 'bg-light-gray6 opacity-50 cursor-not-allowed' : 'cursor-pointer hover:border-blue-500 hover:bg-blue-50'}`}
       onDrop={handleDrop}
@@ -105,7 +105,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
             alt="Uploaded file"
             className="w-full h-full object-cover rounded-lg"
           />
-          <div className="absolute bottom-0 left-0 w-full flex items-center justify-between p-2 bg-white bg-opacity-75 px-lg">
+          <div className="absolute bottom-0 left-0 w-full flex items-center justify-between p-xs bg-white bg-opacity-75 px-lg">
             <i className="ri-file-line text-gray-500 text-xl mr-2" />
             <span className="text-center text-sm truncate">{file?.name}</span>
             <i className="ri-checkbox-circle-fill text-light-green10 text-xl ml-2" />
@@ -124,7 +124,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
         </div>
       ) : (
         <>
-          <i className="ri-upload-cloud-line text-4xl mb-2"></i>
+          <i className="ri-file-upload-fill mb-2 text-light-type-gray dark:text-dark-type-gray"></i>
           <p className="text-sm text-center"><span className='text-light-blue10 font-semibold text-sm'>Click to upload </span>or drag and drop</p>
           <p className="text-sm text-light-gray10 text-center">SVG, PNG, JPG or GIF (max. 800x400px)</p>
         </>

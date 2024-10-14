@@ -1,14 +1,14 @@
 import React from 'react'
 import { type VariantProps } from 'class-variance-authority'
 import { dropdownItemStyles } from '../molecules/AppDropdownMenu/DropdownListItem'
-
+type IconSize = 'sm' | 'md' | 'lg';
 // Adjust these types to match your usage
  export interface DropdownItemProps {
   label: string;
   subLabel?: string;
   hasIcon?: boolean;
   hasAvatar?: boolean;
-  iconSize?: 'sm' | 'md' | 'lg';
+  iconSize?: IconSize;
   showCheck?: boolean;
   avatarSrc?: string;
   icon?: string;

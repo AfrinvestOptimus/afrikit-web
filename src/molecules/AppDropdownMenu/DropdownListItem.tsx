@@ -7,7 +7,7 @@ import Avatar from '../Avatar'
 import SubTrigger from './SubTrigger'
 
 export const dropdownItemStyles = cva(
-  'flex items-center justify-between outline-none cursor-pointer px-lg my-lg py-sm text-primary',
+  ' flex items-center justify-between outline-none cursor-pointer text-light-type-gray-muted dark:text-dark-type-gray-muted hover:rounded-xs px-sm',
   {
     variants: {
       size: {
@@ -17,15 +17,15 @@ export const dropdownItemStyles = cva(
       },
       variant: {
         default:
-          'hover:bg-light-background-accent-light focus:bg-light-background-accent-light dark:hover:bg-dark-background-accent-light dark:focus:bg-dark-background-accent-light',
+          'hover:bg-light-background-neutral-transparent-hover focus:bg-light-background-neutral-transparent-hover dark:bg-dark-background-neutral-transparent-hover dark:bg-dark-background-neutral-transparent-hover',
         primary:
           'hover:bg-light-background-accent-light focus:bg-light-background-accent-light dark:hover:bg-dark-background-accent-light dark:focus:bg-dark-background-accent-light',
         secondary:
           'hover:bg-light-background-accent-light focus:bg-light-background-accent-light dark:hover:bg-dark-background-accent-light dark:focus:bg-dark-background-accent-light',
       },
       state: {
-        active: 'font-bold',
-        disabled: 'opacity-50 cursor-not-allowed',
+        active: 'text-sm font-bold',
+        disabled: 'text-sm text-opacity-60 cursor-not-allowed',
         default: '',
       },
       alignment: {
@@ -68,10 +68,10 @@ export const submenuItemStyles = cva('flex items-center justify-between px-3 py-
     },
     variant: {
       default:
-        'hover:bg-light-background-accent-light focus:bg-light-background-accent-light dark:hover:bg-dark-background-accent-light dark:focus:bg-dark-background-accent-light',
+        'hover:bg-light-background-neutral-transparent-hover focus:bg-light-background-neutral-transparent-hover dark:bg-dark-background-neutral-transparent-hover dark:bg-dark-background-neutral-transparent-hover',
     },
     state: {
-      active: 'font-bold',
+      active: 'text-lg',
       disabled: 'opacity-50 cursor-not-allowed',
       default: '',
     },
@@ -86,34 +86,34 @@ export const submenuItemStyles = cva('flex items-center justify-between px-3 py-
 export const DropdownItem: React.FC<DropdownItemProps> = ({
   label,
   subLabel,
-  hasIcon = false,
+  hasIcon = true,
   hasAvatar = false,
   iconSize = 'lg',
-  showCheck = true,
+  showCheck = false,
   avatarSrc = 'images/jpg/avatar1.jpeg',
   icon = 'ri-heart-line',
   state = 'disabled',
   size,
-  variant,
+  variant='default',
   alignment,
 }) => (
   <DropdownMenu.Item className={` ${dropdownItemStyles({ size, variant, alignment, state })}`}>
-    <div className="flex items-center justify-center space-x-sm">
+    <div className="flex items-center space-x-sm  w-[100%] h-[32px] py-xl px-sm">
       {hasAvatar && <Avatar src={avatarSrc} />}
       {hasIcon && (
-        <div className={`${submenuItemStyles({ size: iconSize as 'sm' | 'md' | 'lg' })} text-xl`}>
-          <i className={`${icon} ${size}`} aria-hidden="true"></i>
+        <div className={`${submenuItemStyles({ size: iconSize as 'sm' | 'md' | 'lg' })}`}>
+          <i className={`${icon ? icon : ''} ${size ? size : ''} text-xl`} aria-hidden="true"></i>
         </div>
       )}
       <div
-        className={`flex flex-col ${state === 'disabled' ? 'opacity-50 cursor-not-allowed' : 'text-black'}`}>
+        className={`flex flex-col`}>
         <span>{label}</span>
         {subLabel && <span className="text-xs">{subLabel}</span>}
       </div>
     </div>
     {showCheck && (
       <i
-        className={`ri-check-line text-xl ${textColors['accent']['soft']}  ${state === 'disabled' ? 'opacity-50 cursor-not-allowed' : 'text-black'}`}
+        className={`ri-check-line text-xl ${state === 'disabled' ? 'opacity-50 cursor-not-allowed' : ''} ${textColors['accent']['soft']}`}
         aria-hidden="true"></i>
     )}
   </DropdownMenu.Item>
@@ -139,8 +139,9 @@ export const DropdownSubmenuItem: React.FC<DropdownSubmenuItemProps> = ({
           state={item?.state}
         />
       </DropdownMenu.SubTrigger>
+      <div className=' '></div>
       <DropdownMenu.Portal>
-        <DropdownMenu.SubContent className="bg-white dark:bg-dark-background-neutral-light shadow-lg rounded-sm p-lg space-y-1 w-[300px]">
+        <DropdownMenu.SubContent className="dark:bg-dark-background-neutral-light bg-light-background-neutral-light border-light-neutral4 dark:border-dark-neutral4 shadow-lg rounded-sm p-lg space-y-1 w-[300px]">
           {item.subContent &&
             item.subContent.length > 0 &&
             item.subContent.map((subItem, index) => (
