@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import AppModal from './molecules/AppModal'; // Assuming AppModal is properly imported
+import { Controller, useForm } from 'react-hook-form';
+import { AppInput } from './molecules';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -20,18 +22,34 @@ function App() {
     handleCloseModal(); 
   };
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+    setValue,
+  } = useForm({
+    defaultValues: {
+      email: '',
+    },
+  })
+
+  const handleClearEmail = () => {
+    setValue('email', '') // Clear the email value
+  }
+
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
       {/* Button to trigger modal opening */}
-      <button
+      {/* <button
         onClick={handleOpenModal} 
         className="bg-blue-500 text-white p-3 rounded-lg">
         Open Modal
-      </button>
+      </button> */}
 
       {/* Conditionally render the AppModal based on the state */}
      
-        <AppModal
+        {/* <AppModal
           isOpen={isModalOpen} 
           onClose={handleCloseModal}
           onConfirm={handleConfirm}
@@ -59,8 +77,30 @@ function App() {
               <p className="text-sm text-gray-600">Your BVN does not give us access to your bank accounts or transactions.</p>
             </div>
           </div>
-        </AppModal>
-      
+        </AppModal> */}
+        <form className="max-w-md mx-auto">
+          <Controller
+            name="email"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <AppInput
+                label="Testing"
+                // placeholder="meeeee"
+                onInput={e => {
+                  // Cast EventTarget to HTMLInputElement
+                  const input = e.target as HTMLInputElement
+                  // Prevent non-numeric input
+                  // input.value = input.value.replace(/[^0-9]/g, '')
+                  field.onChange(input.value) // Update the form value
+                }}
+                {...field} // Pass field props which includes value and onChange
+                // error={errors.email?.message}
+                onClear={handleClearEmail}
+              />
+            )}
+          />
+        </form>
     </div>
   )
 }
