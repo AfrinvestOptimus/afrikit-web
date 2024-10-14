@@ -1,6 +1,6 @@
 {
   "name": "afrikit-web",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "main": "dist/afrikit-web.umd.js",
   "module": "dist/afrikit-web.es.js",
   "type": "module",
