@@ -16,10 +16,10 @@ const DropdownComponent: React.FC<DropdownComponentProps> = ({
 }) => {
   return (
     <DropdownMenu.Root>
-      <DropdownTrigger label="Open" trigger={trigger} />
+      <DropdownTrigger label="Open" trigger={trigger} alignment={alignment} />
 
       <DropdownMenu.Portal>
-        <DropdownMenu.Content className="w-[300px] mt-2 bg-white dark:bg-dark-background-neutral-light shadow-lg rounded-sm outline-none mt-sm">
+        <DropdownMenu.Content className="min-w-[300px] bg-dark-background-neutral-light dark:bg-dark-background-neutral-light shadow-lg border border-light-neutral4 dark:border-dark-neutral4 rounded-sm outline-none p-sm">
           {items &&
             items.length > 0 &&
             items.map((item, index) => (
@@ -34,7 +34,7 @@ const DropdownComponent: React.FC<DropdownComponentProps> = ({
                       alignment={alignment}
                     />
                     {separator && (
-                      <DropdownMenu.Separator className="my-2 h-[1px] bg-light-gray4" />
+                      <DropdownMenu.Separator className="my-1 h-[1px] bg-light-gray4" />
                     )}
                   </>
                 ) : (

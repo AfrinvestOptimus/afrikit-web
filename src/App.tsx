@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import AppModal from './molecules/AppModal'; // Assuming AppModal is properly imported
 import { Controller, useForm } from 'react-hook-form';
 import { AppInput } from './molecules';
+import DropdownComponent from './molecules/AppDropdownMenu';
+import AppFileUploader from './molecules/AppFileUpload';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -33,6 +35,50 @@ function App() {
       email: '',
     },
   })
+
+  const dropdownItems = [
+    {
+      label: 'My profile',
+      hasAvatar: true,
+      hasIcon: false,
+      iconSize: 'sm',
+      icon: 'ri-user-6-line',
+      state: 'disabled',
+      showCheck: true
+    },
+    {
+      label: 'Themes',
+      hasAvatar: false,
+      hasIcon: true,
+      iconSize: 'sm',
+      icon: 'ri-palette-line',
+      state: 'active',
+    },
+    {
+      label: 'Settings',
+      hasAvatar: false,
+      hasIcon: true,
+      iconSize: 'sm',
+      icon: 'ri-settings-3-line',
+      state: 'active',
+    },
+    {
+      label: 'Help',
+      hasAvatar: false,
+      hasIcon: true,
+      iconSize: 'sm',
+      icon: 'ri-heart-3-line',
+      state: 'active',
+    },
+    {
+      label: 'Logout',
+      hasAvatar: false,
+      hasIcon: true,
+      iconSize: 'sm',
+      icon: 'ri-logout-circle-line',
+      state: 'active',
+    }
+  ]
 
   const handleClearEmail = () => {
     setValue('email', '') // Clear the email value
@@ -101,6 +147,9 @@ function App() {
             )}
           />
         </form>
+        {/* <DropdownComponent items={dropdownItems} separator={true} alignment='right' /> */}
+
+        <AppFileUploader />
     </div>
   )
 }
