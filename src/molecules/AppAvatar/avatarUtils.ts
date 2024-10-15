@@ -14,11 +14,11 @@ export const sizeStyles: Record<AvatarSize, string> = {
 }
 
 export const textSizes: Record<AvatarSize, string> = {
-  1: 'text-xs-head font-medium leading-4',
-  2: 'text-sm-title font-medium leading-5',
-  3: 'text-base-title font-medium leading-6',
-  4: 'text-lg-title font-medium leading-[26px]',
-  5: 'text-2xl-title font-medium leading-[30px]',
+  1: 'type-xs-head font-medium leading-4',
+  2: 'type-sm-title font-medium leading-5',
+  3: 'type-base-title font-medium leading-6',
+  4: 'type-lg-title font-medium leading-[26px]',
+  5: 'type-2xl-title font-medium leading-[30px]',
   6: 'text-3xl font-medium leading-7',
   7: 'text-3xl font-medium leading-9',
   8: 'text-4xl font-medium leading-10',

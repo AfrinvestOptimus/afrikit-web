@@ -41,7 +41,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
   return (
     <div
       className={clsx(
-        'w-full h-16 mx-lg',
+        'h-16 mx-lg w-full',
         theme === 'filled'
           ? 'bg-light-page-bg dark:bg-dark-page-bg'
           : 'border-b border-light-edge-gray-subtle dark:border-dark-edge-gray-subtle',
@@ -50,12 +50,12 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
         <div className="flex flex-row items-center justify-between px-3xl">
           <img src={optimusLogo} />
 
-          <p className="hidden md:flex text-light-type-accent dark:text-dark-type-accent capitalize text-base-head cursor-pointer py-lg hover:text-light-type-accent-bold dark:hover:text-dark-type-accent-bold transition-all duration-300">
+          <p className="hidden cursor-pointer py-lg capitalize text-light-type-accent transition-all duration-300 type-base-head hover:text-light-type-accent-bold md:flex dark:text-dark-type-accent dark:hover:text-dark-type-accent-bold">
             open account
           </p>
         </div>
       ) : (
-        <div className="px-2xl flex flex-row items-center justify-between py-lg">
+        <div className="flex flex-row items-center justify-between px-2xl py-lg">
           <div className="flex flex-row items-end space-x-sm">
             {backBtn && (
               <div className="hidden md:inline-block">
@@ -72,10 +72,10 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
               </div>
             )}
             <div className="flex flex-col items-start gap-y-xs">
-              <h2 className="text-xl-bold text-light-type-gray dark:text-dark-type-gray text-center">
+              <h2 className="text-center text-light-type-gray type-xl-bold dark:text-dark-type-gray">
                 {pageTitle}
               </h2>
-              <p className="text-light-type-gray-muted dark:text-dark-type-gray-muted hidden md:block text-base-body">
+              <p className="hidden text-light-type-gray-muted type-base-body md:block dark:text-dark-type-gray-muted">
                 {subtitle}
               </p>
             </div>
@@ -84,7 +84,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
           <TopBarRightContent
             search={search}
             actions={actions}
-            {...(hasActions(props) &&  'buttonOne' in props
+            {...(hasActions(props) && 'buttonOne' in props
               ? {
                   buttonOne: props?.buttonOne,
                   buttonTwo: props?.buttonTwo,

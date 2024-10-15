@@ -2,7 +2,6 @@ import React from 'react'
 import clsx from 'clsx'
 import { TSidebarDropdownBaseItemProps } from '../types'
 
-
 /**
  * SidebarDropdownBaseItem is a functional component that renders a button
  * with various styles and behaviors based on the provided props.
@@ -20,15 +19,15 @@ export default function SidebarDropdownBaseItem(props: TSidebarDropdownBaseItemP
     <button
       onClick={linkAction}
       className={clsx(
-        'flex-row flex items-center rounded-full px-md py-sm cursor-pointer group/dropdownItem flex-1 box-border border-2 border-light-background-neutral-transparent dark:border-dark-background-neutral-transparent transition-all duration-500 w-full space-x-xl pl-[18px]',
+        'group/dropdownItem box-border flex w-full flex-1 cursor-pointer flex-row items-center space-x-[22px] rounded-full border-2 border-light-background-neutral-transparent px-md py-sm pl-[18px] transition-all duration-500 dark:border-dark-background-neutral-transparent',
         current
           ? 'hover:bg-light-background-neutral-light dark:hover:bg-dark-background-neutral-light'
-          : 'hover:bg-light-background-neutral-transparent-hover dark:hover:bg-dark-background-neutral-transparent-hover focus:border-light-edge-info-light dark:focus:border-dark-edge-info-light',
+          : 'hover:bg-light-background-neutral-transparent-hover focus:border-light-edge-info-light dark:hover:bg-dark-background-neutral-transparent-hover dark:focus:border-dark-edge-info-light',
       )}>
-      <div className="flex flex-col items-center justify-end relative">
+      <div className="relative flex flex-col items-center justify-end">
         <div
           className={clsx(
-            'w-[1px] h-[34px] -top-[30px] absolute z-10',
+            'absolute -top-[30px] z-10 h-[34px] w-[1px]',
             current
               ? 'bg-light-type-accent dark:bg-dark-type-accent'
               : 'bg-light-neutral4 dark:bg-dark-neutral4',
@@ -36,22 +35,24 @@ export default function SidebarDropdownBaseItem(props: TSidebarDropdownBaseItemP
         />
         <div
           className={clsx(
-            'w-sm h-sm rounded-full',
+            'h-sm w-sm rounded-full',
             current
               ? 'bg-light-type-accent dark:bg-dark-type-accent'
               : 'bg-light-neutral4 dark:bg-dark-neutral4',
           )}
         />
       </div>
-      <span
-        className={clsx(
-          'text-sm-title',
-          current
-            ? 'text-light-type-accent dark:text-dark-type-accent'
-            : 'text-light-type-gray-muted dark:text-dark-type-gray-muted group-hover/dropdownItem:text-light-type-gray dark:group-hover/dropdownItem:text-dark-type-gray group-focus:text-light-type-gray-muted dark:group-focus:text-dark-type-gray-muted',
-        )}>
-        {text}
-      </span>
+      <div className="w-full">
+        <p
+          className={clsx(
+            'text-left type-sm-title',
+            current
+              ? 'text-light-type-accent dark:text-dark-type-accent'
+              : 'text-light-type-gray-muted group-hover/dropdownItem:text-light-type-gray group-focus:text-light-type-gray-muted dark:text-dark-type-gray-muted dark:group-hover/dropdownItem:text-dark-type-gray dark:group-focus:text-dark-type-gray-muted',
+          )}>
+          {text}
+        </p>
+      </div>
     </button>
   )
 }

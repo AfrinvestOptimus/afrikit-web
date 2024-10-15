@@ -79,7 +79,7 @@ const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
           </div>
         </div>
         {error && (
-          <span className="text-light-type-error dark:text-dark-type-error text-xs-body">
+          <span className="text-light-type-error dark:text-dark-type-error type-xs-body">
             {error}
           </span>
         )}

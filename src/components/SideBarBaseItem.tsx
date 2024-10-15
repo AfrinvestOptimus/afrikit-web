@@ -47,45 +47,45 @@ export default function SideBarBaseItem(props: TSideBarBaseItemProps) {
     <Collapsible.Root onOpenChange={openState => setOpendrop(openState)}>
       <div className={clsx('flex-row items-center space-x-md pr-lg', iconOnly ? '' : 'flex')}>
         {current && !iconOnly && (
-          <div className="w-xs h-lg bg-light-background-accent-base rounded-tr-xs rounded-br-xs" />
+          <div className="h-lg w-xs rounded-br-xs rounded-tr-xs bg-light-background-accent-base" />
         )}
         <button
           onClick={linkAction}
           className={clsx(
-            'flex-row flex items-center rounded-full px-md py-sm  cursor-pointer group/item space-x-lg flex-1 box-border border-2 border-light-background-neutral-transparent dark:border-dark-background-neutral-transparent  transition-all duration-500',
+            'group/item box-border flex flex-1 cursor-pointer flex-row items-center space-x-lg rounded-full border-2 border-light-background-neutral-transparent px-md py-sm transition-all duration-500 dark:border-dark-background-neutral-transparent',
 
             current
-              ? 'bg-light-background-accent-light dark:bg-dark-background-accent-light focus:border-light-edge-info-lighter dark:focus:border-dark-edge-info-lighter'
-              : 'hover:bg-light-background-neutral-transparent-hover dark:hover:bg-dark-background-neutral-transparent-hover focus:border-light-optiblue9 dark:focus:border-dark-optiblue9 ml-lg',
+              ? 'bg-light-background-accent-light focus:border-light-edge-info-lighter dark:bg-dark-background-accent-light dark:focus:border-dark-edge-info-lighter'
+              : 'ml-lg hover:bg-light-background-neutral-transparent-hover focus:border-light-optiblue9 dark:hover:bg-dark-background-neutral-transparent-hover dark:focus:border-dark-optiblue9',
           )}>
           {hasIcon(props) && (
             <div className="icon">
               <i
                 className={clsx(
                   props.iconName,
-                  '',
+                  'text-xl',
                   current
                     ? 'text-light-type-accent dark:text-dark-type-accent'
-                    : 'text-light-type-gray-muted dark:text-dark-type-gray-muted text-xl group-hover/item:text-light-type-gray dark:group-hover/item:text-dark-type-gray',
+                    : 'text-light-type-gray-muted group-hover/item:text-light-type-gray dark:text-dark-type-gray-muted dark:group-hover/item:text-dark-type-gray',
                 )}
               />
             </div>
           )}
           {!iconOnly &&
             (hasDropdown(props) ? (
-              <div className="w-full flex flex-col items-start justify-start">
+              <div className="flex w-full flex-col items-start justify-start">
                 <Collapsible.CollapsibleTrigger asChild>
                   <div
                     className={clsx(
-                      'flex flex-row items-center justify-between flex-1 relative w-full',
+                      'relative flex w-full flex-1 flex-row items-center justify-between',
                       current
                         ? 'text-light-type-accent dark:text-dark-type-accent'
-                        : 'group-hover/item:text-light-type-gray dark:group-hover/item:text-dark-type-gray text-light-type-gray-muted dark:text-dark-type-gray-muted',
+                        : 'text-light-type-gray-muted group-hover/item:text-light-type-gray dark:text-dark-type-gray-muted dark:group-hover/item:text-dark-type-gray',
                     )}>
-                    <span className="text-base-head">{text}</span>
+                    <span className="type-base-head">{text}</span>
                     <i
                       className={clsx(
-                        'text-lg transition-all duration-500 ri-arrow-down-s-line',
+                        'ri-arrow-down-s-line text-lg transition-all duration-500',
                         opendrop ? 'rotate-180' : '',
                       )}
                     />
@@ -95,10 +95,10 @@ export default function SideBarBaseItem(props: TSideBarBaseItemProps) {
             ) : (
               <div
                 className={clsx(
-                  'flex flex-row items-center justify-between flex-1 text-base-head',
+                  'flex flex-1 flex-row items-center justify-between type-base-head',
                   current
                     ? 'text-light-type-accent dark:text-dark-type-accent'
-                    : 'group-hover/item:text-light-type-gray dark:group-hover/item:text-dark-type-gray text-light-type-gray-muted dark:text-dark-type-gray-muted',
+                    : 'text-light-type-gray-muted group-hover/item:text-light-type-gray dark:text-dark-type-gray-muted dark:group-hover/item:text-dark-type-gray',
                 )}>
                 {text}
               </div>
@@ -108,7 +108,7 @@ export default function SideBarBaseItem(props: TSideBarBaseItemProps) {
       {hasDropdown(props) && (
         <div className="">
           <Collapsible.CollapsibleContent asChild className="CollapsibleContent">
-            <div className="flex flex-col mx-lg">
+            <div className="mx-lg flex flex-col">
               {props.dropDownElement?.map(element => (
                 <SidebarDropdownBaseItem
                   key={element.text}

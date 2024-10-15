@@ -8,9 +8,9 @@ import ListItemSuffix from '../components/ListItemSuffix'
 
 /**
  * AppListItem Component
- * 
+ *
  * This component renders a list item with optional leading and trailing elements, overline text, and supporting text.
- * 
+ *
  * @param {TAppListItemProps} props - The properties for the AppListItem component.
  * @param {number} [props.size=2] - The size of the list item.
  * @param {string} [props.variant='3-line'] - The variant of the list item, e.g., '1-line', '2-line', or '3-line'.
@@ -21,12 +21,12 @@ import ListItemSuffix from '../components/ListItemSuffix'
  * @param {boolean} [props.subTrigger=false] - Whether the item is a sub-trigger.
  * @param {string} [props.title='list title'] - The title of the list item.
  * @param {object} [props.titleProps] - Additional properties for the title.
- * 
+ *
  * Child Components:
  * - ListItemPrefix: Renders the leading element based on the `leading` prop.
  * - ListItemSuffix: Renders the trailing element based on the `trailing` prop.
  * - AppText: Renders the title and supporting text.
- * 
+ *
  * @example
  * // Example usage of AppListItem
  * <AppListItem
@@ -54,11 +54,11 @@ export default function AppListItem(props: TAppListItemProps) {
     overline = false,
     subTrigger = false,
     title = 'list title',
-    titleProps
+    titleProps,
   } = props
 
   return (
-    <div className="flex flex-row space-x-lg cursor-pointer hover:bg-light-surface-gray dark:hover:bg-dark-surface-gray py-md px-md transition-all duration-500">
+    <div className="flex cursor-pointer flex-row items-center space-x-lg px-md py-md transition-all duration-500 hover:bg-light-surface-gray dark:hover:bg-dark-surface-gray">
       {leading !== 'none' && (
         <ListItemPrefix
           leading={leading}
@@ -66,14 +66,18 @@ export default function AppListItem(props: TAppListItemProps) {
         />
       )}
       <div className="flex-1 space-y-xs">
-        {overline && <p className="type-xs-body text-light-type-gray-muted dark:text-dark-type-gray-muted">{'overlineText' in props && props.overlineText}</p>}
+        {overline && (
+          <p className="text-light-type-gray-muted type-xs-body dark:text-dark-type-gray-muted">
+            {'overlineText' in props && props.overlineText}
+          </p>
+        )}
         <AppText size={3} color="gray" weight="medium" align="left" highContrast {...titleProps}>
           {title}
         </AppText>
         {isSupportingTextTrue(props) && (
           <p
             className={clsx(
-              'type-sm-body text-light-type-gray-muted dark:text-dark-type-gray-muted',
+              'text-light-type-gray-muted type-sm-body dark:text-dark-type-gray-muted',
               variant === '1-line' ? 'line-clamp-1' : '',
               variant === '2-line' ? 'line-clamp-2' : '',
               variant === '3-line' ? 'line-clamp-3' : '',
@@ -83,9 +87,14 @@ export default function AppListItem(props: TAppListItemProps) {
         )}
       </div>
       {trailing !== 'none' && (
-          <ListItemSuffix suffix={trailing} trailingProps={'trailingProps' in props && props.trailingProps} />
+        <ListItemSuffix
+          suffix={trailing}
+          trailingProps={'trailingProps' in props && props.trailingProps}
+        />
       )}
-      {subTrigger && <i className='ri-arrow-right-wide-line text-light-type-gray dark:text-dark-type-gray text-lg self-center'/>}
+      {subTrigger && (
+        <i className="ri-arrow-right-wide-line self-center text-lg text-light-type-gray dark:text-dark-type-gray" />
+      )}
     </div>
   )
 }
