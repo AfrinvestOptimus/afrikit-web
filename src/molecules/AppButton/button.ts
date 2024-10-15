@@ -11,10 +11,10 @@ export const buttonSizes: Record<ButtonSize, string> = {
 }
 
 export const textSizes: Record<ButtonSize, string> = {
-  1: 'text-xs-head',
-  2: 'text-sm-head',
-  3: 'text-base-head',
-  4: 'text-lg-head',
+  1: 'type-xs-head',
+  2: 'type-sm-head',
+  3: 'type-base-head',
+  4: 'type-lg-head',
 }
 
 export const buttonColors: Record<ButtonColor, Record<ButtonVariant, string>> = {

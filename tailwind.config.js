@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import plugin from 'tailwindcss/plugin'
 import afrikitConfig from 'afrikit-shared/dist'
 export default {
   darkMode: 'selector',
@@ -58,7 +59,7 @@ export default {
     extend: {},
   },
   plugins: [
-    function ({ addUtilities, theme }) {
+    plugin(function ({ addUtilities, theme }) {
       const newUtilities = {}
       const sizes = ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl']
       const styles = ['body', 'title', 'head', 'bold']
@@ -82,6 +83,6 @@ export default {
       })
 
       addUtilities(newUtilities)
-    },
+    }),
   ],
 }
