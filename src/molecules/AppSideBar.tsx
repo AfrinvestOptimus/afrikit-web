@@ -36,12 +36,16 @@ type AppSidebarProps = {
  */
 const AppSidebar: React.FC<AppSidebarProps> = ({ links, className }) => {
   return (
-    <div className={clsx("w-[18rem] mr-auto h-screen bg-white py-xl flex flex-col", className)}>
-      <div className="pt-xl pb-3xl px-lg">
+    <div
+      className={clsx(
+        'mr-auto flex h-screen w-[18rem] flex-col bg-light-page-bg py-xl dark:bg-dark-page-bg',
+        className,
+      )}>
+      <div className="px-lg pb-3xl pt-xl">
         <img src={optimusLogo} className="" />
       </div>
-      <div className="flex flex-col flex-1 justify-between">
-        <div className="flex-col flex space-y-lg">
+      <div className="flex flex-1 flex-col justify-between">
+        <div className="flex flex-col space-y-lg">
           {links
             .filter(link => link.position === 'top')
             .map(link => (
@@ -49,7 +53,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ links, className }) => {
             ))}
         </div>
 
-        <div className="flex-col flex space-y-sm">
+        <div className="flex flex-col space-y-sm">
           {links
             .filter(link => link.position === 'bottom')
             .map(link => (
