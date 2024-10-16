@@ -123,20 +123,19 @@ function App() {
             </div>
           </div>
         </AppModal> */}
-        <form className="max-w-md mx-auto">
+        <form className="max-w-md mx-auto p-4">
           <Controller
             name="email"
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <AppPhoneInput
+              <AppInput
                 label="Testing"
                 // placeholder="meeeee"
                 onInput={e => {
                   // Cast EventTarget to HTMLInputElement
                   const input = e.target as HTMLInputElement
                   // Prevent non-numeric input
-                  input.value = input.value.replace(/[^0-9]/g, '')
                   field.onChange(input.value) // Update the form value
                 }}
                 {...field} // Pass field props which includes value and onChange
