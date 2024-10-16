@@ -64,7 +64,7 @@ const AppPasswordInput = React.forwardRef<HTMLInputElement, AppPasswordInputProp
       <div className="flex flex-col relative">
         <div className={`flex align-baseline mb-sm`}>
           <input
-            className={` ${isFocused && !error ? 'border-b-2 border-solid border-light-edge-accent-strong dark:border-dark-edge-accent-strong rounded-b-[0px] transition-all duration-400' : 
+            className={` ${isFocused && error === undefined ? 'border-b-2 border-solid border-light-edge-accent-strong dark:border-dark-edge-accent-strong rounded-b-[0px] transition-all duration-400' : 
               isFocused && error !== undefined ? 'border-b-2 border-solid border-light-type-error rounded-b-[0px] dark:border-dark-type-error' : 
               !isFocused && error !== undefined ? '!border border-solid border-light-type-error dark:border-dark-type-error rounded-md' : ''}
               bg-light-surface-gray dark:bg-dark-surface-gray text-light-type-gray dark:text-dark-type-gray outline-none rounded-md 

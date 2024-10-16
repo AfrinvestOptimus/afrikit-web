@@ -1,5 +1,6 @@
 export type TAppTopBarProps = {
-  theme?: 'filled' | 'ghost'
+  theme?: 'filled' | 'ghost',
+  className?: string
 } & (
     | {
       isOnboarding: true

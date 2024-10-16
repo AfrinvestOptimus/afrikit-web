@@ -1,145 +1,149 @@
-import React, { useRef, useState } from 'react';
-
-export interface FileUploaderProps {
-  maxSize?: number; // in bytes
-  allowedTypes?: string[];
-  onUpload?: (file: File) => Promise<string>; // Function to handle file upload, returns image URL
-  width?: string;
-  height?: string;
-}
+import React, { useEffect, useRef, useState } from 'react'
+import { FileUploaderProps } from '../../types'
 
 export const AppFileUploader: React.FC<FileUploaderProps> = ({
   maxSize = 800 * 400,
   allowedTypes = ['image/svg+xml', 'image/png', 'image/jpeg', 'image/gif'],
   onUpload,
-  width = '400px',
-  height = '160px',
+  width = '512px',
+  height = '224', // Change to auto for flexible height
 }) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [file, setFile] = useState<File | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
 
   const handleFileChange = async (selectedFile: File | null) => {
     if (selectedFile) {
       if (selectedFile.size > maxSize) {
-        setError(`File size exceeds ${maxSize / 1024}KB limit`);
-        return;
+        setError(`File size exceeds ${maxSize / 1024}KB limit`)
+        return
       }
       if (!allowedTypes.includes(selectedFile.type)) {
-        setError('Invalid file type');
-        return;
+        setError('Invalid file type')
+        return
       }
-      setFile(selectedFile);
-      setError(null);
-      await uploadFile(selectedFile);
+      setFile(selectedFile)
+      setError(null)
+
+      await uploadFile(selectedFile)
     }
-  };
+  }
 
   const uploadFile = async (file: File) => {
-    setIsUploading(true);
-    setUploadProgress(0);
-    progressIntervalRef.current = setInterval(() => {
-      setUploadProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(progressIntervalRef.current!);
-          return 100;
-        }
-        return Math.min(prev + 10, 100); // Increment progress
-      });
-    }, 500); // Adjust the speed of progress increment
+    setIsUploading(true)
+    setUploadProgress(0)
+    const interval = setInterval(() => {
+      setUploadProgress(prev => Math.min(prev + 10, 100))
+    }, 500)
 
     try {
-      const url = await onUpload(file); // Simulate actual upload
-      setUploadedImageUrl(url);
-      setUploadProgress(100); // Complete progress
+      const url = await onUpload(file)
+      setUploadedImageUrl(url)
+      setUploadProgress(100)
     } catch (err) {
-      setError('Upload failed');
+      setError('Upload failed')
     } finally {
-      setIsUploading(false);
-      clearInterval(progressIntervalRef.current!); // Clean up interval
+      setIsUploading(false)
+      clearInterval(interval)
     }
-  };
+  }
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation(); // Prevent default behavior
-    setIsDragging(false);
-    const droppedFile = e.dataTransfer.files[0];
-    handleFileChange(droppedFile);
-  };
+    e.preventDefault()
+    setIsDragging(false)
+    const droppedFile = e.dataTransfer.files[0]
+    handleFileChange(droppedFile)
+  }
 
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation(); // Prevent default behavior
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation(); // Prevent default behavior
-    setIsDragging(false);
-  };
+  useEffect(() => {
+    if (file) {
+      const objectUrl = URL.createObjectURL(file)
+      setPreviewUrl(objectUrl)
+      return () => URL.revokeObjectURL(objectUrl)
+    }
+  }, [file])
 
   return (
     <div
-      className={`bg-dark-background-neutral-light dark:bg-dark-background-neutral-light border border-dashed border-light-type-gray dark:border-dark-type-gray rounded-xl p-4 flex flex-col items-center justify-center transition-colors
-        ${isDragging || isHovering ? 'border-light-blue8 bg-blue-50' : 'border-gray-300'}
-        ${isUploading ? 'bg-light-gray6 opacity-50 cursor-not-allowed' : 'cursor-pointer hover:border-blue-500 hover:bg-blue-50'}`}
-      onDrop={handleDrop}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-      style={{ width, height }}
-      onClick={() => !isUploading && fileInputRef.current?.click()}>
-      {uploadedImageUrl ? (
-        <div className="w-full h-full relative">
-          <img
-            src={uploadedImageUrl}
-            alt="Uploaded file"
-            className="w-full h-full object-cover rounded-lg"
-          />
-          <div className="absolute bottom-0 left-0 w-full flex items-center justify-between p-xs bg-white bg-opacity-75 px-lg">
-            <i className="ri-file-line text-gray-500 text-xl mr-2" />
-            <span className="text-center text-sm truncate">{file?.name}</span>
-            <i className="ri-checkbox-circle-fill text-light-green10 text-xl ml-2" />
-          </div>
-        </div>
-      ) : file ? (
-        <div className="flex flex-col items-center">
-          <i className="ri-file-line text-2xl mb-2"></i>
-          <span className="text-sm truncate">{file.name}</span>
-          {isUploading && (
-            <div className="w-full mt-2">
-              <div className="bg-light-blue8 h-1" style={{ width: `${uploadProgress}%` }}></div>
-              <p className="text-xs mt-1">{uploadProgress}%</p>
+      className={`rounded-lg border border-light-type-gray dark:border-dark-type-gray ${!uploadedImageUrl && !previewUrl ? 'border-dashed py-xl' : 'border-solid p-xs'} `}
+      style={{ width, maxHeight: height, overflow: 'hidden' }} // Set maxHeight and overflow hidden
+    >
+      <div
+        className={`relative flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${isDragging ? 'bg-blue-50 dark:bg-blue-900' : ''} ${isUploading ? 'cursor-not-allowed opacity-50' : 'hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer'}`}
+        onDrop={handleDrop}
+        onDragOver={e => {
+          e.preventDefault()
+          setIsDragging(true)
+        }}
+        onDragLeave={e => {
+          e.preventDefault()
+          setIsDragging(false)
+        }}
+        onClick={() => !isUploading && fileInputRef.current?.click()}
+        style={{ width: '100%', minHeight: height }}>
+        {uploadedImageUrl || previewUrl ? (
+          <div className="relative flex w-full flex-col items-center">
+            <img
+              src={uploadedImageUrl || previewUrl}
+              alt="Uploaded file"
+              className={`h-auto w-full rounded-lg object-cover ${uploadedImageUrl || previewUrl ? 'rounded-b-[0px]' : 'rounded-lg'}`}
+              style={{ maxHeight: '200px' }}
+            />
+            <div className="dark:bg-gray-800 flex w-full justify-between bg-light-type-gray-inverse bg-opacity-75 p-xs text-center dark:bg-dark-type-gray-inverse dark:bg-opacity-75">
+              {!isUploading ? (
+                <i className="ri-file-line text-lg text-light-type-accent dark:text-dark-type-accent"></i>
+              ) : (
+                <i className="ri-loader-4-line animate-spin text-lg text-light-type-accent dark:text-dark-type-accent"></i>
+              )}
+              <p className="truncate text-sm text-light-type-gray dark:text-dark-type-gray">
+                {file?.name}
+              </p>
+              <p className="text-light-type-accent dark:text-dark-type-accent">{uploadProgress}%</p>
             </div>
-          )}
-        </div>
-      ) : (
-        <>
-          <i className="ri-file-upload-fill mb-2 text-light-type-gray dark:text-dark-type-gray"></i>
-          <p className="text-sm text-center"><span className='text-light-blue10 font-semibold text-sm'>Click to upload </span>or drag and drop</p>
-          <p className="text-sm text-light-gray10 text-center">SVG, PNG, JPG or GIF (max. 800x400px)</p>
-        </>
-      )}
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={e => handleFileChange(e.target.files ? e.target.files[0] : null)}
-        accept={allowedTypes.join(',')}
-        className="hidden"
-        disabled={isUploading}
-      />
-      {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
+          </div>
+        ) : (
+          <>
+            <i className="ri-file-upload-fill mb-2 text-light-type-gray dark:text-dark-type-gray"></i>
+            <p className="text-center text-sm text-light-type-gray dark:text-dark-type-gray">
+              <span className="text-sm font-semibold text-light-type-accent dark:text-dark-type-accent">
+                Click to upload
+              </span>{' '}
+              or drag and drop
+            </p>
+            <p className="mt-2 text-xs text-light-type-gray-muted dark:text-dark-type-gray-muted">
+              SVG, PNG, JPG or GIF (max. {maxSize / 1024}KB)
+            </p>
+          </>
+        )}
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={e => handleFileChange(e.target.files ? e.target.files[0] : null)}
+          accept={allowedTypes.join(',')}
+          className="hidden"
+          disabled={isUploading}
+        />
+        {isUploading && (
+          <div className="bottom-0 left-0 right-0 h-2 bg-gray-200 dark:bg-gray-700 absolute">
+            <div
+              className="bg-blue-500 h-full transition-all duration-300 ease-in-out"
+              style={{ width: `${uploadProgress}%` }}
+            />
+          </div>
+        )}
+        {error && (
+          <p className="bottom-0 left-0 right-0 text-red-500 p-2 absolute bg-light-type-gray-inverse bg-opacity-75 text-center text-xs dark:bg-light-type-gray-inverse dark:bg-opacity-75">
+            {error}
+          </p>
+        )}
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default AppFileUploader;
+export default AppFileUploader

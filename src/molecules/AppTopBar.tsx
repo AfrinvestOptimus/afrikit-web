@@ -31,6 +31,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
     subtitle,
     actions,
     backBtn,
+    className,
   } = props
 
   // Type guard to check if actions are enabled
@@ -41,7 +42,8 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
   return (
     <div
       className={clsx(
-        'h-16 mx-lg w-full',
+        'h-16 w-full',
+        className,
         theme === 'filled'
           ? 'bg-light-page-bg dark:bg-dark-page-bg'
           : 'border-b border-light-edge-gray-subtle dark:border-dark-edge-gray-subtle',
