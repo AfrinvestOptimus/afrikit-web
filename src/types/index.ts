@@ -12,3 +12,7 @@ export type { TAppListItemProps, TListItemPrefixProps, TListItemSuffixProps } fr
 export type { IAppAvatarProps, AvatarSize, AvatarVariant, AvatarColor, AvatarFallback, NumberOfInitials } from './TAppAvatar'
 export type { TAppLoaderProps } from './TAppLoaderProps'
 export type { TAppTopBarProps } from './TAppTopBarProps'
+export type { DropdownComponentProps } from './TAppDropdownMenu'
+export type { AppModalProps } from './AppModal'
+export type { FileUploaderProps } from './IAppFileUpload'
+export type { AppPhoneInputProps } from './IAppPhoneInputProps'
