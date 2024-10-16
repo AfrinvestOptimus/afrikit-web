@@ -99,7 +99,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
               style={{ maxHeight: '200px' }} 
             />
             {/* Filename display directly below the image */}
-            <div className="bg-white bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 p-xs w-full text-center">
+            <div className="bg-light-type-gray-inverse dark:bg-dark-type-gray-inverse bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 p-xs w-full text-center">
               <p className="text-sm text-light-type-gray dark:text-dark-type-gray truncate">{file?.name}</p>
             </div>
           </div>
