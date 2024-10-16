@@ -17,21 +17,12 @@ const Avatar: React.FC<AvatarProps> = ({ src, alt = 'Avatar', size, fallback, cl
 
   return (
     <div
-      className={`
-        w-2xl
-        h-2xl
-        rounded-full 
-        bg-gray-200 
-        text-center 
-        flex items-center justify-center 
-        overflow-hidden 
-        ${className}
-      `}>
+      className={`bg-gray-200 flex h-2xl w-2xl items-center justify-center overflow-hidden rounded-full text-center ${className} `}>
       {src && !imageError ? (
-        <img src={src} alt={alt} className="w-2xl h-2xl object-cover" onError={handleError} />
+        <img src={src} alt={alt} className="h-2xl w-2xl object-cover" onError={handleError} />
       ) : (
         // Fallback (initials or placeholder)
-        <span className="text-gray-600 font-bold text-lg">
+        <span className="text-gray-600 font-bold type-lg-head">
           {fallback ? fallback.substring(0, 2).toUpperCase() : 'N/A'}
         </span>
       )}
