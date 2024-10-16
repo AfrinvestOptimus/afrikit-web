@@ -66,7 +66,7 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
           <input
             key={index}
             type={secureEntry ? 'password' : 'text'}
-            className={`text-lg-head h-5xl w-[62px] px-lg py-md text-center outline-none focus:outline-none appearance-none border-0 focus:ring-0 rounded-md focus:bg-light-optiblueA3 focus:dark:bg-dark-optiblueA3 ${
+            className={`type-lg-head h-5xl w-[62px] px-lg py-md text-center outline-none focus:outline-none appearance-none border-0 focus:ring-0 rounded-md focus:bg-light-optiblueA3 focus:dark:bg-dark-optiblueA3 ${
               errorMessage !== ''
                 ? 'text-light-type-error dark:text-dark-type-error bg-light-background-error-light dark:bg-dark-background-error-light'
                 : 'text-light-type-gray dark:text-dark-type-gray bg-light-surface-gray dark:bg-dark-surface-gray'

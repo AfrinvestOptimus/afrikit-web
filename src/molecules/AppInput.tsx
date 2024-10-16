@@ -31,7 +31,7 @@ const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
                 isFocused && error !== undefined ? 'border-b-2 border-solid border-light-type-error rounded-b-[0px] dark:border-dark-type-error' : 
                 !isFocused && error !== undefined ? '!border border-solid border-light-type-error dark:border-dark-type-error rounded-md' : ''}
                 bg-light-surface-gray dark:bg-dark-surface-gray text-light-type-gray dark:text-dark-type-gray outline-none rounded-md 
-                focus:outline-none focus:z-10 appearance-none w-full min-w-[415px] h-[56px] px-md pb-lg !pt-2xl border-0 focus:ring-0 text-sm
+                focus:outline-none focus:z-10 appearance-none w-full min-w-[415px] h-[56px] px-md pb-lg !pt-2xl border-0 focus:ring-0 type-sm-head
                   peer`}
               placeholder={placeholder}
               value={value}
@@ -43,7 +43,7 @@ const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
               autoComplete="off"
             />
             <label
-              className={`absolute inline-flex left-[11px] top-[11px] transition-all duration-200 pt-sm text-sm
+              className={`absolute inline-flex left-[11px] top-[11px] transition-all duration-200 pt-sm type-sm-head
                 peer-focus:transform 
                 peer-focus:origin-top-left 
                 peer-focus:translate-x-[0px] 
@@ -79,7 +79,7 @@ const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
           </div>
         </div>
         {error && (
-          <span className="text-light-type-error dark:text-dark-type-error text-xs-body">
+          <span className="text-light-type-error dark:text-dark-type-error type-xs-title">
             {error}
           </span>
         )}

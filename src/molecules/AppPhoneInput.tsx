@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
+import DropdownComponent from './AppDropdownMenu'
+import NGNFlag from '../assets/ngn-flag.svg'
+import 'remixicon/fonts/remixicon.css'
 
 export interface AppPhoneInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string
+  countryList?: any[]
   placeholder?: string
   value?: string
   label: string
@@ -10,9 +14,22 @@ export interface AppPhoneInputProps extends React.InputHTMLAttributes<HTMLInputE
   onClear?: () => void
 }
 
+const items = [
+  { label: 'Option 1', subLabel: 'Description 1' },
+  { label: 'Option 2', subLabel: 'Description 2'},
+  { label: 'Option 3', subLabel: 'Description 3'},
+]
 const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
-  ({ name, placeholder, error, value, label, onChange, onClear, onBlur, ...props }, ref) => {
+  ({ name, countryList, placeholder, error, value, label, onChange, onClear, onBlur, ...props }, ref) => {
+    const [showCountries, setShowCountries] = useState(false);
     const [isFocused, setIsFocused] = useState(false)
+    const [selected, setSelected] = useState({
+      id: 1,
+      name: 'nigeria',
+      'phone_code': '+234',
+      code: 'NG',
+      flag: NGNFlag,
+    });
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
       if (onBlur) {
@@ -21,8 +38,40 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
       }
     }
 
+    function handleSelect() {
+      setShowCountries(!showCountries);
+    }
+
+    const CountrySelection = () => {
+
+      return (
+        <div className="relative z-10">
+          <div
+            className={`flex items-center bg-light-surface-gray dark:bg-dark-surface-gray text-light-type-gray dark:text-dark-type-gray h-[56px] type-sm-title px-sm z-9 rounded-l-sm outline-none focus:outline-none border-0 focus:ring-0 appearance-none cursor-pointer`}
+            onClick={handleSelect}
+          >
+            
+            <div className="flex items-center px-xs relative">
+              <div className="w-[20px] h-[20px] mr-xs rounded-full overflow-hidden relative">
+                <img
+                  src={selected.flag}
+                  alt="Nigeria"
+                  />
+              </div>
+              <p className="font-medium">{selected['phone_code']}</p>
+              <div className="pl-sm">
+                <i className="ri-arrow-down-s-fill text-light-type-gray-muted dark:text-dark-type-gray-muted text-xl"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
     return (
-      <div className="flex space-x-sm items-center">
+      <div className="flex space-x-sm">
+        {/* {} */}
+        <DropdownComponent size='sm' items={items} trigger={CountrySelection()}/>
         <div className="flex flex-col relative">
           <div className={`flex align-baseline mb-sm`}>
             <input
@@ -30,7 +79,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
                 isFocused && error !== undefined ? 'border-b-2 border-solid border-light-type-error rounded-b-[0px] dark:border-dark-type-error' : 
                 !isFocused && error !== undefined ? '!border border-solid border-light-type-error dark:border-dark-type-error rounded-r-md' : ''}
                 bg-light-surface-gray dark:bg-dark-surface-gray text-light-type-gray dark:text-dark-type-gray outline-none rounded-r-md 
-                focus:outline-none focus:z-10 appearance-none w-full min-w-[415px] h-[56px] px-md pb-lg !pt-2xl border-0 focus:ring-0 text-sm
+                focus:outline-none focus:z-10 appearance-none w-full min-w-[415px] h-[56px] px-md pb-lg !pt-2xl border-0 focus:ring-0 type-sm-head
                   peer`}
               placeholder={placeholder}
               value={value}
@@ -42,7 +91,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
               autoComplete="off"
             />
             <label
-              className={`absolute inline-flex left-[11px] top-[11px] transition-all duration-200 pt-sm text-sm
+              className={`absolute inline-flex left-[11px] top-[11px] transition-all duration-200 pt-sm type-sm-head
                 peer-focus:transform 
                 peer-focus:origin-top-left 
                 peer-focus:translate-x-[0px] 
@@ -59,7 +108,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
               {label}
             </label>
           </div>
-          {error && <span className="text-light-type-error text-sm">{error}</span>}
+          {error && <span className="text-light-type-error dark:text-dark-type-error type-xs-title">{error}</span>}
         </div>
       </div>
     )

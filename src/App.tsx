@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AppModal from './molecules/AppModal'; // Assuming AppModal is properly imported
 import { Controller, useForm } from 'react-hook-form';
 import { AppInput } from './molecules';
+import AppPhoneInput from './molecules/AppPhoneInput';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -84,14 +85,14 @@ function App() {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <AppInput
+              <AppPhoneInput
                 label="Testing"
                 // placeholder="meeeee"
                 onInput={e => {
                   // Cast EventTarget to HTMLInputElement
                   const input = e.target as HTMLInputElement
                   // Prevent non-numeric input
-                  // input.value = input.value.replace(/[^0-9]/g, '')
+                  input.value = input.value.replace(/[^0-9]/g, '')
                   field.onChange(input.value) // Update the form value
                 }}
                 {...field} // Pass field props which includes value and onChange
