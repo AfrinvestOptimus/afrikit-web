@@ -36,6 +36,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
       }
       setFile(selectedFile);
       setError(null);
+      
       await uploadFile(selectedFile);
     }
   };
@@ -95,14 +96,20 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
             <img
               src={uploadedImageUrl || previewUrl}
               alt="Uploaded file"
-              className="w-full h-auto object-cover rounded-lg" 
+              className={`w-full h-auto object-cover rounded-lg ${uploadedImageUrl || previewUrl ? 'rounded-b-[0px]' : 'rounded-lg '}`} 
               style={{ maxHeight: '200px' }} 
             />
-            {/* Filename display directly below the image */}
-            <div className="bg-light-type-gray-inverse dark:bg-dark-type-gray-inverse bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 p-xs w-full text-center">
+            <div className="flex justify-between bg-light-type-gray-inverse dark:bg-dark-type-gray-inverse bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 p-xs w-full text-center">
+              {!isUploading ? (
+                <i className="ri-file-line text-lg text-light-type-accent dark:text-dark-type-accent"></i>
+              ) : (
+                <i className="ri-loader-4-line text-lg animate-spin text-light-type-accent dark:text-dark-type-accent"></i>
+              )}
               <p className="text-sm text-light-type-gray dark:text-dark-type-gray truncate">{file?.name}</p>
+              <p className='text-light-type-accent dark:text-dark-type-accent'>{uploadProgress}%</p>
             </div>
           </div>
+          
         ) : (
           <>
             <i className="ri-file-upload-fill mb-2 text-light-type-gray dark:text-dark-type-gray"></i>
@@ -131,7 +138,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
           </div>
         )}
         {error && (
-          <p className="absolute bottom-0 left-0 right-0 text-red-500 text-xs text-center p-2 bg-white bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75">
+          <p className="absolute bottom-0 left-0 right-0 text-red-500 text-xs text-center p-2 bg-light-type-gray-inverse dark:bg-light-type-gray-inverse bg-opacity-75 dark:bg-opacity-75">
             {error}
           </p>
         )}
