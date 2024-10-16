@@ -13,7 +13,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
   allowedTypes = ['image/svg+xml', 'image/png', 'image/jpeg', 'image/gif'],
   onUpload,
   width = '512px',
-  height = '256px',
+  height = '224', // Change to auto for flexible height
 }) => {
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -75,7 +75,11 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
   }, [file]);
 
   return (
-    <div className={`p-4 border  p-xs border-light-type-gray dark:border-dark-type-gray  rounded-lg  ${!uploadedImageUrl && !previewUrl ? 'border-dashed' : 'border-solid rounded-b-[0px] '}`}>
+    <div
+      className={` border border-light-type-gray dark:border-dark-type-gray rounded-lg 
+      ${!uploadedImageUrl && !previewUrl ? 'border-dashed py-xl ' : 'border-solid p-xs'} `}
+      style={{ width, maxHeight: height, overflow: 'hidden' }} // Set maxHeight and overflow hidden
+    >
       <div
         className={`relative flex flex-col items-center justify-center transition-all duration-300 ease-in-out 
           ${isDragging ? 'bg-blue-50 dark:bg-blue-900' : ''}
@@ -84,17 +88,19 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
         onDragOver={e => { e.preventDefault(); setIsDragging(true); }}
         onDragLeave={e => { e.preventDefault(); setIsDragging(false); }}
         onClick={() => !isUploading && fileInputRef.current?.click()}
-        style={{ width, height }}
+        style={{ width: '100%', minHeight: height }}
       >
         {uploadedImageUrl || previewUrl ? (
-          <div className="absolute inset-0 w-full h-full">
+          <div className="relative w-full flex flex-col items-center"> 
             <img
               src={uploadedImageUrl || previewUrl}
               alt="Uploaded file"
-              className={`w-full h-full object-cover rounded-lg ${!uploadedImageUrl && !previewUrl ? 'rounded-lg' :'rounded-b-[0px]'} `}
+              className="w-full h-auto object-cover rounded-lg" 
+              style={{ maxHeight: '200px' }} 
             />
-            <div className="absolute w-full bottom-0 left-0 right-0 bg-white bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 p-2">
-              <p className="text-sm text-light-type-gray dark:text-dark-type-graytruncate">{file?.name}</p>
+            {/* Filename display directly below the image */}
+            <div className="bg-white bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 p-xs w-full text-center">
+              <p className="text-sm text-light-type-gray dark:text-dark-type-gray truncate">{file?.name}</p>
             </div>
           </div>
         ) : (
