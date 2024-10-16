@@ -62,15 +62,12 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
         <div className="relative flex flex-col">
           <div className={`mb-sm flex align-baseline`}>
             <input
-              className={` ${
-                isFocused && !error
-                  ? 'duration-400 rounded-br-[0px] border-b-2 border-solid border-light-edge-accent-strong transition-all dark:border-dark-edge-accent-strong'
-                  : isFocused && error !== undefined
-                    ? 'rounded-b-[0px] border-b-2 border-solid border-light-type-error dark:border-dark-type-error'
-                    : !isFocused && error !== undefined
-                      ? 'rounded-r-md !border border-solid border-light-type-error dark:border-dark-type-error'
-                      : ''
-              } peer h-[56px] w-full min-w-[415px] appearance-none rounded-r-md border-0 bg-light-surface-gray px-md !pt-2xl pb-lg text-light-type-gray outline-none type-sm-head focus:z-10 focus:outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray`}
+              className={` ${isFocused && error === undefined ? 'border-b-2 border-solid border-light-edge-accent-strong dark:border-dark-edge-accent-strong rounded-br-[0px] transition-all duration-400' : 
+                isFocused && error !== undefined ? 'border-b-2 border-solid border-light-type-error rounded-b-[0px] dark:border-dark-type-error' : 
+                !isFocused && error !== undefined ? '!border border-solid border-light-type-error dark:border-dark-type-error rounded-r-md' : ''}
+                bg-light-surface-gray dark:bg-dark-surface-gray text-light-type-gray dark:text-dark-type-gray outline-none rounded-r-md 
+                focus:outline-none focus:z-10 appearance-none w-full h-[56px] px-md pb-lg !pt-2xl border-0 focus:ring-0 type-sm-head
+                  peer`}
               placeholder={placeholder}
               value={value}
               onFocus={() => setIsFocused(true)}

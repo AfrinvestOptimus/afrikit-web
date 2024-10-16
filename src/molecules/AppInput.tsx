@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React, { useState } from 'react'
 
 export interface AppInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -7,14 +8,16 @@ export interface AppInputProps extends React.InputHTMLAttributes<HTMLInputElemen
   value?: string // Accept current value
   label: string
   error?: string
+  className?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onClear?: () => void
 }
 
 const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
-  ({ name, placeholder, error, value, label, onChange, onClear, onBlur, ...props }, ref) => {
+  ({ name, placeholder, error, value, label, className, onChange, onClear, onBlur, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false)
-
+    console.log(error);
+    
     const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
       if (onBlur) {
         onBlur(e)
@@ -25,14 +28,14 @@ const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
     return (
       <>
         <div className="flex flex-col relative">
-          <div className={`flex align-baseline mb-sm`}>
+          <div className={`flex align-baseline mb-sm ${className}`}>
             <input
-              className={` ${isFocused && !error ? 'border-b-2 border-solid border-light-edge-accent-strong dark:border-dark-edge-accent-strong rounded-b-[0px] transition-all duration-400' : 
+              className={ clsx(` ${isFocused && error === undefined ? 'border-b-2 border-solid border-light-edge-accent-strong dark:border-dark-edge-accent-strong rounded-b-[0px] transition-all duration-400' : 
                 isFocused && error !== undefined ? 'border-b-2 border-solid border-light-type-error rounded-b-[0px] dark:border-dark-type-error' : 
                 !isFocused && error !== undefined ? '!border border-solid border-light-type-error dark:border-dark-type-error rounded-md' : ''}
                 bg-light-surface-gray dark:bg-dark-surface-gray text-light-type-gray dark:text-dark-type-gray outline-none rounded-md 
-                focus:outline-none focus:z-10 appearance-none w-full min-w-[415px] h-[56px] px-md pb-lg !pt-2xl border-0 focus:ring-0 type-sm-head
-                  peer`}
+                focus:outline-none focus:z-10 appearance-none w-full h-[56px] px-md pb-lg !pt-2xl border-0 focus:ring-0 type-sm-head
+                  peer`)}
               placeholder={placeholder}
               value={value}
               onFocus={() => setIsFocused(true)}
