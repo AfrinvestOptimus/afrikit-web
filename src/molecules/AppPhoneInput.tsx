@@ -3,6 +3,7 @@ import DropdownComponent from './AppDropdownMenu'
 import NGNFlag from '../assets/ngn-flag.svg'
 import 'remixicon/fonts/remixicon.css'
 import { AppPhoneInputProps } from '../types'
+import { CountryList } from '../types/IAppPhoneInputProps'
 
 const items = [
   { label: 'Option 1', subLabel: 'Description 1' },
@@ -11,14 +12,13 @@ const items = [
 ]
 const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
   (
-    { name, countryList, placeholder, error, value, label, onChange, onClear, onBlur, ...props },
+    { name, countryList, onCountrySelect, placeholder, error, value, label, onChange, onClear, onBlur, ...props },
     ref,
   ) => {
     
     const [showCountries, setShowCountries] = useState(false)
     const [isFocused, setIsFocused] = useState(false)
     const [selected, setSelected] = useState({
-      id: 1,
       name: 'nigeria',
       phone_code: '+234',
       code: 'NG',
@@ -38,6 +38,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
 
     const selectCountry = (country) => {
       setSelected(country);
+      onCountrySelect(country)
       setShowCountries(!showCountries);
     }
 
