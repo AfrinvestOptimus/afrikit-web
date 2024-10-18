@@ -74,7 +74,7 @@ const AppPasswordInput = React.forwardRef<HTMLInputElement, AppPasswordInputProp
               }`}>
             {label}
           </label>
-          <div className="absolute right-sm top-[38%] transform -translate-y-1/2 z-20">
+          <div className="absolute right-sm top-[48%] transform -translate-y-1/2 z-20">
             {VisibilityIcon()}
           </div>
         </div>

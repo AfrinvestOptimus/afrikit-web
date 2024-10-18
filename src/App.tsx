@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AppModal from './molecules/AppModal'; // Assuming AppModal is properly imported
 import { Controller, useForm } from 'react-hook-form';
 import { AppInput } from './molecules';
-import AppPhoneInput from './molecules/AppPhoneInput';
+import DropdownComponent from './molecules/AppDropdownMenu';
 import AppFileUploader from './molecules/AppFileUpload';
 
 function App() {
@@ -84,24 +84,6 @@ function App() {
     setValue('email', '') // Clear the email value
   }
 
-  const mockOnUpload = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      // Simulate a delay for file upload
-      setTimeout(() => {
-        // Simulate a successful upload 80% of the time, and failure 20% of the time
-        const success = Math.random() < 0.8;
-  
-        if (success) {
-          // Return a mock URL representing the uploaded file location
-          const mockUrl = `https://example.com/uploads/${file.name}`;
-          resolve(mockUrl);
-        } else {
-          reject('Upload failed due to server error.');
-        }
-      }, 2000); // Simulate a 2-second upload time
-    });
-  };
-
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
       {/* Button to trigger modal opening */}
@@ -142,7 +124,7 @@ function App() {
             </div>
           </div>
         </AppModal> */}
-        <form className="max-w-md mx-auto p-4">
+        <form className="max-w-md mx-auto">
           <Controller
             name="email"
             control={control}
@@ -155,6 +137,7 @@ function App() {
                   // Cast EventTarget to HTMLInputElement
                   const input = e.target as HTMLInputElement
                   // Prevent non-numeric input
+                  // input.value = input.value.replace(/[^0-9]/g, '')
                   field.onChange(input.value) // Update the form value
                 }}
                 {...field} // Pass field props which includes value and onChange
@@ -166,8 +149,7 @@ function App() {
         </form>
         {/* <DropdownComponent items={dropdownItems} separator={true} alignment='right' /> */}
 
-        {/* <AppFileUploader /> */}
-        <AppFileUploader onUpload={mockOnUpload} />
+        <AppFileUploader />
     </div>
   )
 }
