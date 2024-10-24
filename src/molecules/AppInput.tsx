@@ -80,12 +80,12 @@ const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
               </div>
             )}
           </div>
+          {error && (
+            <span className="text-light-type-error text-left dark:text-dark-type-error type-xs-title">
+              {error}
+            </span>
+          )}
         </div>
-        {error && (
-          <span className="text-light-type-error dark:text-dark-type-error type-xs-title">
-            {error}
-          </span>
-        )}
       </>
     )
   },

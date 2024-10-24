@@ -147,7 +147,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
           </div>
         </div>
         {error && (
-          <span className="text-light-type-error type-xs-title dark:text-dark-type-error">
+          <span className="text-light-type-error text-left type-xs-title dark:text-dark-type-error">
             {error}
           </span>
         )}

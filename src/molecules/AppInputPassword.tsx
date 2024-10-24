@@ -78,7 +78,7 @@ const AppPasswordInput = React.forwardRef<HTMLInputElement, AppPasswordInputProp
             {VisibilityIcon()}
           </div>
         </div>
-        {error && <span className="text-light-type-error dark:text-dark-type-error type-xs-title">{error}</span>}
+        {error && <span className="text-light-type-error text-left dark:text-dark-type-error type-xs-title">{error}</span>}
       </div>
     )
   },
