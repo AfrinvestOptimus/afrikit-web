@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import DropdownComponent from './AppDropdownMenu'
 import NGNFlag from '../assets/ngn-flag.svg'
 import 'remixicon/fonts/remixicon.css'
@@ -24,10 +24,6 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
       code: 'NG',
       flag: NGNFlag,
     })
-
-    useMemo(() => {
-      onCountrySelect(selected)
-    }, [])
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
       if (onBlur) {
