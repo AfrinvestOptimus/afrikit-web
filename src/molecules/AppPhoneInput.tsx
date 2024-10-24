@@ -44,7 +44,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
 
     const CountrySelection = () => {
       return (
-        <div className="relative z-10">
+        <div className="z-10">
           <div
             className={`z-9 flex h-[56px] cursor-pointer appearance-none items-center rounded-l-sm border-0 bg-light-surface-gray px-sm text-light-type-gray outline-none type-sm-title focus:outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray`}
             onClick={handleSelect}>
@@ -85,11 +85,11 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
                       )
                       :
                       (
-                        <div className='flex flex-col'>
+                        <div className='flex flex-col justify-start'>
                           <span className="capitalize type-sm-title text-light-type-gray dark:text-dark-type-gray">
                             {country.name}
                           </span>
-                          <span className="type-sm-body text-light-type-gray-muted dark:text-dark-type-gray-muted">
+                          <span className="type-sm-body text-light-type-gray-muted text-left dark:text-dark-type-gray-muted">
                             {country?.phone_code}
                           </span>
                         </div>
@@ -116,7 +116,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
       <div className="w-full">
         <div className="flex space-x-sm">
           {CountrySelection()}
-          <div className="relative flex flex-col">
+          <div className="relative flex flex-col flex-1">
             <div className={`mb-sm flex align-baseline`}>
               <input
                 className={` ${isFocused && error === undefined ? 'border-b-2 border-solid border-light-edge-accent-strong dark:border-dark-edge-accent-strong rounded-br-[0px] transition-all duration-400' : 
