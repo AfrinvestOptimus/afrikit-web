@@ -55,9 +55,9 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
         <div className="flex flex-row items-center justify-between px-3xl">
           <img src={optimusLogo} />
 
-          <p className="hidden cursor-pointer py-lg capitalize text-light-type-accent transition-all duration-300 type-base-head hover:text-light-type-accent-bold md:flex dark:text-dark-type-accent dark:hover:text-dark-type-accent-bold">
+          <div className="hidden cursor-pointer py-lg capitalize text-light-type-accent transition-all duration-300 type-base-head hover:text-light-type-accent-bold md:flex dark:text-dark-type-accent dark:hover:text-dark-type-accent-bold">
             {onboardLink ?? 'Open account'}
-          </p>
+          </div>
         </div>
       ) : (
         <div className="flex flex-row items-center justify-between px-2xl py-lg">
