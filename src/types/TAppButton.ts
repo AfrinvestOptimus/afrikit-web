@@ -45,6 +45,8 @@ export interface AppButtonProps {
   // Optional hint for accessibility, providing additional context or information (used by screen readers)
   accessibilityHint?: string
 
+  loading?: boolean
+
   iconStartName?: string
 
   iconEndName?: string
