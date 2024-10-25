@@ -16,7 +16,6 @@ export interface AppInputProps extends React.InputHTMLAttributes<HTMLInputElemen
 const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
   ({ name, placeholder, error, value, label, className, onChange, onClear, onBlur, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false)
-    console.log(error);
     
     const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
       if (onBlur) {
