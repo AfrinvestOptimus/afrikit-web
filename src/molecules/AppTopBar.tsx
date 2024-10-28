@@ -48,7 +48,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
         'h-16 w-full',
         className,
         theme === 'filled'
-          ? 'bg-light-page-bg dark:bg-dark-page-bg'
+          ? 'bg-light-page-bg2 dark:bg-dark-page-bg2'
           : 'border-b border-light-edge-gray-subtle dark:border-dark-edge-gray-subtle',
       )}>
       {isOnboarding ? (
