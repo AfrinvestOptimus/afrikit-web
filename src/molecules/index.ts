@@ -2,7 +2,7 @@ export type {
   AppButtonProps,
   TSideBarBaseItemProps,
   TSideBarItem,
-  TSidebarDropdownBaseItemProps,
+  TSidebarDropdownBaseItemProps, IAppAvatarProps,
 } from '../types'
 export type { TAppTopBarProps } from '../types/TAppTopBarProps'
 export { default as AppButton } from './AppButton'

@@ -24,8 +24,9 @@ const AppButton: React.FC<AppButtonProps> = ({
   iconStartName = 'ri-home-line', // Class name for the start icon
   iconEndName = 'ri-home-line', // Class name for the end icon
   text, // Text to display in the button
+  loading = false, // Flag to determine if the button is in a loading state
   onClick, // Function to call on button click
-  classname
+  classname,
 }) => {
   // Get the corresponding styles based on the provided props
   const sizeStyle = buttonSizes[size] // Get size styles
@@ -62,8 +63,7 @@ const AppButton: React.FC<AppButtonProps> = ({
     <button
       onClick={onClick}
       className={`flex items-center justify-center ${combinedButtonStyles} ${classname}`} // Set combined styles
-      disabled={state === 'disabled'} 
-    >
+      disabled={state === 'disabled'}>
       <div className="flex items-center justify-between space-x-lg">
         {iconStart && ( // Conditionally render left icon
           <div>
@@ -71,7 +71,15 @@ const AppButton: React.FC<AppButtonProps> = ({
           </div>
         )}
         {/* Render the center  text */}
-        <p className={`font-semibold ${combinedTextStyle}`}>{text}</p>{' '}
+        <p className={`font-semibold ${combinedTextStyle}`}>
+          {loading ? (
+            <div className="animate-spin">
+              <i className="ri-loader-2-line"></i>
+            </div>
+          ) : (
+            text
+          )}
+        </p>{' '}
         {iconEnd && ( // Conditionally render right icon
           <div>
             <i className={`${iconEndName} ${combinedTextStyle}`}></i> {/* Render the end icon */}
