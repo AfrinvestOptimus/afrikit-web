@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AppButton from '../AppButton'; // Import your reusable button component
 import { AppModalProps } from '../../types/AppModal';
+import clsx from 'clsx';
 
 const AppModal: React.FC<AppModalProps> = ({
   isOpen,
@@ -9,6 +10,8 @@ const AppModal: React.FC<AppModalProps> = ({
   title,
   subtitle,
   children,
+  className,
+  showButton = false
 }) => {
   // Handle Escape key to close modal
   useEffect(() => {
@@ -40,13 +43,16 @@ const AppModal: React.FC<AppModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center px-lg z-50"
+      className={clsx(
+        'fixed inset-0 flex items-center justify-center px-xl z-50 bg-[#00082F46] dark:bg-[#000000BF]',
+        className,
+      )}
       onClick={handleBackgroundClick} // Close on background click
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      <div className="bg-white rounded-lg shadow-lg max-w-md w-full relative p-lg">
+      <div className="max-w-md w-full relative p-lg rounded-xl bg-light-page-bg2 shadow-light-neutral3 dark:bg-dark-page-bg2 dark:shadow-dark-neutral3">
         {/* Modal Header */}
         <div className='flex justify-end'>
           <button
@@ -58,27 +64,37 @@ const AppModal: React.FC<AppModalProps> = ({
           </button>
         </div>
         
-        <span className="flex items-center">
-          <span>
-            <h2 id="modal-title" className="text-xl font-bold">{title}</h2>
-            {subtitle && <p className="text-sm text-light-gray11">{subtitle}</p>}
-          </span>
-        </span>
+        {
+          title && (
+            <span className="flex items-center">
+              <span>
+                <h2 id="modal-title" className="text-xl font-bold">{title}</h2>
+                {subtitle && <p className="text-sm text-light-gray11">{subtitle}</p>}
+              </span>
+            </span>
+          )
+        }
 
         {/* Modal Content */}
         <div className='py-2xl'>{children}</div>
 
         {/* Modal Footer */}
-        <div className='py-lg'>
-          <AppButton
-              color="accent"
-              iconStart={false}
-              iconEnd={false}
-              text="Continue"
-              onClick={onConfirm}
-              classname="w-full bg-black"
-            />
-        </div>
+        {
+          showButton && (
+            <div className='py-lg'>
+              <AppButton
+                size={3}
+                text="Continue"
+                color="neutral"
+                highContrast
+                variant="solid"
+                iconStart={false}
+                classname="w-full"
+                onClick={onConfirm}
+              />
+            </div>
+          )
+        }
           
       </div>
     </div>
