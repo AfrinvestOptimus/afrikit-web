@@ -6,5 +6,5 @@ export interface AppModalProps {
  subtitle?: string; // Optional subtitle
  className?: string;
  children: React.ReactNode; // Modal content
- showButton: boolean;
+ showButton?: boolean;
 }
