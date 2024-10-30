@@ -129,7 +129,14 @@ function App() {
 
   return (
     <div className='bg-white'>
-      <AppFormDropdown
+       <AppCountryDropdown
+          name="country"
+          countryList={countries}
+          onCountrySelect={handleCountrySelect}
+          placeholder="Select a country"
+          error={error} // Display error message below the dropdown if any
+          label={'country'}      />
+      {/* <AppFormDropdown
         name="country" // Name for the dropdown
         itemList={itemList} // List of countries
         onItemSelect={handleItemSelect} // Handler for item selection
@@ -137,8 +144,8 @@ function App() {
         placeholder="Select a country" // Placeholder text
         error={error} // Error message (if any)
         label="Country" // Optional label
-      />
-      {/* <AppModal
+      /> */}
+       {/* <AppModal
           isOpen={isModalOpen} 
           onClose={handleCloseModal}
           onConfirm={handleConfirm}
@@ -166,7 +173,7 @@ function App() {
               <p className="text-sm text-gray-600">Your BVN does not give us access to your bank accounts or transactions.</p>
             </div>
           </div>
-        </AppModal>  */}
+        </AppModal> */}
      {/* <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
       {/* Button to trigger modal opening */}
       {/* <button
