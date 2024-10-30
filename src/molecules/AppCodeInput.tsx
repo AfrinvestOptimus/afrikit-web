@@ -38,14 +38,16 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const currentValue = e.target.value
-    
+
     // Create new code string
-    const newCode = inputs.current.map((input, i) => {
-      if (i === index) {
-        return currentValue.slice(-1) // Only take the last character
-      }
-      return input?.value || ''
-    }).join('')
+    const newCode = inputs.current
+      .map((input, i) => {
+        if (i === index) {
+          return currentValue.slice(-1) // Only take the last character
+        }
+        return input?.value || ''
+      })
+      .join('')
 
     // Call onChange with the new code
     if (onChange) {
@@ -70,10 +72,13 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
     e.preventDefault()
     const pastedData = e.clipboardData.getData('text').trim()
     const digits = pastedData.split('').slice(0, length)
-    
+
     // Create the new code string
-    const newCode = Array(length).fill('').map((_, index) => digits[index] || '').join('')
-    
+    const newCode = Array(length)
+      .fill('')
+      .map((_, index) => digits[index] || '')
+      .join('')
+
     if (onChange) {
       onChange(newCode)
     }
@@ -96,7 +101,7 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
               height: boxHeight ? `${boxHeight}px` : '64px',
             }}
             maxLength={1}
-            value={(value[index] || '')}
+            value={value[index] || ''}
             onChange={e => handleChange(e, index)}
             onKeyDown={e => handleKeyDown(e, index)}
             onPaste={handlePaste}
@@ -107,7 +112,9 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
         ))}
       </div>
       {errorMessage && (
-        <span id="code-input-error" className="mt-2 block text-sm text-light-type-error dark:text-dark-type-error">
+        <span
+          id="code-input-error"
+          className="mt-xs block text-light-type-error type-sm-title dark:text-dark-type-error">
           {errorMessage}
         </span>
       )}
