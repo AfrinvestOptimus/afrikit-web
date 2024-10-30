@@ -1,12 +1,46 @@
 import React, { useState } from 'react';
 import AppModal from './molecules/AppModal'; // Assuming AppModal is properly imported
 import { Controller, useForm } from 'react-hook-form';
-import { AppInput } from './molecules';
+import { AppCountryDropdown, AppInput } from './molecules';
 import DropdownComponent from './molecules/AppDropdownMenu';
 import AppFileUploader from './molecules/AppFileUpload';
+import AppFormDropdown from './molecules/AppFormDropdown';
+const countries = [
+  { name: 'Nigeria', phone_code: '+234', code: 'NG', flag: 'path_to_nigeria_flag.svg' },
+  { name: 'United States', phone_code: '+1', code: 'US', flag: 'path_to_us_flag.svg' },
+  { name: 'India', phone_code: '+91', code: 'IN', flag: 'path_to_india_flag.svg' },
+  // Add more countries as needed
+];
 
+const itemList = [
+  { id: 1, name: 'USA' },
+  { id: 2, name: 'Canada' },
+  { id: 3, name: 'Mexico' },
+  { id: 4, name: 'UK' },
+  { id: 5, name: 'Australia' },
+];
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(true);
+
+   const [selectedItems, setSelectedItems] = useState<string[]>([]);
+   const [selectedItem, setSelectedItem] = useState(itemList[0]); // Set initial selected item
+
+ 
+   const handleItemSelect = (item) => {
+     setSelectedItem(item); // Update the selected item state
+     setError(''); // Clear any existing errors
+   };
+
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (selectedItems.length === 0) {
+      setError('Please select at least one item.');
+      return;
+    }
+    // Handle form submission logic
+    console.log('Selected items:', selectedItems);
+  };
 
   // Function to open the modal
   const handleOpenModal = () => {
@@ -26,7 +60,7 @@ function App() {
 
   const {
     control,
-    handleSubmit,
+    // handleSubmit,
     formState: { errors },
     getValues,
     setValue,
@@ -84,18 +118,27 @@ function App() {
     setValue('email', '') // Clear the email value
   }
 
-  return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
-      {/* Button to trigger modal opening */}
-      {/* <button
-        onClick={handleOpenModal} 
-        className="bg-blue-500 text-white p-3 rounded-lg">
-        Open Modal
-      </button> */}
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [error, setError] = useState('');
 
-      {/* Conditionally render the AppModal based on the state */}
-     
-        {/* <AppModal
+  const handleCountrySelect = (country) => {
+    setSelectedCountry(country);
+    setError(''); // Clear any previous error when a valid country is selected
+  };
+
+
+  return (
+    <div className='bg-white'>
+      <AppFormDropdown
+        name="country" // Name for the dropdown
+        itemList={itemList} // List of countries
+        onItemSelect={handleItemSelect} // Handler for item selection
+        selectedItem={selectedItem} // Currently selected item
+        placeholder="Select a country" // Placeholder text
+        error={error} // Error message (if any)
+        label="Country" // Optional label
+      />
+      {/* <AppModal
           isOpen={isModalOpen} 
           onClose={handleCloseModal}
           onConfirm={handleConfirm}
@@ -117,14 +160,25 @@ function App() {
                 <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
                 Date of Birth
               </li>
-            </ul>
+             </ul>
             <div className="flex items-center mb-4">
               <i className="ri-lock-fill text-gray-500 mr-2"></i>
               <p className="text-sm text-gray-600">Your BVN does not give us access to your bank accounts or transactions.</p>
             </div>
           </div>
-        </AppModal> */}
-        <form className="max-w-md mx-auto">
+        </AppModal>  */}
+     {/* <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
+      {/* Button to trigger modal opening */}
+      {/* <button
+        onClick={handleOpenModal} 
+        className="bg-blue-500 text-white p-3 rounded-lg">
+        Open Modal
+      </button> */}
+
+      {/* Conditionally render the AppModal based on the state */}
+     
+       
+        {/* <form className="max-w-md mx-auto">
           <Controller
             name="email"
             control={control}
@@ -149,8 +203,21 @@ function App() {
         </form>
         {/* <DropdownComponent items={dropdownItems} separator={true} alignment='right' /> */}
 
-        <AppFileUploader />
+        {/* <AppFileUploader />  */}
+
+        {/* <div className="p-4 w-5/6">
+    
+      <AppCountryDropdown
+          name="country"
+          countryList={countries}
+          onCountrySelect={handleCountrySelect}
+          placeholder="Select a country"
+          error={error} // Display error message below the dropdown if any
+          label={'country'}      />
     </div>
+    </div> */}
+    </div>
+   
   )
 }
 
