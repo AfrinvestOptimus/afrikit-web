@@ -1,51 +1,41 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { AppPhoneInputProps } from '../../types';
+import NGNFlag from '../../assets/ngn-flag.svg';
 
-export interface AppFormDropdownProps {
-  name: string; // The name of the dropdown for form submission
-  itemList: any[]; // List of items to display in the dropdown
-  onItemSelect: (selectedItem: string) => void; // Callback for item selection
-  selectedItem: string; // Currently selected item
-  placeholder: string; // Placeholder text when no items are selected
-  error?: string; // Error message to display
-  label?: string; // Optional label for the dropdown
-}
-
-const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDivElement, AppFormDropdownProps>(
+const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
   (
-    {
-      name,
-      itemList,
-      onItemSelect,
-      placeholder,
-      error,
-      selectedItem,
-      label,
-      ...props
-    },
-    ref
+    { name, countryList, onCountrySelect, placeholder, error, value, label, onChange, onClear, onBlur, ...props },
+    ref,
   ) => {
-    const [showDropdown, setShowDropdown] = useState(false);
+    const [showCountries, setShowCountries] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [selected, setSelected] = useState({
+      name: 'Nigeria', // Set initial display to country name
+      phone_code: '+234',
+      code: 'NG',
+      flag: NGNFlag,
+    });
 
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    const handleDropdownToggle = () => {
-      setShowDropdown((prev) => !prev); // Toggle dropdown visibility
+    const handleSelect = () => {
+      setShowCountries((prev) => !prev); // Toggle dropdown visibility
     };
 
-    const selectItem = (item) => {
-      onItemSelect(item); // Call the parent handler with the selected item
-      setShowDropdown(false); // Close the dropdown after selection
+    const selectCountry = (country) => {
+      setSelected(country);
+      onCountrySelect(country);
+      setShowCountries(false);
     };
 
-    const filteredItems = itemList.filter((item) =>
-      item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredCountries = countryList.filter((country) =>
+      country.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     // Handle clicks outside the dropdown
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowDropdown(false);
+        setShowCountries(false);
       }
     };
 
@@ -58,43 +48,53 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
     }, []);
 
     return (
-      <div className="relative w-full" ref={dropdownRef}>
-        {/* Selected item display */}
+      <div className="relative w-full" ref={dropdownRef}> {/* Set ref on the main container */}
+        {/* Selected country display */}
         <div
           className="flex justify-between h-[56px] rounded-sm cursor-pointer items-center border-0 bg-light-surface-gray px-xl text-light-type-gray outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray mb-sm"
-          onClick={handleDropdownToggle}
+          onClick={handleSelect}
         >
-          <p className="font-medium">{selectedItem ? selectedItem : placeholder}</p>
+          <p className="font-medium">{selected.name}</p> {/* Display selected country name only */}
           <div className="pl-sm">
             <i className="ri-arrow-down-s-line text-xl text-light-type-gray-muted dark:text-dark-type-gray-muted"></i>
           </div>
         </div>
 
-        {/* Dropdown with search */}
-        {showDropdown && (
-          <div className="absolute z-10 w-full bg-white border border-gray-300 rounded mt-1 max-h-60 overflow-y-auto shadow-lg px-xl">
+        {/* Country dropdown with search */}
+        {showCountries && (
+          <div className="absolute z-10 w-full bg-white border border-gray-300 rounded rounded-sm mt-1 max-h-60 overflow-y-auto shadow-lg">
             {/* Search bar */}
-            <div className="flex items-center space-x-md border-b border-light-neutral4 px-3 py-2 dark:border-dark-neutral4 p-sm">
+            <div className="flex items-cente space-x-md border-b border-light-neutral4 px-3 py-2 dark:border-dark-neutral4 py-md px-xl">
               <i className="ri-search-line text-light-type-gray-muted dark:text-dark-type-gray-muted mr-2 text-xl"></i>
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search items..."
+                placeholder="Search country..."
                 className="w-full border-none bg-transparent outline-none placeholder-gray-400 text-light-type-gray dark:text-dark-type-gray dark:placeholder-dark-type-gray-muted"
               />
             </div>
 
-            {/* Item List */}
-            {filteredItems.length > 0 ? (
-              filteredItems.map((item, index) => (
+            {/* Country List */}
+            {filteredCountries.length > 0 ? (
+              filteredCountries.map((country, index) => (
                 <div
-                  key={`${item.name}-${index}`}
-                  className="cursor-pointer py-sm px-4 hover:bg-gray-100 transition-all duration-300 ease-in-out flex items-center justify-between dark:hover:bg-dark-background-neutral-transparent-hover"
-                  onClick={() => selectItem(item.name)}
+                  key={`${country.name}-${index}`}
+                  className="cursor-pointer py-sm px-4 hover:bg-gray-100 transition-all duration-300 ease-in-out flex justify-between dark:hover:bg-dark-background-neutral-transparent-hover px-xl"
+                  onClick={() => selectCountry(country)}
                 >
-                  <span className="capitalize text-light-type-gray dark:text-dark-type-gray">{item.name}</span>
-                  {selectedItem === item.name && (
+                  <div className="flex items-center space-x-4">
+                    {country.flag && (
+                      <div className="h-6 w-6 overflow-hidden rounded-full">
+                        <img src={country.flag} alt="flag" className="h-full w-full" />
+                      </div>
+                    )}
+                    <div className="flex flex-col ">
+                     <span className="capitalize text-light-type-gray dark:text-dark-type-gray">{country.name}</span>
+                     <span className="text-light-type-gray dark:text-dark-type-gray text-sm">{country.phone_code}</span>
+                    </div>
+                  </div>
+                  {country.name === selected.name && (
                     <i className="ri-check-line text-xl text-light-type-accent dark:text-dark-type-accent" aria-hidden="true"></i>
                   )}
                 </div>
@@ -112,4 +112,4 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
   }
 );
 
-export default AppFormDropdown;
+export default AppCountryDropdown;
