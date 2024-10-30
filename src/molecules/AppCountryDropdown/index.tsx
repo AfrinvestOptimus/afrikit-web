@@ -86,7 +86,7 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
                   <div className="flex items-center space-x-4">
                     {country.flag && (
                       <div className="h-6 w-6 overflow-hidden rounded-full">
-                        <img src={country.flag} alt="flag" className="h-full w-full" />
+                        <img src={country.flag} alt="flag" className="h-[40px] w-[40px]" />
                       </div>
                     )}
                     <div className="flex flex-col ">
