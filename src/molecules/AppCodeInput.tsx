@@ -6,6 +6,7 @@ interface AppCodeInputProps {
   secureEntry: boolean
   boxWidth?: number
   boxHeight?: number
+  value?: string
   onChange?: (code: string) => void
 }
 
@@ -16,51 +17,66 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
   onChange,
   boxHeight,
   boxWidth,
+  value = '',
 }) => {
+  const inputs = useRef<(HTMLInputElement | null)[]>([])
+
+  // Update input values when value prop changes
+  useEffect(() => {
+    const valueArray = value.split('')
+    inputs.current.forEach((input, index) => {
+      if (input) {
+        input.value = valueArray[index] || ''
+      }
+    })
+  }, [value])
+
+  // Focus first input on mount
   useEffect(() => {
     inputs.current[0]?.focus()
   }, [])
 
-  const inputs = useRef<(HTMLInputElement | null)[]>([])
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-    const value = e.target.value
-
-    if (value) {
-      if (index < inputs.current.length - 1) {
-        inputs.current[index + 1]?.focus()
+    const currentValue = e.target.value
+    
+    // Create new code string
+    const newCode = inputs.current.map((input, i) => {
+      if (i === index) {
+        return currentValue.slice(-1) // Only take the last character
       }
+      return input?.value || ''
+    }).join('')
+
+    // Call onChange with the new code
+    if (onChange) {
+      onChange(newCode)
     }
 
-    if (value === '' && index > 0) {
+    // Handle focus management
+    if (currentValue && index < inputs.current.length - 1) {
+      inputs.current[index + 1]?.focus()
+    } else if (!currentValue && index > 0) {
       inputs.current[index - 1]?.focus()
     }
+  }
 
-    const code = inputs.current.map(input => input?.value).join('')
-    if (onChange) {
-      onChange(code)
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+    if (e.key === 'Backspace' && !inputs.current[index]?.value && index > 0) {
+      inputs.current[index - 1]?.focus()
     }
   }
 
   const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    const pastedData = e.clipboardData.getData('text')
-    const digits = pastedData.split('').slice(0, inputs.current.length)
-
-    digits.forEach((digit, index) => {
-      if (inputs.current[index]) {
-        inputs.current[index]!.value = digit
-        if (index < inputs.current.length - 1) {
-          inputs.current[index + 1]?.focus()
-        }
-      }
-    })
-
-    const code = inputs.current.map(input => input?.value).join('')
-    if (onChange) {
-      onChange(code)
-    }
-
     e.preventDefault()
+    const pastedData = e.clipboardData.getData('text').trim()
+    const digits = pastedData.split('').slice(0, length)
+    
+    // Create the new code string
+    const newCode = Array(length).fill('').map((_, index) => digits[index] || '').join('')
+    
+    if (onChange) {
+      onChange(newCode)
+    }
   }
 
   return (
@@ -71,7 +87,7 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
             key={index}
             type={secureEntry ? 'password' : 'text'}
             className={`appearance-none rounded-md border-0 px-lg py-md text-center outline-none type-lg-head focus:bg-light-optiblueA3 focus:outline-none focus:ring-0 focus:dark:bg-dark-optiblueA3 ${
-              errorMessage !== undefined || errorMessage !== ''
+              errorMessage
                 ? 'bg-light-background-error-light text-light-type-error dark:bg-dark-background-error-light dark:text-dark-type-error'
                 : 'bg-light-surface-gray text-light-type-gray dark:bg-dark-surface-gray dark:text-dark-type-gray'
             }`}
@@ -80,17 +96,21 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
               height: boxHeight ? `${boxHeight}px` : '64px',
             }}
             maxLength={1}
+            value={(value[index] || '')}
             onChange={e => handleChange(e, index)}
+            onKeyDown={e => handleKeyDown(e, index)}
             onPaste={handlePaste}
             ref={el => (inputs.current[index] = el)}
-            aria-invalid="false"
-            aria-describedby={`code-input-error-${index}`}
+            aria-invalid={!!errorMessage}
+            aria-describedby={errorMessage ? `code-input-error-${index}` : undefined}
           />
         ))}
       </div>
-      {/* <span id={`code-input-error-${0}`} className="text-red-500 text-sm mt-2">
-        {errorMessage}
-      </span> */}
+      {errorMessage && (
+        <span id="code-input-error" className="mt-2 block text-sm text-light-type-error dark:text-dark-type-error">
+          {errorMessage}
+        </span>
+      )}
     </div>
   )
 }
