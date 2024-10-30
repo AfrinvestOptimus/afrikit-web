@@ -4,6 +4,8 @@ interface AppCodeInputProps {
   length?: number
   errorMessage?: string
   secureEntry: boolean
+  boxWidth?: number
+  boxHeight?: number
   onChange?: (code: string) => void
 }
 
@@ -12,6 +14,8 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
   errorMessage,
   secureEntry = true,
   onChange,
+  boxHeight,
+  boxWidth,
 }) => {
   useEffect(() => {
     inputs.current[0]?.focus()
@@ -66,11 +70,15 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
           <input
             key={index}
             type={secureEntry ? 'password' : 'text'}
-            className={`type-lg-head h-5xl w-[62px] px-lg py-md text-center outline-none focus:outline-none appearance-none border-0 focus:ring-0 rounded-md focus:bg-light-optiblueA3 focus:dark:bg-dark-optiblueA3 ${
-              (errorMessage !== undefined || errorMessage !== '')
+            className={`appearance-none rounded-md border-0 px-lg py-md text-center outline-none type-lg-head focus:bg-light-optiblueA3 focus:outline-none focus:ring-0 focus:dark:bg-dark-optiblueA3 ${
+              errorMessage !== undefined || errorMessage !== ''
                 ? 'bg-light-background-error-light text-light-type-error dark:bg-dark-background-error-light dark:text-dark-type-error'
                 : 'bg-light-surface-gray text-light-type-gray dark:bg-dark-surface-gray dark:text-dark-type-gray'
             }`}
+            style={{
+              width: boxWidth ? `${boxWidth}px` : '62px',
+              height: boxHeight ? `${boxHeight}px` : '64px',
+            }}
             maxLength={1}
             onChange={e => handleChange(e, index)}
             onPaste={handlePaste}
