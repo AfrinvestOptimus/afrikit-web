@@ -114,7 +114,7 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
       {errorMessage && (
         <span
           id="code-input-error"
-          className="mt-xs block text-light-type-error type-sm-title dark:text-dark-type-error">
+          className="mt-xs block text-left text-light-type-error type-sm-title dark:text-dark-type-error">
           {errorMessage}
         </span>
       )}
