@@ -18,4 +18,5 @@ export { default as AppModal } from './AppModal'
 export { default as AppFileUpload } from './AppFileUpload'
 export { default as AppPhoneInput } from './AppPhoneInput'
 export { default as AppCountryDropdown } from './AppCountryDropdown'
+export { default as AppFormDropdown } from './AppFormDropdown'
 
