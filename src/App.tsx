@@ -9,6 +9,9 @@ const countries = [
   { name: 'Nigeria', phone_code: '+234', code: 'NG', flag: 'path_to_nigeria_flag.svg' },
   { name: 'United States', phone_code: '+1', code: 'US', flag: 'path_to_us_flag.svg' },
   { name: 'India', phone_code: '+91', code: 'IN', flag: 'path_to_india_flag.svg' },
+  { name: 'Nigeria', phone_code: '+234', code: 'NG', flag: 'path_to_nigeria_flag.svg' },
+  { name: 'United States', phone_code: '+1', code: 'US', flag: 'path_to_us_flag.svg' },
+  { name: 'India', phone_code: '+91', code: 'IN', flag: 'path_to_india_flag.svg' },
   // Add more countries as needed
 ];
 
@@ -131,7 +134,7 @@ function App() {
           name="country"
           countryList={countries}
           onCountrySelect={handleCountrySelect}
-          placeholder="Select a country"
+          placeholder="Country/Region"
           error={error} // Display error message below the dropdown if any
           label={'country'}      />
       {/* <AppFormDropdown
