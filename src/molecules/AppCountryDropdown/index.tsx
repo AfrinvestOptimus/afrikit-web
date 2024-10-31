@@ -83,7 +83,7 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
                   className="cursor-pointer py-sm px-4 hover:bg-gray-100 transition-all duration-300 ease-in-out flex justify-between dark:hover:bg-dark-background-neutral-transparent-hover px-xl"
                   onClick={() => selectCountry(country)}
                 >
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center  space-x-xl">
                     {country.flag && (
                       <div className="h-6 w-6 overflow-hidden rounded-full">
                         <img src={country.flag} alt="flag" className="h-[40px] w-[40px]" />
