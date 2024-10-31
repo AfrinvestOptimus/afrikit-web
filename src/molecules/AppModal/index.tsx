@@ -68,16 +68,36 @@ const AppModal: React.FC<AppModalProps> = ({
           </button>
         </div>
 
-        {title && (
-          <span className="flex items-center">
-            <span>
-              <h2 id="modal-title" className="text-xl font-bold">
-                {title}
-              </h2>
-              {subtitle && <p className="text-sm text-light-gray11">{subtitle}</p>}
+        {title ? (
+          <>
+            <div className="relative">
+              <button
+                onClick={onClose}
+                className="text-light-gray11 hover:text-light-gray11 focus:outline-none absolute top-lg right-lg"
+                aria-label="Close modal">
+                <i className="ri-close-line text-2xl"></i>
+              </button>
+            </div>
+            <span className="flex items-center">
+              <span>
+                <h2 id="modal-title" className="text-xl font-bold">
+                  {title}
+                </h2>
+                {subtitle && <p className="text-sm text-light-gray11">{subtitle}</p>}
+              </span>
             </span>
-          </span>
-        )}
+          </>
+        )
+        :
+          <div className="flex justify-end">
+            <button
+              onClick={onClose}
+              className="text-light-gray11 hover:text-light-gray11 focus:outline-none"
+              aria-label="Close modal">
+              <i className="ri-close-line text-2xl"></i>
+            </button>
+          </div>
+        }
 
         {/* Modal Content */}
         <div>{children}</div>
