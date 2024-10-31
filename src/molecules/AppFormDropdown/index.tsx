@@ -77,7 +77,10 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
 
         {/* Dropdown with search */}
         {showDropdown && (
-          <div className="absolute z-10 w-full bg-white border border-gray-300 rounded mt-1 max-h-60 overflow-y-auto shadow-lg px-md">
+          <div className="absolute z-10 w-full bg-white border border-gray-300 rounded mt-1 max-h-[300px] overflow-y-auto shadow-lg px-md" style={{
+            scrollbarWidth: 'none', // Firefox
+            msOverflowStyle: 'none', // IE 10+
+          }}>
             {/* Search bar */}
             <div className="flex items-center space-x-md border-b border-light-neutral4 px-3 py-2 dark:border-dark-neutral4 p-sm">
               <i className="ri-search-line text-light-type-gray-muted dark:text-dark-type-gray-muted mr-2 text-xl"></i>
@@ -99,9 +102,9 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
                  onClick={() => toggleItemSelection(item)} // Pass the entire item
                >
                  <div className="flex items-center space-x-lg">
-                   {selectedItem.id === item.id && ( // Show check icon if this item is selected
+                   {/* {selectedItem.id === item.id && ( // Show check icon if this item is selected
                      <i className="ri-check-line text-xl text-light-type-accent dark:text-dark-type-accent mr-2" aria-hidden="true"></i>
-                   )}
+                   )} */}
                    <span
                      className={`capitalize text-light-type-gray dark:text-dark-type-gray ${selectedItem.id === item.id ? 'ml-1' : ''}`}
                    >
