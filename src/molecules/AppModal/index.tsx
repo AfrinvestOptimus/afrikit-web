@@ -59,21 +59,12 @@ const AppModal: React.FC<AppModalProps> = ({
           modalClassName,
         )}>
         {/* Modal Header */}
-        <div className="relative">
-          <button
-            onClick={onClose}
-            className="text-light-gray11 hover:text-light-gray11 focus:outline-none absolute top-lg right-lg"
-            aria-label="Close modal">
-            <i className="ri-close-line text-2xl"></i>
-          </button>
-        </div>
-
         {title ? (
           <>
-            <div className="relative">
+            <div className="flex justify-end">
               <button
                 onClick={onClose}
-                className="text-light-gray11 hover:text-light-gray11 focus:outline-none absolute top-lg right-lg"
+                className="text-light-gray11 hover:text-light-gray11 focus:outline-none"
                 aria-label="Close modal">
                 <i className="ri-close-line text-2xl"></i>
               </button>
@@ -89,14 +80,17 @@ const AppModal: React.FC<AppModalProps> = ({
           </>
         )
         :
-          <div className="flex justify-end">
+        (
+          <div className="relative">
             <button
               onClick={onClose}
-              className="text-light-gray11 hover:text-light-gray11 focus:outline-none"
+              className="text-light-gray11 hover:text-light-gray11 focus:outline-none absolute top-lg right-lg"
               aria-label="Close modal">
               <i className="ri-close-line text-2xl"></i>
             </button>
           </div>
+        )
+          
         }
 
         {/* Modal Content */}

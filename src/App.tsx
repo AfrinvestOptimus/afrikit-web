@@ -39,7 +39,6 @@ function App() {
       return;
     }
     // Handle form submission logic
-    console.log('Selected items:', selectedItems);
   };
 
   // Function to open the modal
@@ -54,7 +53,6 @@ function App() {
 
   // Function to handle confirm action
   const handleConfirm = () => {
-    console.log('Confirm button clicked!');
     handleCloseModal(); 
   };
 
