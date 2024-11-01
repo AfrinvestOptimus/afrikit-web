@@ -97,21 +97,21 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
             {filteredItems.length > 0 ? (
              filteredItems.map((item, index) => (
                <div
-                 key={`${item.name}-${index}`}
+                 key={`${item?.name}-${index}`}
                  className="cursor-pointer py-sm px-4 hover:bg-gray-100 transition-all duration-300 ease-in-out flex items-center justify-between dark:hover:bg-dark-background-neutral-transparent-hover px-md"
                  onClick={() => toggleItemSelection(item)} // Pass the entire item
                >
                  <div className="flex items-center space-x-lg">
                  <i
                     className={`ri-check-line text-xl text-light-type-accent dark:text-dark-type-accent mr-2 ${
-                      selectedItem.id === item.id ? 'visible' : 'invisible'
+                      selectedItem?.id === item?.id ? 'visible' : 'invisible'
                     }`}
                     aria-hidden="true"
                   ></i>
                    <span
-                     className={`capitalize text-light-type-gray dark:text-dark-type-gray ${selectedItem.id === item.id ? 'ml-1' : ''}`}
+                     className={`capitalize text-light-type-gray dark:text-dark-type-gray ${selectedItem?.id === item?.id ? 'ml-1' : ''}`}
                    >
-                     {item.name}
+                     {item?.name}
                    </span>
                  </div>
                </div>
