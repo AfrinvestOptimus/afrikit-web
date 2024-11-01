@@ -64,7 +64,7 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
       <div className="relative w-full" ref={dropdownRef}> {/* Set ref on the main container */}
         {/* Selected item display */}
         <div
-          className="flex justify-between h-[56px] rounded-sm cursor-pointer items-center border-0 bg-light-surface-gray px-xl text-light-type-gray outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray mb-sm"
+          className="flex justify-between h-[56px] rounded rounded-sm cursor-pointer items-center border-0 bg-light-surface-gray px-xl text-light-type-gray outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray mb-sm"
           onClick={handleDropdownToggle}
         >
           <p className="font-medium">
@@ -77,7 +77,7 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
 
         {/* Dropdown with search */}
         {showDropdown && (
-          <div className="absolute z-10 w-full bg-white border border-gray-300 rounded mt-1 max-h-[300px] overflow-y-auto shadow-lg px-md" style={{
+          <div className="absolute z-10 w-full bg-white rounded rounded-sm mt-1 max-h-[300px] overflow-y-auto shadow-lg px-md" style={{
             scrollbarWidth: 'none', // Firefox
             msOverflowStyle: 'none', // IE 10+
           }}>
