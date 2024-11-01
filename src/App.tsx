@@ -137,7 +137,7 @@ function App() {
           placeholder="Country/Region"
           error={error} // Display error message below the dropdown if any
           label={'country'}      />
-      {/* <AppFormDropdown
+       <AppFormDropdown
         name="country" // Name for the dropdown
         itemList={itemList} // List of countries
         onItemSelect={handleItemSelect} // Handler for item selection
@@ -145,7 +145,7 @@ function App() {
         placeholder="Select a country" // Placeholder text
         error={error} // Error message (if any)
         label="Country" // Optional label
-      /> */}
+      /> 
        {/* <AppModal
           isOpen={isModalOpen} 
           onClose={handleCloseModal}

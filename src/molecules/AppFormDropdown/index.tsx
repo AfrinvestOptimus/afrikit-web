@@ -102,9 +102,12 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
                  onClick={() => toggleItemSelection(item)} // Pass the entire item
                >
                  <div className="flex items-center space-x-lg">
-                   {/* {selectedItem.id === item.id && ( // Show check icon if this item is selected
-                     <i className="ri-check-line text-xl text-light-type-accent dark:text-dark-type-accent mr-2" aria-hidden="true"></i>
-                   )} */}
+                 <i
+                    className={`ri-check-line text-xl text-light-type-accent dark:text-dark-type-accent mr-2 ${
+                      selectedItem.id === item.id ? 'visible' : 'invisible'
+                    }`}
+                    aria-hidden="true"
+                  ></i>
                    <span
                      className={`capitalize text-light-type-gray dark:text-dark-type-gray ${selectedItem.id === item.id ? 'ml-1' : ''}`}
                    >
