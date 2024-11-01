@@ -9,7 +9,7 @@ export interface AppFormDropdownProps {
   name: string; // The name of the dropdown for form submission
   itemList: Item[]; // List of items to display in the dropdown
   onItemSelect: (selectedItems: Item) => void; // Callback for item selection
-  selectedItem: Item; // Currently selected item
+  selectedItem?: Item; // Currently selected item
   placeholder: string; // Placeholder text when no items are selected
   error?: string; // Error message to display
   label?: string; // Optional label for the dropdown
@@ -68,7 +68,7 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
           onClick={handleDropdownToggle}
         >
           <p className="font-medium">
-            {selectedItem.name || placeholder} {/* Show selected item's name or placeholder */}
+            {selectedItem?.name || placeholder} {/* Show selected item's name or placeholder */}
           </p>
           <div className="pl-sm">
             <i className="ri-arrow-down-s-line text-xl text-light-type-gray-muted dark:text-dark-type-gray-muted"></i>
