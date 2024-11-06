@@ -11,15 +11,17 @@ export type TAppTopBarProps = {
       subtitle?: never
       search?: never
       backBtn?: never
+      backBtnAction?: never
       actions?: never
     }
   | ({
       isOnboarding: false
       onboardLink?: never
-      pageTitle: string
+      pageTitle: string | React.ReactNode
       subtitle?: string
       search?: boolean
       backBtn?: boolean
+      backBtnAction?: () => void
     } & (
       | {
           actions: true
