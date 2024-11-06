@@ -34,6 +34,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
     subtitle,
     actions,
     backBtn,
+    backBtnAction,
     className,
   } = props
 
@@ -63,18 +64,11 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
         <div className="flex flex-row items-center justify-between px-2xl py-lg">
           <div className="flex flex-row items-end space-x-sm">
             {backBtn && (
-              <div className="hidden md:inline-block">
-                <AppButton
-                  size={3}
-                  variant="surface"
-                  color="neutral"
-                  highContrast
-                  iconStart={false}
-                  iconName="ri-arrow-left-wide-line"
-                  iconEnd={false}
-                  text=""
-                />
-              </div>
+              <button onClick={backBtnAction} className="hidden md:inline-block">
+                <div className="flex h-3xl w-3xl items-center justify-center rounded-full border border-light-neutralA7 hover:bg-light-neutralA3 dark:border-dark-neutralA7 dark:hover:bg-dark-neutralA3">
+                  <i className="ri-arrow-go-back-line text-xl text-light-neutral12 dark:text-dark-neutral12" />
+                </div>
+              </button>
             )}
             <div className="flex flex-col items-start gap-y-xs">
               <h2 className="text-center text-light-type-gray type-xl-bold dark:text-dark-type-gray">
