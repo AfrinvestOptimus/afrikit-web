@@ -49,8 +49,7 @@ export default function SideBarBaseItem(props: TSideBarBaseItemProps) {
         {current && !iconOnly && (
           <div className="h-lg w-xs rounded-br-xs rounded-tr-xs bg-light-background-accent-base" />
         )}
-        <button
-          onClick={linkAction}
+        <div
           className={clsx(
             'group/item box-border flex flex-1 cursor-pointer flex-row items-center space-x-lg rounded-full border-2 border-light-background-neutral-transparent px-md py-sm transition-all duration-500 dark:border-dark-background-neutral-transparent',
 
@@ -59,7 +58,7 @@ export default function SideBarBaseItem(props: TSideBarBaseItemProps) {
               : 'ml-lg hover:bg-light-background-neutral-transparent-hover focus:border-light-optiblue9 dark:hover:bg-dark-background-neutral-transparent-hover dark:focus:border-dark-optiblue9',
           )}>
           {hasIcon(props) && (
-            <div className="icon">
+            <div className="icon" onClick={linkAction}>
               <i
                 className={clsx(
                   props.iconName,
@@ -74,26 +73,29 @@ export default function SideBarBaseItem(props: TSideBarBaseItemProps) {
           {!iconOnly &&
             (hasDropdown(props) ? (
               <div className="flex w-full flex-col items-start justify-start">
-                <Collapsible.CollapsibleTrigger asChild>
-                  <div
-                    className={clsx(
-                      'relative flex w-full flex-1 flex-row items-center justify-between',
-                      current
-                        ? 'text-light-type-accent dark:text-dark-type-accent'
-                        : 'text-light-type-gray-muted group-hover/item:text-light-type-gray dark:text-dark-type-gray-muted dark:group-hover/item:text-dark-type-gray',
-                    )}>
-                    <span className="type-base-head">{text}</span>
+                <div
+                  className={clsx(
+                    'relative flex w-full flex-1 flex-row items-center justify-between',
+                    current
+                      ? 'text-light-type-accent dark:text-dark-type-accent'
+                      : 'text-light-type-gray-muted group-hover/item:text-light-type-gray dark:text-dark-type-gray-muted dark:group-hover/item:text-dark-type-gray',
+                  )}>
+                  <span onClick={linkAction} className="flex-1 type-base-head">
+                    {text}
+                  </span>
+                  <Collapsible.CollapsibleTrigger asChild>
                     <i
                       className={clsx(
                         'ri-arrow-down-s-line text-lg transition-all duration-500',
                         opendrop ? 'rotate-180' : '',
                       )}
                     />
-                  </div>
-                </Collapsible.CollapsibleTrigger>
+                  </Collapsible.CollapsibleTrigger>
+                </div>
               </div>
             ) : (
-              <div
+              <button
+                onClick={linkAction}
                 className={clsx(
                   'flex flex-1 flex-row items-center justify-between type-base-head',
                   current
@@ -101,9 +103,9 @@ export default function SideBarBaseItem(props: TSideBarBaseItemProps) {
                     : 'text-light-type-gray-muted group-hover/item:text-light-type-gray dark:text-dark-type-gray-muted dark:group-hover/item:text-dark-type-gray',
                 )}>
                 {text}
-              </div>
+              </button>
             ))}
-        </button>
+        </div>
       </div>
       {hasDropdown(props) && (
         <div className="">
