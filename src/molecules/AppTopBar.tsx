@@ -3,7 +3,6 @@ import optimusLogo from '../assets/optimusLogo.svg'
 import clsx from 'clsx'
 import { TAppTopBarProps } from '../types/TAppTopBarProps'
 import TopBarRightContent from '../components/TopBarRightContent'
-import AppButton from './AppButton'
 
 /**
  * Component representing the top bar of the application.
@@ -66,7 +65,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
             {backBtn && (
               <button onClick={backBtnAction} className="hidden md:inline-block">
                 <div className="flex h-3xl w-3xl items-center justify-center rounded-full border border-light-neutralA7 hover:bg-light-neutralA3 dark:border-dark-neutralA7 dark:hover:bg-dark-neutralA3">
-                  <i className="ri-arrow-go-back-line text-xl text-light-neutral12 dark:text-dark-neutral12" />
+                  <i className="ri-arrow-left-wide-fill text-xl text-light-neutral12 dark:text-dark-neutral12" />
                 </div>
               </button>
             )}
