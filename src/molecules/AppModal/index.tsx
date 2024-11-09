@@ -57,7 +57,7 @@ const AppModal: React.FC<AppModalProps> = ({
     >
       <div
         className={clsx(
-          'relative w-full max-w-md rounded-xl text-black bg-light-page-bg2 p-lg shadow-light-neutral3 dark:bg-dark-page-bg2 dark:shadow-dark-neutral3',
+          'relative w-full max-w-md rounded-xl bg-light-page-bg2 p-lg shadow-light-neutral3 dark:bg-dark-page-bg2 dark:shadow-dark-neutral3',
           modalClassName,
         )}
       >
