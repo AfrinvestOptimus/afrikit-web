@@ -9,7 +9,7 @@ export interface AppFormDropdownProps {
   name: string; // The name of the dropdown for form submission
   itemList: Item[]; // List of items to display in the dropdown
   onItemSelect: (selectedItems: Item) => void; // Callback for item selection
-  selectedItem: Item; // Currently selected item
+  selectedItem?: Item; // Currently selected item
   placeholder: string; // Placeholder text when no items are selected
   error?: string; // Error message to display
   label?: string; // Optional label for the dropdown
@@ -64,11 +64,11 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
       <div className="relative w-full" ref={dropdownRef}> {/* Set ref on the main container */}
         {/* Selected item display */}
         <div
-          className="flex justify-between h-[56px] rounded-sm cursor-pointer items-center border-0 bg-light-surface-gray px-xl text-light-type-gray outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray mb-sm"
+          className="flex justify-between h-[56px] rounded rounded-sm cursor-pointer items-center border-0 bg-light-surface-gray px-xl text-light-type-gray outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray mb-sm"
           onClick={handleDropdownToggle}
         >
           <p className="font-medium">
-            {selectedItem.name || placeholder} {/* Show selected item's name or placeholder */}
+            {selectedItem?.name || placeholder} {/* Show selected item's name or placeholder */}
           </p>
           <div className="pl-sm">
             <i className="ri-arrow-down-s-line text-xl text-light-type-gray-muted dark:text-dark-type-gray-muted"></i>
@@ -77,7 +77,10 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
 
         {/* Dropdown with search */}
         {showDropdown && (
-          <div className="absolute z-10 w-full bg-white border border-gray-300 rounded mt-1 max-h-60 overflow-y-auto shadow-lg px-md">
+          <div className="absolute z-10 w-full bg-white rounded rounded-sm mt-1 max-h-[300px] overflow-y-auto shadow-lg px-md" style={{
+            scrollbarWidth: 'none', // Firefox
+            msOverflowStyle: 'none', // IE 10+
+          }}>
             {/* Search bar */}
             <div className="flex items-center space-x-md border-b border-light-neutral4 px-3 py-2 dark:border-dark-neutral4 p-sm">
               <i className="ri-search-line text-light-type-gray-muted dark:text-dark-type-gray-muted mr-2 text-xl"></i>
@@ -94,18 +97,21 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<HTMLDiv
             {filteredItems.length > 0 ? (
              filteredItems.map((item, index) => (
                <div
-                 key={`${item.name}-${index}`}
+                 key={`${item?.name}-${index}`}
                  className="cursor-pointer py-sm px-4 hover:bg-gray-100 transition-all duration-300 ease-in-out flex items-center justify-between dark:hover:bg-dark-background-neutral-transparent-hover px-md"
                  onClick={() => toggleItemSelection(item)} // Pass the entire item
                >
                  <div className="flex items-center space-x-lg">
-                   {selectedItem.id === item.id && ( // Show check icon if this item is selected
-                     <i className="ri-check-line text-xl text-light-type-accent dark:text-dark-type-accent mr-2" aria-hidden="true"></i>
-                   )}
+                 <i
+                    className={`ri-check-line text-xl text-light-type-accent dark:text-dark-type-accent mr-2 ${
+                      selectedItem?.id === item?.id ? 'visible' : 'invisible'
+                    }`}
+                    aria-hidden="true"
+                  ></i>
                    <span
-                     className={`capitalize text-light-type-gray dark:text-dark-type-gray ${selectedItem.id === item.id ? 'ml-1' : ''}`}
+                     className={`capitalize text-light-type-gray dark:text-dark-type-gray ${selectedItem?.id === item?.id ? 'ml-1' : ''}`}
                    >
-                     {item.name}
+                     {item?.name}
                    </span>
                  </div>
                </div>

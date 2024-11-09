@@ -4,16 +4,16 @@ import NGNFlag from '../../assets/ngn-flag.svg';
 
 const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
   (
-    { name, countryList, onCountrySelect, placeholder, error, value, label, onChange, onClear, onBlur, ...props },
+    { name, countryList, onCountrySelect, placeholder = "Country/Region", error, value, label, onChange, onClear, onBlur, ...props },
     ref,
   ) => {
     const [showCountries, setShowCountries] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [selected, setSelected] = useState({
-      name: 'Nigeria', // Set initial display to country name
-      phone_code: '+234',
-      code: 'NG',
-      flag: NGNFlag,
+      name: '',  // Empty initial display
+      phone_code: '',
+      code: '',
+      flag: null,
     });
 
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -48,13 +48,15 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
     }, []);
 
     return (
-      <div className="relative w-full" ref={dropdownRef}> {/* Set ref on the main container */}
+      <div className="relative w-full" ref={dropdownRef}>
         {/* Selected country display */}
         <div
           className="flex justify-between h-[56px] rounded-sm cursor-pointer items-center border-0 bg-light-surface-gray px-xl text-light-type-gray outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray mb-sm"
           onClick={handleSelect}
         >
-          <p className="font-medium">{selected.name}</p> {/* Display selected country name only */}
+          <p className="text-light-gray11">
+            {selected.name || placeholder}  {/* Display "Country/Region" if none selected */}
+          </p>
           <div className="pl-sm">
             <i className="ri-arrow-down-s-line text-xl text-light-type-gray-muted dark:text-dark-type-gray-muted"></i>
           </div>
@@ -62,16 +64,19 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
 
         {/* Country dropdown with search */}
         {showCountries && (
-          <div className="absolute z-10 w-full bg-white border border-gray-300 rounded rounded-sm mt-1 max-h-60 overflow-y-auto shadow-lg">
+          <div className="absolute z-10 w-full bg-white  rounded rounded-sm mt-1 max-h-[300px] overflow-y-auto shadow-lg" style={{
+            scrollbarWidth: 'none', // Firefox
+            msOverflowStyle: 'none', // IE 10+
+          }}>
             {/* Search bar */}
-            <div className="flex items-cente space-x-md border-b border-light-neutral4 px-3 py-2 dark:border-dark-neutral4 py-md px-xl">
+            <div className="flex items-center space-x-md border-b border-light-neutral4 px-3 py-2 dark:border-dark-neutral4 py-md px-xl">
               <i className="ri-search-line text-light-type-gray-muted dark:text-dark-type-gray-muted mr-2 text-xl"></i>
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search country..."
-                className="w-full border-none bg-transparent outline-none placeholder-gray-400 text-light-type-gray dark:text-dark-type-gray dark:placeholder-dark-type-gray-muted"
+                className="w-full border-none bg-transparent outline-none  text-light-type-gray dark:text-dark-type-gray dark:placeholder-dark-type-gray-muted"
               />
             </div>
 
@@ -83,15 +88,15 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
                   className="cursor-pointer py-sm px-4 hover:bg-gray-100 transition-all duration-300 ease-in-out flex justify-between dark:hover:bg-dark-background-neutral-transparent-hover px-xl"
                   onClick={() => selectCountry(country)}
                 >
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-xl">
                     {country.flag && (
                       <div className="h-6 w-6 overflow-hidden rounded-full">
                         <img src={country.flag} alt="flag" className="h-[40px] w-[40px]" />
                       </div>
                     )}
                     <div className="flex flex-col ">
-                     <span className="capitalize text-light-type-gray dark:text-dark-type-gray">{country.name}</span>
-                     <span className="text-light-type-gray dark:text-dark-type-gray text-sm">{country.phone_code}</span>
+                      <span className="capitalize text-light-type-gray dark:text-dark-type-gray">{country.name}</span>
+                      <span className="text-light-type-gray dark:text-dark-type-gray text-sm">{country.phone_code}</span>
                     </div>
                   </div>
                   {country.name === selected.name && (
