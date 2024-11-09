@@ -18,4 +18,6 @@ export { default as AppModal } from './AppModal'
 export { default as AppFileUpload } from './AppFileUpload'
 export { default as AppPhoneInput } from './AppPhoneInput'
 export { default as AppCountryDropdown } from './AppCountryDropdown'
+export type { AppIconProps } from './AppIcon'
+export { default as AppIcon } from './AppIcon'
 
