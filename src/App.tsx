@@ -146,18 +146,20 @@ function App() {
         error={error} // Error message (if any)
         label="Country" // Optional label
       /> 
-       {/* <AppModal
+       <AppModal
           isOpen={isModalOpen} 
           onClose={handleCloseModal}
           onConfirm={handleConfirm}
           title="Choose how to verify your BVN"
           subtitle="Are you sure you want to proceed?"
+          mainTitle='Choose how to verify your BVN'
+          onBack={() => {}}
         >
-          <div className="p-4">
-            <p className="mb-4">We only need access to your</p>
-            <ul className="space-y-2 mb-4">
+          <div className="p-lg">
+            <p className="mb-lg">We only need access to your</p>
+            <ul className="space-y-lg mb-lg">
               <li className="flex items-center">
-                <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
+                <i className="ri-checkbox-circle-fill text-green-500 mr-md"></i>
                 Full name
               </li>
               <li className="flex items-center">
@@ -169,12 +171,12 @@ function App() {
                 Date of Birth
               </li>
              </ul>
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-lg">
               <i className="ri-lock-fill text-gray-500 mr-2"></i>
               <p className="text-sm text-gray-600">Your BVN does not give us access to your bank accounts or transactions.</p>
             </div>
           </div>
-        </AppModal> */}
+        </AppModal>
      {/* <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
       {/* Button to trigger modal opening */}
       {/* <button
