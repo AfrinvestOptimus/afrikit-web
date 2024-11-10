@@ -1,6 +1,7 @@
 import { IAppAvatarProps } from './TAppAvatar'
 import { TAppTextProps } from './TAppTextProps'
 import { AppIconSize } from './../molecules/AppIcon'
+import React from 'react'
 
 type LeadingType =
   | 'none'
@@ -33,7 +34,7 @@ type SuffixProps = {
     content: string
   }
   text: {
-    text: string
+    text: string | React.ReactNode
     textProps?: TAppTextProps
   }
   link: {

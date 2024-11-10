@@ -1,3 +1,4 @@
+import React from 'react'
 import clsx from 'clsx'
 import AppText from '../atoms/AppText'
 import { TAppTextProps, TListItemSuffixProps } from '../types'
@@ -49,7 +50,7 @@ const TextContent = (props: { text: string; content: string }) => {
   )
 }
 
-const Text = (props: { text: string; textProps: TAppTextProps }) => {
+const Text = (props: { text: string | React.ReactNode; textProps: TAppTextProps }) => {
   const { text, textProps } = props
   return (
     <AppText {...textProps} className="self-center">
