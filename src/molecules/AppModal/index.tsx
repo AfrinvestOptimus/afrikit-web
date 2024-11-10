@@ -62,7 +62,7 @@ const AppModal: React.FC<AppModalProps> = ({
         )}
       >
         {/* Modal Header */}
-        <div className="flex items-center justify-between mb-lg">
+        <div className="flex items-center justify-between">
           {onBack && (
             <button
               onClick={onBack}
@@ -83,13 +83,15 @@ const AppModal: React.FC<AppModalProps> = ({
               {mainTitle}
             </h2>
           }
-          <button
-            onClick={onClose}
-            className="ml-auto text-light-gray11 dark:text-dark-gray11 hover:text-light-gray11 dark:hover:text-light-gray11 focus:outline-none"
-            aria-label="Close modal"
-          >
-            <i className="ri-close-line text-2xl"></i>
-          </button>
+          {onClose && 
+            <button
+              onClick={onClose}
+              className="ml-auto text-light-gray11 dark:text-dark-gray11 hover:text-light-gray11 dark:hover:text-light-gray11 focus:outline-none"
+              aria-label="Close modal"
+            >
+              <i className="ri-close-line text-2xl"></i>
+            </button>
+          }
         </div>
         {
             title && !mainTitle && <h2
