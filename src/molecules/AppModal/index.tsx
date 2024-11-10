@@ -73,7 +73,7 @@ const AppModal: React.FC<AppModalProps> = ({
             </button>
           )}
           {
-            (mainTitle && !title) || (mainTitle && title)  && <h2
+            mainTitle && <h2
               id="modal-title"
               className={clsx(
                 'text-xl font-bold ',
