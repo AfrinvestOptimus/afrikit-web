@@ -1,8 +1,8 @@
-import * as React from 'react'
+import React from 'react'
+import clsx from 'clsx'
 import AppAvatar from '../molecules/AppAvatar'
 import { IAppAvatarProps, TListItemPrefixProps } from '../types'
 import AppIcon, { AppIconSize } from './../molecules/AppIcon'
-import clsx from 'clsx'
 
 /**
  * ListItemPrefix Component
@@ -41,7 +41,17 @@ export default function ListItemPrefix({ leading, leadingProps }: TListItemPrefi
     case 'radio':
       return <Radio />
     case 'txStatus':
-      return <TxStatus />
+      return (
+        <TxStatus
+          prop={
+            leadingProps as {
+              status: 'money-in' | 'swap' | 'money-out' | 'activity' | 'direct-debit'
+              size?: 'default' | 'large'
+              badgeStatus?: 'interest' | 'pending' | 'failed'
+            }
+          }
+        />
+      )
     case 'check':
       return <Check />
     default:
@@ -84,5 +94,32 @@ const Flag = ({ prop }: { prop: { flagLink: string } }) => (
   />
 )
 const Radio = () => <div className=""></div> // TODO: Radio component on the way
-const TxStatus = () => <div className=""></div> // TODO: TxStatus component on the way
+const TxStatus = ({
+  prop,
+}: {
+  prop: {
+    status: 'money-in' | 'swap' | 'money-out' | 'activity' | 'direct-debit'
+    size?: 'default' | 'large'
+    badgeStatus?: 'interest' | 'pending' | 'failed'
+  }
+}) => (
+  <div className="relative">
+    <AppIcon
+      muted
+      iconClassName={
+        prop.status === 'money-in'
+          ? 'ri-add-line'
+          : prop.status === 'money-out'
+            ? 'ri-arrow-down-line'
+            : prop.status === 'swap'
+              ? 'ri-arrow-left-right-line'
+              : prop.status === 'activity'
+                ? 'ri-flashlight-line'
+                : 'ri-loop-right-line'
+      }
+      size={prop.size === 'default' ? '40' : '48'}
+      statusBadge={prop.badgeStatus}
+    />
+  </div>
+) // TODO: TxStatus component on the way
 const Check = () => <div className=""></div> // TODO: Check component on the way

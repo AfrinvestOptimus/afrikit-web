@@ -23,7 +23,11 @@ type LeadingProps = {
   paymentMethod?: { imgLink: string }
   flag?: { flagLink: string }
   radio?: {}
-  txStatus?: {}
+  txStatus?: {
+    status: 'money-in' | 'swap' | 'money-out' | 'activity' | 'direct-debit'
+    size?: 'default' | 'large'
+    badgeStatus?: 'interest' | 'pending' | 'failed'
+  }
   check?: {}
   none?: never
 }

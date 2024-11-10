@@ -82,7 +82,15 @@ export const AllLeadingElements: Story = {
         leadingProps={{ flagLink: 'https://www.worldometers.info//img/flags/small/tn_cu-flag.gif' }}
       />
       <AppListItem title="Radio" leading="radio" leadingProps={{}} />
-      <AppListItem title="Transaction Status" leading="txStatus" leadingProps={{}} />
+      <AppListItem
+        title="Transaction Status"
+        leading="txStatus"
+        leadingProps={{
+          status: 'direct-debit',
+          size: 'default',
+          badgeStatus: 'interest',
+        }}
+      />
       <AppListItem title="Check" leading="check" leadingProps={{}} />
     </div>
   ),
