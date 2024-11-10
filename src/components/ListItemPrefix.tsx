@@ -1,16 +1,17 @@
 import * as React from 'react'
 import AppAvatar from '../molecules/AppAvatar'
 import { IAppAvatarProps, TListItemPrefixProps } from '../types'
+import AppIcon, { AppIconSize } from './../molecules/AppIcon'
 import clsx from 'clsx'
 
 /**
  * ListItemPrefix Component
- * 
+ *
  * This component renders different types of leading elements based on the `leading` prop.
  * The `leadingProps` prop provides the necessary properties for the specific leading element.
- * 
+ *
  * @param {TListItemPrefixProps} props - The properties for the ListItemPrefix component.
- * @param {Exclude<LeadingType, 'none'>} props.leading - The type of leading element to render. 
+ * @param {Exclude<LeadingType, 'none'>} props.leading - The type of leading element to render.
  *    It can be one of the following:
  *    - 'avatar': Renders an avatar using the AppAvatar component.
  *    - 'brand': Renders a brand placeholder.
@@ -22,7 +23,7 @@ import clsx from 'clsx'
  *    - 'check': Renders a check mark.
  * @param {LeadingProps[Exclude<LeadingType, 'none'>]} props.leadingProps - The properties for the specific leading element.
  *    The structure of this object depends on the value of the `leading` prop.
- * 
+ *
  * @returns {JSX.Element | null} The rendered leading element or null if the `leading` prop is 'none'.
  */
 export default function ListItemPrefix({ leading, leadingProps }: TListItemPrefixProps) {
@@ -32,7 +33,7 @@ export default function ListItemPrefix({ leading, leadingProps }: TListItemPrefi
     case 'brand':
       return <Brand />
     case 'icon':
-      return <Icon prop={leadingProps as { iconClass: string }} />
+      return <Icon prop={leadingProps as { iconClass: string; size?: AppIconSize }} />
     case 'paymentMethod':
       return <PaymentMethod prop={leadingProps as { imgLink: string }} />
     case 'flag':
@@ -61,28 +62,24 @@ const Avatar = ({ prop }: { prop: IAppAvatarProps }) => (
   />
 )
 const Brand = () => (
-  <div className="w-3xl h-3xl rounded-xs-max bg-light-surface dark:bg-dark-surface border border-light-edge-gray dark:border-dark-edge-gray" />
+  <div className="h-3xl w-3xl rounded-xs-max border border-light-edge-gray bg-light-surface dark:border-dark-edge-gray dark:bg-dark-surface" />
   // TODO: BrandLogos on the way, passing a dummy div for now
 )
-const Icon = ({ prop }: { prop: { iconClass: string } }) => {
-  const { iconClass } = prop
-  return (
-    <div className="w-3xl h-3xl rounded-sm-max bg-light-surface-gray dark:bg-dark-surface-gray gap-lg justify-center items-center flex shadow-inner">
-      <i className={clsx('text-xl', iconClass)} />
-    </div>
-  )
+const Icon = ({ prop }: { prop: { iconClass: string; size?: AppIconSize } }) => {
+  const { iconClass, size } = prop
+  return <AppIcon iconClassName={iconClass} size={size ?? '16'} />
 }
 const PaymentMethod = ({ prop }: { prop: { imgLink: string } }) => (
-  <div className="w-2xl h-xl rounded-xs border border-light-edge-gray-subtle dark:border-dark-edge-gray-subtle object-contain bg-light-surface dark:bg-dark-surface flex items-center justify-center">
+  <div className="flex h-xl w-2xl items-center justify-center rounded-xs border border-light-edge-gray-subtle bg-light-surface object-contain dark:border-dark-edge-gray-subtle dark:bg-dark-surface">
     <img
-      className="object-cover w-full h-auto"
+      className="h-auto w-full object-cover"
       src={prop.imgLink || 'https://www.worldometers.info//img/flags/small/tn_cu-flag.gif'}
     />
   </div>
 )
 const Flag = ({ prop }: { prop: { flagLink: string } }) => (
   <img
-    className="w-3xl h-3xl rounded-sm-max"
+    className="h-3xl w-3xl rounded-sm-max"
     src={prop.flagLink || 'https://www.worldometers.info//img/flags/small/tn_cu-flag.gif'}
   />
 )

@@ -1,44 +1,52 @@
 import { IAppAvatarProps } from './TAppAvatar'
 import { TAppTextProps } from './TAppTextProps'
+import { AppIconSize } from './../molecules/AppIcon'
 
-
-
-type LeadingType = 'none' | 'avatar' | 'brand' | 'icon' | 'paymentMethod' | 'flag' | 'radio' | 'txStatus' | 'check'
+type LeadingType =
+  | 'none'
+  | 'avatar'
+  | 'brand'
+  | 'icon'
+  | 'paymentMethod'
+  | 'flag'
+  | 'radio'
+  | 'txStatus'
+  | 'check'
 
 type SuffixType = 'none' | 'textContent' | 'text' | 'link' | 'icon' | 'button' | 'switch'
 
 type LeadingProps = {
-  avatar?: IAppAvatarProps;
-  brand?: {};
-  icon?: { iconClass: string };
-  paymentMethod?: { imgLink: string };
-  flag?: { flagLink: string };
-  radio?: {};
-  txStatus?: {};
-  check?: {};
-  none?: never;
+  avatar?: IAppAvatarProps
+  brand?: {}
+  icon?: { iconClass: string; size?: AppIconSize }
+  paymentMethod?: { imgLink: string }
+  flag?: { flagLink: string }
+  radio?: {}
+  txStatus?: {}
+  check?: {}
+  none?: never
 }
 
 type SuffixProps = {
   textContent: {
-    text: string;
-    content: string;
-  };
+    text: string
+    content: string
+  }
   text: {
-    text: string;
-    textProps?: TAppTextProps;
-  };
+    text: string
+    textProps?: TAppTextProps
+  }
   link: {
-    link: string;
-    linkProps?: TAppTextProps;
-  };
+    link: string
+    linkProps?: TAppTextProps
+  }
   icon: {
-    iconClass: string;
-  };
+    iconClass: string
+  }
   switch?: {
-    checked: boolean;
-  };
-  none?: never;
+    checked: boolean
+  }
+  none?: never
 }
 
 type LeadingPropTypes = {
@@ -51,32 +59,32 @@ type TrailingPropTypes = {
 
 type subTriggered =
   | {
-    subTrigger?: true
-    trailing?: 'none'
-  }
+      subTrigger?: true
+      trailing?: 'none'
+    }
   | {
-    subTrigger?: false
-  }
+      subTrigger?: false
+    }
 
 type overlined =
   | {
-    overline?: true
-    overlineText: string
-  }
+      overline?: true
+      overlineText: string
+    }
   | {
-    overline?: false
-    overlineText?: never
-  }
+      overline?: false
+      overlineText?: never
+    }
 
 type subTitleProps =
   | {
-    supportingText?: true
-    subTitle: string
-  }
+      supportingText?: true
+      subTitle: string
+    }
   | {
-    supportingText?: false
-    subTitle?: never
-  }
+      supportingText?: false
+      subTitle?: never
+    }
 
 export type TAppListItemProps = {
   size?: 1 | 2
@@ -90,7 +98,9 @@ export type TAppListItemProps = {
   titleProps?: TAppTextProps
 } & subTriggered &
   overlined &
-  subTitleProps & Partial<LeadingPropTypes[LeadingType]> & Partial<TrailingPropTypes[SuffixType]>
+  subTitleProps &
+  Partial<LeadingPropTypes[LeadingType]> &
+  Partial<TrailingPropTypes[SuffixType]>
 
 export type TListItemPrefixProps = {
   leading: Exclude<LeadingType, 'none'>
