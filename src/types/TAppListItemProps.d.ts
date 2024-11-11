@@ -84,7 +84,7 @@ type overlined =
 type subTitleProps =
   | {
       supportingText?: true
-      subTitle: string
+      subTitle: string | React.ReactNode
     }
   | {
       supportingText?: false
