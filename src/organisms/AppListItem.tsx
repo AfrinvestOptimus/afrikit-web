@@ -52,13 +52,22 @@ export default function AppListItem(props: TAppListItemProps) {
     trailing = 'none',
     supportingText = false,
     overline = false,
+    spacing = 'default',
     subTrigger = false,
     title = 'list title',
     titleProps,
   } = props
 
   return (
-    <div className="flex cursor-pointer flex-row items-start space-x-lg py-md transition-all duration-500 hover:bg-light-surface-gray dark:hover:bg-dark-surface-gray">
+    <div
+      className={clsx(
+        'flex cursor-pointer flex-row items-center space-x-lg transition-all duration-500 hover:bg-light-surface-gray dark:hover:bg-dark-surface-gray',
+        spacing === 'compact'
+          ? 'px-md py-md'
+          : spacing === 'extra-relaxed'
+            ? 'px-xl py-xl'
+            : 'px-lg py-lg',
+      )}>
       {leading !== 'none' && (
         <ListItemPrefix
           leading={leading}

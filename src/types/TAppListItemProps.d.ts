@@ -100,6 +100,7 @@ export type TAppListItemProps = {
   overline?: boolean
   subTrigger?: boolean
   title: string
+  spacing?: 'default' | 'compact' | 'extra-relaxed'
   titleProps?: TAppTextProps
 } & subTriggered &
   overlined &
