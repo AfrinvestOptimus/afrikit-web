@@ -58,7 +58,7 @@ export default function AppListItem(props: TAppListItemProps) {
   } = props
 
   return (
-    <div className="flex cursor-pointer flex-row items-center space-x-lg px-md py-md transition-all duration-500 hover:bg-light-surface-gray dark:hover:bg-dark-surface-gray">
+    <div className="flex cursor-pointer flex-row items-start space-x-lg py-md transition-all duration-500 hover:bg-light-surface-gray dark:hover:bg-dark-surface-gray">
       {leading !== 'none' && (
         <ListItemPrefix
           leading={leading}
