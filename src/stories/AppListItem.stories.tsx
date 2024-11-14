@@ -11,8 +11,24 @@ const meta: Meta<typeof AppListItem> = {
   argTypes: {
     size: { control: 'radio', options: [1, 2] },
     variant: { control: 'radio', options: ['1-line', '2-line', '3-line'] },
-    leading: { control: 'select', options: ['none', 'avatar', 'brand', 'icon', 'paymentMethod', 'flag', 'radio', 'txStatus', 'check'] },
-    trailing: { control: 'select', options: ['none', 'textContent', 'text', 'link', 'icon', 'button', 'switch'] },
+    leading: {
+      control: 'select',
+      options: [
+        'none',
+        'avatar',
+        'brand',
+        'icon',
+        'paymentMethod',
+        'flag',
+        'radio',
+        'txStatus',
+        'check',
+      ],
+    },
+    trailing: {
+      control: 'select',
+      options: ['none', 'textContent', 'text', 'link', 'icon', 'button', 'switch'],
+    },
     supportingText: { control: 'boolean' },
     overline: { control: 'boolean' },
     subTrigger: { control: 'boolean' },
@@ -36,18 +52,45 @@ export const Default: Story = {
 export const AllLeadingElements: Story = {
   render: () => (
     <div className="space-y-4">
-      <AppListItem title="Avatar" leading="avatar" leadingProps={{
-        size:5,
-            variant:'solid',
-            color:'accent',
-            initials:'AB',
-      }} />
+      <AppListItem
+        title="Avatar"
+        leading="avatar"
+        leadingProps={{
+          size: 5,
+          variant: 'solid',
+          color: 'accent',
+          initials: 'AB',
+        }}
+      />
       <AppListItem title="Brand" leading="brand" leadingProps={{}} />
-      <AppListItem title="Icon" leading="icon" leadingProps={{ iconClass: 'ri-star-line' }} />
-      <AppListItem title="Payment Method" leading="paymentMethod" leadingProps={{ imgLink: 'https://www.worldometers.info//img/flags/small/tn_cu-flag.gif' }} />
-      <AppListItem title="Flag" leading="flag" leadingProps={{ flagLink: 'https://www.worldometers.info//img/flags/small/tn_cu-flag.gif' }} />
+      <AppListItem
+        title="Icon"
+        leading="icon"
+        leadingProps={{
+          iconClass: 'ri-star-line text-light-type-gray dark:text-light-type-gray',
+          size: '48',
+        }}
+      />
+      <AppListItem
+        title="Payment Method"
+        leading="paymentMethod"
+        leadingProps={{ imgLink: 'https://www.worldometers.info//img/flags/small/tn_cu-flag.gif' }}
+      />
+      <AppListItem
+        title="Flag"
+        leading="flag"
+        leadingProps={{ flagLink: 'https://www.worldometers.info//img/flags/small/tn_cu-flag.gif' }}
+      />
       <AppListItem title="Radio" leading="radio" leadingProps={{}} />
-      <AppListItem title="Transaction Status" leading="txStatus" leadingProps={{}} />
+      <AppListItem
+        title="Transaction Status"
+        leading="txStatus"
+        leadingProps={{
+          status: 'direct-debit',
+          size: 'default',
+          badgeStatus: 'interest',
+        }}
+      />
       <AppListItem title="Check" leading="check" leadingProps={{}} />
     </div>
   ),
@@ -57,10 +100,18 @@ export const AllLeadingElements: Story = {
 export const AllTrailingElements: Story = {
   render: () => (
     <div className="space-y-4">
-      <AppListItem title="Text Content" trailing="textContent" trailingProps={{ text: 'Header', content: 'Content' }} />
+      <AppListItem
+        title="Text Content"
+        trailing="textContent"
+        trailingProps={{ text: 'Header', content: 'Content' }}
+      />
       <AppListItem title="Text" trailing="text" trailingProps={{ text: 'Details' }} />
       <AppListItem title="Link" trailing="link" trailingProps={{ link: 'View More' }} />
-      <AppListItem title="Icon" trailing="icon" trailingProps={{ iconClass: 'ri-arrow-right-s-line' }} />
+      <AppListItem
+        title="Icon"
+        trailing="icon"
+        trailingProps={{ iconClass: 'ri-arrow-right-s-line' }}
+      />
       <AppListItem title="Button" trailing="button" trailingProps={{}} />
       <AppListItem title="Switch" trailing="switch" trailingProps={{ checked: false }} />
     </div>
@@ -95,10 +146,7 @@ export const CombinationExample: Story = {
     size: 2,
     variant: '3-line',
     leading: 'avatar',
-    leadingProps: { size:5,
-            variant:'solid',
-            color:'accent',
-            initials:'AB' },
+    leadingProps: { size: 5, variant: 'solid', color: 'accent', initials: 'AB' },
     trailing: 'switch',
     trailingProps: { checked: true },
     supportingText: true,
@@ -123,49 +171,59 @@ export const SubTriggerExample: Story = {
 
 // With Trailing Text: List item with trailing text content
 export const WithTrailingText: Story = {
-    args: {
-      title: 'Account Balance',
-      size: 2,
-      variant: '2-line',
-      leading: 'icon',
-      leadingProps: {
-        iconClass: 'ri-wallet-3-line'
-      },
-      trailing: 'textContent',
-      trailingProps: {
-          text: '$1,234.56',
-          content: 'Available',
-      },
-      supportingText: true,
-      subTitle: 'Last updated: Today',
+  args: {
+    title: 'Account Balance',
+    size: 2,
+    variant: '2-line',
+    leading: 'icon',
+    leadingProps: {
+      iconClass: 'ri-wallet-3-line',
     },
-  }
+    trailing: 'textContent',
+    trailingProps: {
+      text: '$1,234.56',
+      content: 'Available',
+    },
+    supportingText: true,
+    subTitle: 'Last updated: Today',
+  },
+}
 
-  // With Payment Method: List item with a payment method as the leading element
+// With Payment Method: List item with a payment method as the leading element
 export const WithPaymentMethod: Story = {
-    args: {
-      title: 'Credit Card',
-      size: 2,
-      variant: '2-line',
-      leading: 'paymentMethod',
-      leadingProps: {
-        imgLink: 'https://www.worldometers.info//img/flags/small/tn_cu-flag.gif',
-      },
-      supportingText: true,
-      subTitle: '**** **** **** 1234',
-      trailing: 'icon',
-      trailingProps: {
-         iconClass: 'ri-more-2-fill',
-      },
+  args: {
+    title: 'Credit Card',
+    size: 2,
+    variant: '2-line',
+    leading: 'paymentMethod',
+    leadingProps: {
+      imgLink: 'https://www.worldometers.info//img/flags/small/tn_cu-flag.gif',
     },
-  }
+    supportingText: true,
+    subTitle: '**** **** **** 1234',
+    trailing: 'icon',
+    trailingProps: {
+      iconClass: 'ri-more-2-fill',
+    },
+  },
+}
 
 // Different Sizes
 export const SizeComparison: Story = {
   render: () => (
     <div className="space-y-4">
-      <AppListItem title="Size 1" size={1} leading="icon" leadingProps={{ iconClass: 'ri-information-line' }} />
-      <AppListItem title="Size 2" size={2} leading="icon" leadingProps={{ iconClass: 'ri-information-line' }} />
+      <AppListItem
+        title="Size 1"
+        size={1}
+        leading="icon"
+        leadingProps={{ iconClass: 'ri-information-line' }}
+      />
+      <AppListItem
+        title="Size 2"
+        size={2}
+        leading="icon"
+        leadingProps={{ iconClass: 'ri-information-line' }}
+      />
     </div>
   ),
 }
@@ -174,9 +232,24 @@ export const SizeComparison: Story = {
 export const VariantComparison: Story = {
   render: () => (
     <div className="space-y-4 w-3xl">
-      <AppListItem title="1-line Variant" variant="1-line" supportingText={true} subTitle="This text will be truncated" />
-      <AppListItem title="2-line Variant" variant="2-line" supportingText={true} subTitle="This text will show two lines before truncating" />
-      <AppListItem title="3-line Variant" variant="3-line" supportingText={true} subTitle="This text can span up to three lines before it gets truncated. It allows for more detailed descriptions." />
+      <AppListItem
+        title="1-line Variant"
+        variant="1-line"
+        supportingText={true}
+        subTitle="This text will be truncated"
+      />
+      <AppListItem
+        title="2-line Variant"
+        variant="2-line"
+        supportingText={true}
+        subTitle="This text will show two lines before truncating"
+      />
+      <AppListItem
+        title="3-line Variant"
+        variant="3-line"
+        supportingText={true}
+        subTitle="This text can span up to three lines before it gets truncated. It allows for more detailed descriptions."
+      />
     </div>
   ),
 }
