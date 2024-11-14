@@ -44,7 +44,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
 
     const CountrySelection = () => {
       return (
-        <div className="z-10">
+        <div className="">
           <div
             className={`z-9 flex h-[56px] cursor-pointer appearance-none items-center rounded-l-sm border-0 bg-light-surface-gray px-sm text-light-type-gray outline-none type-sm-title focus:outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray`}
             onClick={handleSelect}>
