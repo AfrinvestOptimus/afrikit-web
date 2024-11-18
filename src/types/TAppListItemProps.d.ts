@@ -34,8 +34,8 @@ type LeadingProps = {
 
 type SuffixProps = {
   textContent: {
-    text: string
-    content: string
+    text: string | React.ReactNode
+    content: string | React.ReactNode
   }
   text: {
     text: string | React.ReactNode
