@@ -55,7 +55,7 @@ export const highContrastButtonColors: Record<ButtonColor, Record<ButtonVariant,
   },
   neutral: {
     solid: 'bg-light-background-neutral-bold dark:bg-dark-background-neutral-bold',
-    soft: 'bg-light-background-neutral-light  dark:bg-light-background-neutral-light',
+    soft: 'bg-light-background-neutral-light  dark:bg-dark-background-neutral-light',
     surface:
       'bg-light-background-neutral-light border border-light-edge-gray-hover dark:border-dark-edge-gray-hover',
     outline:
@@ -69,7 +69,7 @@ export const highContrastButtonColors: Record<ButtonColor, Record<ButtonVariant,
       'bg-light-background-error-light border border-dark-edge-error dark:border-dark-edge-error',
     outline:
       'bg-light-background-error-light border border-dark-edge-error-strong dark:border-dark-edge-error-strong',
-    ghost: 'bg-light-background-error-transparent dark:bg-light-background-error-transparent',
+    ghost: 'bg-light-background-error-transparent dark:bg-dark-background-error-transparent',
   },
 }
 
