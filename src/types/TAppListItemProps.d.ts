@@ -18,11 +18,15 @@ type SuffixType = 'none' | 'textContent' | 'text' | 'link' | 'icon' | 'button' |
 
 type LeadingProps = {
   avatar?: IAppAvatarProps
-  brand?: {}
+  brand?: {
+    background: boolean
+    brandImg: React.ReactNode
+  }
   icon?: { iconClass: string; size?: AppIconSize }
   paymentMethod?: { imgLink: string }
   flag?: { flagLink: string }
   radio?: {}
+  brand?: {}
   txStatus?: {
     status: 'money-in' | 'swap' | 'money-out' | 'activity' | 'direct-debit'
     size?: 'default' | 'large'
