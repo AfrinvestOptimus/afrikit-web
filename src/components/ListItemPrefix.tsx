@@ -31,7 +31,16 @@ export default function ListItemPrefix({ leading, leadingProps }: TListItemPrefi
     case 'avatar':
       return <Avatar prop={leadingProps as IAppAvatarProps} />
     case 'brand':
-      return <Brand />
+      return (
+        <Brand
+          prop={
+            leadingProps as {
+              background: boolean
+              brandImg: React.ReactNode
+            }
+          }
+        />
+      )
     case 'icon':
       return <Icon prop={leadingProps as { iconClass: string; size?: AppIconSize }} />
     case 'paymentMethod':
@@ -71,10 +80,26 @@ const Avatar = ({ prop }: { prop: IAppAvatarProps }) => (
     {...prop}
   />
 )
-const Brand = () => (
-  <div className="h-3xl w-3xl rounded-xs-max border border-light-edge-gray bg-light-surface dark:border-dark-edge-gray dark:bg-dark-surface" />
-  // TODO: BrandLogos on the way, passing a dummy div for now
-)
+const Brand = ({
+  prop,
+}: {
+  prop: {
+    background: boolean
+    brandImg: React.ReactNode
+  }
+}) => {
+  const { background, brandImg } = prop
+  return (
+    <div
+      className={clsx('h-3xl w-3xl rounded-xs-max', {
+        'border border-light-edge-gray bg-light-surface dark:border-dark-edge-gray dark:bg-dark-surface':
+          background,
+      })}>
+      {brandImg}
+    </div>
+    // TODO: BrandLogos on the way, passing a dummy div for now
+  )
+}
 const Icon = ({ prop }: { prop: { iconClass: string; size?: AppIconSize } }) => {
   const { iconClass, size } = prop
   return <AppIcon iconClassName={iconClass} size={size ?? '16'} />
