@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import AppButton from '../AppButton';
-import { AppModalProps } from '../../types/AppModal';
-import clsx from 'clsx';
+import React, { useEffect } from 'react'
+import AppButton from '../AppButton'
+import { AppModalProps } from '../../types/AppModal'
+import clsx from 'clsx'
 
 const AppModal: React.FC<AppModalProps> = ({
   isOpen,
@@ -21,93 +21,81 @@ const AppModal: React.FC<AppModalProps> = ({
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onClose();
+        onClose()
       }
-    };
+    }
 
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden'
+      window.addEventListener('keydown', handleEsc)
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
-      window.removeEventListener('keydown', handleEsc);
-    };
-  }, [isOpen, onClose]);
+      document.body.style.overflow = 'unset'
+      window.removeEventListener('keydown', handleEsc)
+    }
+  }, [isOpen, onClose])
 
   const handleBackgroundClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      onClose();
+      onClose ? onClose() : null
     }
-  };
+  }
 
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <div
       className={clsx(
-        'fixed inset-0 flex items-center justify-center z-50 bg-light-token-overlay dark:bg-dark-token-overlay',
+        'inset-0 bg-light-token-overlay dark:bg-dark-token-overlay fixed z-50 flex items-center justify-center',
         className,
       )}
       onClick={handleBackgroundClick}
       role="dialog"
       aria-modal="true"
-      aria-labelledby="modal-title"
-    >
+      aria-labelledby="modal-title">
       <div
         className={clsx(
           'relative w-full max-w-md rounded-xl bg-light-page-bg2 p-lg shadow-light-neutral3 dark:bg-dark-page-bg2 dark:shadow-dark-neutral3',
           modalClassName,
-        )}
-      >
+        )}>
         {/* Modal Header */}
         <div className="flex items-center justify-between">
           {onBack && (
             <button
               onClick={onBack}
-              className="text-light-gray11 dark:text-dark-gray11 hover:text-light-gray11 dark:hover:text-light-gray11 focus:outline-none"
-              aria-label="Back"
-            >
+              className="text-light-gray11 hover:text-light-gray11 focus:outline-none dark:text-dark-gray11 dark:hover:text-light-gray11"
+              aria-label="Back">
               <i className="ri-arrow-left-wide-line text-lg"></i>
             </button>
           )}
-          {
-            mainTitle && <h2
+          {mainTitle && (
+            <h2
               id="modal-title"
               className={clsx(
-                'text-xl font-bold ',
-                mainTitleAlign === 'center' ? 'flex-1 text-center' : 'text-left'
-              )}
-            >
+                'text-xl font-bold',
+                mainTitleAlign === 'center' ? 'flex-1 text-center' : 'text-left',
+              )}>
               {mainTitle}
             </h2>
-          }
-          {onClose && 
+          )}
+          {onClose && (
             <button
               onClick={onClose}
-              className="ml-auto text-light-gray11 dark:text-dark-gray11 hover:text-light-gray11 dark:hover:text-light-gray11 focus:outline-none"
-              aria-label="Close modal"
-            >
+              className="ml-auto text-light-gray11 hover:text-light-gray11 focus:outline-none dark:text-dark-gray11 dark:hover:text-light-gray11"
+              aria-label="Close modal">
               <i className="ri-close-line text-2xl"></i>
             </button>
-          }
+          )}
         </div>
-        {
-            title && !mainTitle && <h2
-              id="modal-title"
-              className={clsx(
-                'text-xl xl-bold',
-              )}
-            >
-              {title}
-            </h2>
-          }
+        {title && !mainTitle && (
+          <h2 id="modal-title" className={clsx('xl-bold text-xl')}>
+            {title}
+          </h2>
+        )}
         {/* Subtitle */}
-        {subtitle && !mainTitle &&(
-          <p className="text-sm text-light-gray11 dark:text-dark-gray11  mb-lg">
-            {subtitle}
-          </p>
+        {subtitle && !mainTitle && (
+          <p className="mb-lg text-sm text-light-gray11 dark:text-dark-gray11">{subtitle}</p>
         )}
 
         {/* Modal Content */}
@@ -130,7 +118,7 @@ const AppModal: React.FC<AppModalProps> = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AppModal;
+export default AppModal
