@@ -56,14 +56,15 @@ export default function AppListItem(props: TAppListItemProps) {
     subTrigger = false,
     title = 'list title',
     titleProps,
-    isLink
+    isLink,
   } = props
 
   return (
     <div
       className={clsx(
         'flex flex-row items-center space-x-lg transition-all duration-500',
-        isLink && 'hover:bg-light-surface-gray dark:hover:bg-dark-surface-gray cursor-pointer',
+        isLink &&
+          'cursor-pointer transition-all duration-500 ease-in-out hover:bg-light-surface-gray dark:hover:bg-dark-surface-gray',
         spacing === 'compact'
           ? 'px-md py-md'
           : spacing === 'extra-relaxed'
