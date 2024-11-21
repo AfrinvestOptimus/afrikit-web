@@ -146,5 +146,5 @@ const TxStatus = ({
       statusBadge={prop.badgeStatus}
     />
   </div>
-) // TODO: TxStatus component on the way
+)
 const Check = () => <div className=""></div> // TODO: Check component on the way
