@@ -29,6 +29,7 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<
 
   const toggleItemSelection = (item: Item) => {
     onItemSelect(item) // Call the parent handler with the updated selection
+    setShowDropdown(false) // Close the dropdown after selection
   }
 
   const filteredItems = itemList.filter(item =>
