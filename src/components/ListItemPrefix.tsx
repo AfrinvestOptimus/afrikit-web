@@ -91,11 +91,11 @@ const Brand = ({
   const { background, brandImg } = prop
   return (
     <div
-      className={clsx('h-3xl w-3xl rounded-xs-max', {
+      className={clsx('flex h-3xl w-3xl items-center justify-center rounded-xs-max', {
         'border border-light-edge-gray bg-light-surface dark:border-dark-edge-gray dark:bg-dark-surface':
           background,
       })}>
-      {brandImg}
+      <div className={clsx(background ? 'relative h-xl w-xl overflow-hidden rounded-xs-max': '')}>{brandImg}</div>
     </div>
     // TODO: BrandLogos on the way, passing a dummy div for now
   )
