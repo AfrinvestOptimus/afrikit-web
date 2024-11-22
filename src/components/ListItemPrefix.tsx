@@ -4,6 +4,7 @@ import AppAvatar from '../molecules/AppAvatar'
 import { IAppAvatarProps, TListItemPrefixProps } from '../types'
 import AppIcon, { AppIconSize } from './../molecules/AppIcon'
 import NG from '../assets/NG'
+import US from '../assets/US'
 
 /**
  * ListItemPrefix Component
@@ -38,6 +39,7 @@ export default function ListItemPrefix({ leading, leadingProps }: TListItemPrefi
             leadingProps as {
               background: boolean
               brandImg: React.ReactNode
+              currency?: 'NGN' | 'USD'
             }
           }
         />
@@ -87,9 +89,10 @@ const Brand = ({
   prop: {
     background: boolean
     brandImg: React.ReactNode
+    currency?: 'NGN' | 'USD'
   }
 }) => {
-  const { background, brandImg } = prop
+  const { background, brandImg, currency } = prop
   return (
     <div className="relative">
       <div
@@ -102,9 +105,11 @@ const Brand = ({
           {brandImg}
         </div>
       </div>
-      <div className="absolute -bottom-xs -right-xs flex h-lg w-lg items-center justify-center rounded-xs-max border border-light-neutral6 bg-light-solid dark:border-dark-neutral6 dark:bg-dark-solid">
-        <NG />
-      </div>
+      {currency && (
+        <div className="absolute -bottom-xs -right-xs flex h-lg w-lg items-center justify-center rounded-xs-max border border-light-neutral6 bg-light-solid dark:border-dark-neutral6 dark:bg-dark-solid">
+          {currency === 'NGN' ? <NG /> : <US />}
+        </div>
+      )}
     </div>
     // TODO: BrandLogos on the way, passing a dummy div for now
   )

@@ -21,12 +21,12 @@ type LeadingProps = {
   brand?: {
     background: boolean
     brandImg: React.ReactNode
+    currency?: 'NGN' | 'USD'
   }
   icon?: { iconClass: string; size?: AppIconSize }
   paymentMethod?: { imgLink: string }
   flag?: { flagLink: string }
   radio?: {}
-  brand?: {}
   txStatus?: {
     status: 'money-in' | 'swap' | 'money-out' | 'activity' | 'direct-debit'
     size?: 'default' | 'large'
