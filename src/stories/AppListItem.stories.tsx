@@ -62,7 +62,19 @@ export const AllLeadingElements: Story = {
           initials: 'AB',
         }}
       />
-      <AppListItem title="Brand" leading="brand" leadingProps={{}} />
+      <AppListItem
+        title="Brand"
+        leading="brand"
+        leadingProps={{
+          background: true,
+          brandImg: (
+            <img
+              src="https://www.worldometers.info//img/flags/small/tn_cu-flag.gif"
+              alt="Cuba Flag"
+            />
+          ),
+        }}
+      />
       <AppListItem
         title="Icon"
         leading="icon"

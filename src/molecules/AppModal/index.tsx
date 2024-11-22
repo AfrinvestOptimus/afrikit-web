@@ -17,11 +17,12 @@ const AppModal: React.FC<AppModalProps> = ({
   mainTitle,
   mainTitleAlign = 'center', // 'left' or 'center' for alignment
   onBack, // Optional onBack function for the back button
+  ovelayShoudClose,
 }) => {
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onClose()
+        onClose && ovelayShoudClose ? onClose() : null
       }
     }
 
@@ -34,11 +35,11 @@ const AppModal: React.FC<AppModalProps> = ({
       document.body.style.overflow = 'unset'
       window.removeEventListener('keydown', handleEsc)
     }
-  }, [isOpen, onClose])
+  }, [isOpen, onClose, ovelayShoudClose])
 
   const handleBackgroundClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      onClose ? onClose() : null
+      onClose && ovelayShoudClose ? onClose() : null
     }
   }
 
