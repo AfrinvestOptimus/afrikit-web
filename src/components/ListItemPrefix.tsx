@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import AppAvatar from '../molecules/AppAvatar'
 import { IAppAvatarProps, TListItemPrefixProps } from '../types'
 import AppIcon, { AppIconSize } from './../molecules/AppIcon'
+import NG from '../assets/NG'
 
 /**
  * ListItemPrefix Component
@@ -90,12 +91,20 @@ const Brand = ({
 }) => {
   const { background, brandImg } = prop
   return (
-    <div
-      className={clsx('flex h-3xl w-3xl items-center justify-center rounded-xs-max', {
-        'border border-light-edge-gray bg-light-surface dark:border-dark-edge-gray dark:bg-dark-surface':
-          background,
-      })}>
-      <div className={clsx(background ? 'relative h-xl w-xl overflow-hidden rounded-xs-max': '')}>{brandImg}</div>
+    <div className="relative">
+      <div
+        className={clsx('flex h-3xl w-3xl items-center justify-center rounded-xs-max', {
+          'border border-light-edge-gray bg-light-surface dark:border-dark-edge-gray dark:bg-dark-surface':
+            background,
+        })}>
+        <div
+          className={clsx(background ? 'relative h-xl w-xl overflow-hidden rounded-xs-max' : '')}>
+          {brandImg}
+        </div>
+      </div>
+      <div className="absolute -bottom-xs -right-xs flex h-lg w-lg items-center justify-center rounded-xs-max border border-light-neutral6 bg-light-solid dark:border-dark-neutral6 dark:bg-dark-solid">
+        <NG />
+      </div>
     </div>
     // TODO: BrandLogos on the way, passing a dummy div for now
   )
