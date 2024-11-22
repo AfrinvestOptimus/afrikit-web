@@ -1,6 +1,7 @@
 import { IAppAvatarProps } from './TAppAvatar'
 import { TAppTextProps } from './TAppTextProps'
 import { AppIconSize } from './../molecules/AppIcon'
+import { AppButtonProps } from '../types/TAppButton'
 import React from 'react'
 
 type LeadingType =
@@ -14,7 +15,7 @@ type LeadingType =
   | 'txStatus'
   | 'check'
 
-type SuffixType = 'none' | 'textContent' | 'text' | 'link' | 'icon' | 'button' | 'switch'
+type SuffixType = 'none' | 'button' | 'textContent' | 'text' | 'link' | 'icon' | 'switch'
 
 type LeadingProps = {
   avatar?: IAppAvatarProps
@@ -52,10 +53,13 @@ type SuffixProps = {
   icon: {
     iconClass: string
   }
-  switch?: {
+  button: {
+    btnProps: AppButtonProps
+  }
+  switch: {
     checked: boolean
   }
-  none?: never
+  none: never
 }
 
 type LeadingPropTypes = {

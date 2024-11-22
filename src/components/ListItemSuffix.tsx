@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import clsx from 'clsx'
 import AppText from '../atoms/AppText'
-import { TAppTextProps, TListItemSuffixProps } from '../types'
+import { AppButtonProps, TAppTextProps, TListItemSuffixProps } from '../types'
+import { AppButton } from '../molecules'
 
 /**
  * ListItemSuffix Component
@@ -24,13 +25,48 @@ import { TAppTextProps, TListItemSuffixProps } from '../types'
 const ListItemSuffix = ({ suffix, trailingProps }: TListItemSuffixProps) => {
   switch (suffix) {
     case 'textContent':
-      return <TextContent {...trailingProps} />
+      return (
+        <TextContent
+          {...(trailingProps as {
+            text: string | React.ReactNode
+            content: string | React.ReactNode
+          })}
+        />
+      )
     case 'text':
-      return <Text {...trailingProps} />
+      return (
+        <Text
+          {...(trailingProps as {
+            text: string | React.ReactNode
+            textProps?: TAppTextProps
+          })}
+        />
+      )
     case 'link':
-      return <Link {...trailingProps} />
+      return (
+        <Link
+          {...(trailingProps as {
+            link: string
+            linkProps?: TAppTextProps
+          })}
+        />
+      )
     case 'icon':
-      return <Icon {...trailingProps} />
+      return (
+        <Icon
+          {...(trailingProps as {
+            iconClass: string
+          })}
+        />
+      )
+    case 'button':
+      return (
+        <Button
+          {...(trailingProps as {
+            btnProps: AppButtonProps
+          })}
+        />
+      )
     default:
       return null
   }
@@ -38,7 +74,7 @@ const ListItemSuffix = ({ suffix, trailingProps }: TListItemSuffixProps) => {
 
 export default ListItemSuffix
 
-const TextContent = (props: { text: string; content: string }) => {
+const TextContent = (props: { text: string | ReactNode; content: string | ReactNode }) => {
   const { text, content } = props
   return (
     <div className="flex flex-col items-end space-y-xs text-right">
@@ -50,7 +86,7 @@ const TextContent = (props: { text: string; content: string }) => {
   )
 }
 
-const Text = (props: { text: string | React.ReactNode; textProps: TAppTextProps }) => {
+const Text = (props: { text: string | React.ReactNode; textProps?: TAppTextProps }) => {
   const { text, textProps } = props
   return (
     <AppText {...textProps} className="self-center">
@@ -59,7 +95,7 @@ const Text = (props: { text: string | React.ReactNode; textProps: TAppTextProps 
   )
 }
 
-const Link = (props: { link: string; linkProps: TAppTextProps }) => {
+const Link = (props: { link: string; linkProps?: TAppTextProps }) => {
   const { link, linkProps } = props
   return (
     <AppText
@@ -80,4 +116,9 @@ const Icon = (props: { iconClass: string }) => {
       <i className={clsx('text-xl', iconClass)} />
     </div> // TODO: To be replaced with AppIcon component when available
   )
+}
+
+const Button = (props: { btnProps: AppButtonProps }) => {
+  const { btnProps } = props
+  return <AppButton {...btnProps} />
 }
