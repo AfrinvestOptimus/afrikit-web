@@ -15,7 +15,7 @@ type LeadingType =
   | 'txStatus'
   | 'check'
 
-type SuffixType = 'none' | 'button' | 'textContent' | 'text' | 'link' | 'icon' | 'switch'
+type SuffixType = 'none' | 'button' | 'textContent' | 'text' | 'link' | 'icon' | 'switch' | 'custom'
 
 type LeadingProps = {
   avatar?: IAppAvatarProps
@@ -58,6 +58,9 @@ type SuffixProps = {
   }
   switch: {
     checked: boolean
+  }
+  custom: {
+    component: ReactNode
   }
   none: never
 }

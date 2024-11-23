@@ -67,6 +67,9 @@ const ListItemSuffix = ({ suffix, trailingProps }: TListItemSuffixProps) => {
           })}
         />
       )
+    case 'custom':
+      const { component } = trailingProps as unknown as { component: ReactNode }
+      return <>{component}</>
     default:
       return null
   }
