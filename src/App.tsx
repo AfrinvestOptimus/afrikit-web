@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import AppModal from './molecules/AppModal'; // Assuming AppModal is properly imported
-import { Controller, useForm } from 'react-hook-form';
-import { AppCountryDropdown, AppInput } from './molecules';
-import DropdownComponent from './molecules/AppDropdownMenu';
-import AppFileUploader from './molecules/AppFileUpload';
-import AppFormDropdown from './molecules/AppFormDropdown';
+import React, { useState } from 'react'
+import AppModal from './molecules/AppModal' // Assuming AppModal is properly imported
+import { Controller, useForm } from 'react-hook-form'
+import { AppCountryDropdown, AppInput } from './molecules'
+import DropdownComponent from './molecules/AppDropdownMenu'
+import AppFileUploader from './molecules/AppFileUpload'
+import AppFormDropdown from './molecules/AppFormDropdown'
+import { AppListItem } from './organisms'
 const countries = [
   { name: 'Nigeria', phone_code: '+234', code: 'NG', flag: 'path_to_nigeria_flag.svg' },
   { name: 'United States', phone_code: '+1', code: 'US', flag: 'path_to_us_flag.svg' },
@@ -13,7 +14,7 @@ const countries = [
   { name: 'United States', phone_code: '+1', code: 'US', flag: 'path_to_us_flag.svg' },
   { name: 'India', phone_code: '+91', code: 'IN', flag: 'path_to_india_flag.svg' },
   // Add more countries as needed
-];
+]
 
 const itemList = [
   { id: 1, name: 'USA' },
@@ -21,43 +22,41 @@ const itemList = [
   { id: 3, name: 'Mexico' },
   { id: 4, name: 'UK' },
   { id: 5, name: 'Australia' },
-];
+]
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(true)
 
-   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-   const [selectedItem, setSelectedItem] = useState(itemList[0]); // Set initial selected item
+  const [selectedItems, setSelectedItems] = useState<string[]>([])
+  const [selectedItem, setSelectedItem] = useState(itemList[0]) // Set initial selected item
 
- 
-   const handleItemSelect = (item) => {
-     setSelectedItem(item); // Update the selected item state
-     setError(''); // Clear any existing errors
-   };
-
+  const handleItemSelect = item => {
+    setSelectedItem(item) // Update the selected item state
+    setError('') // Clear any existing errors
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (selectedItems.length === 0) {
-      setError('Please select at least one item.');
-      return;
+      setError('Please select at least one item.')
+      return
     }
     // Handle form submission logic
-  };
+  }
 
   // Function to open the modal
   const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
+    setIsModalOpen(true)
+  }
 
   // Function to close the modal
   const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
   // Function to handle confirm action
   const handleConfirm = () => {
-    handleCloseModal(); 
-  };
+    handleCloseModal()
+  }
 
   const {
     control,
@@ -79,7 +78,7 @@ function App() {
       iconSize: 'sm',
       icon: 'ri-user-6-line',
       state: 'disabled',
-      showCheck: true
+      showCheck: true,
     },
     {
       label: 'Themes',
@@ -112,32 +111,45 @@ function App() {
       iconSize: 'sm',
       icon: 'ri-logout-circle-line',
       state: 'active',
-    }
+    },
   ]
 
   const handleClearEmail = () => {
     setValue('email', '') // Clear the email value
   }
 
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [error, setError] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState(null)
+  const [error, setError] = useState('')
 
-  const handleCountrySelect = (country) => {
-    setSelectedCountry(country);
-    setError(''); // Clear any previous error when a valid country is selected
-  };
-
+  const handleCountrySelect = country => {
+    setSelectedCountry(country)
+    setError('') // Clear any previous error when a valid country is selected
+  }
 
   return (
-    <div className='bg-white'>
-       <AppCountryDropdown
-          name="country"
-          countryList={countries}
-          onCountrySelect={handleCountrySelect}
-          placeholder="Country/Region"
-          error={error} // Display error message below the dropdown if any
-          label={'country'}      />
-       <AppFormDropdown
+    <div className="bg-white">
+      <AppListItem
+        size={2}
+        variant="1-line"
+        title="Custom Suffix Example"
+        titleProps={{
+          color: 'accent',
+          weight: 'semibold',
+        }}
+        trailing="custom" // Use the custom suffix type
+        trailingProps={{
+          component: <button className="text-black">Hello</button>,
+        }}
+      />
+      {/* <AppCountryDropdown
+        name="country"
+        countryList={countries}
+        onCountrySelect={handleCountrySelect}
+        placeholder="Country/Region"
+        error={error} // Display error message below the dropdown if any
+        label={'country'}
+      />
+      <AppFormDropdown
         name="country" // Name for the dropdown
         itemList={itemList} // List of countries
         onItemSelect={handleItemSelect} // Handler for item selection
@@ -145,39 +157,40 @@ function App() {
         placeholder="Select a country" // Placeholder text
         error={error} // Error message (if any)
         label="Country" // Optional label
-      /> 
-       <AppModal
-          isOpen={isModalOpen} 
-          onClose={handleCloseModal}
-          onConfirm={handleConfirm}
-          title="Choose how to verify your BVN"
-          subtitle="Are you sure you want to proceed?"
-          mainTitle='Choose how to verify your BVN'
-          onBack={() => {}}
-        >
-          <div className="p-lg">
-            <p className="mb-lg">We only need access to your</p>
-            <ul className="space-y-lg mb-lg">
-              <li className="flex items-center">
-                <i className="ri-checkbox-circle-fill text-green-500 mr-md"></i>
-                Full name
-              </li>
-              <li className="flex items-center">
-                <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
-                Phone number
-              </li>
-              <li className="flex items-center">
-                <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
-                Date of Birth
-              </li>
-             </ul>
-            <div className="flex items-center mb-lg">
-              <i className="ri-lock-fill text-gray-500 mr-2"></i>
-              <p className="text-sm text-gray-600">Your BVN does not give us access to your bank accounts or transactions.</p>
-            </div>
+      />
+      <AppModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirm}
+        title="Choose how to verify your BVN"
+        subtitle="Are you sure you want to proceed?"
+        mainTitle="Choose how to verify your BVN"
+        onBack={() => {}}>
+        <div className="p-lg">
+          <p className="mb-lg">We only need access to your</p>
+          <ul className="mb-lg space-y-lg">
+            <li className="flex items-center">
+              <i className="ri-checkbox-circle-fill text-green-500 mr-md"></i>
+              Full name
+            </li>
+            <li className="flex items-center">
+              <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
+              Phone number
+            </li>
+            <li className="flex items-center">
+              <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
+              Date of Birth
+            </li>
+          </ul>
+          <div className="mb-lg flex items-center">
+            <i className="ri-lock-fill text-gray-500 mr-2"></i>
+            <p className="text-gray-600 text-sm">
+              Your BVN does not give us access to your bank accounts or transactions.
+            </p>
           </div>
-        </AppModal>
-     {/* <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
+        </div>
+      </AppModal> */}
+      {/* <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
       {/* Button to trigger modal opening */}
       {/* <button
         onClick={handleOpenModal} 
@@ -186,9 +199,8 @@ function App() {
       </button> */}
 
       {/* Conditionally render the AppModal based on the state */}
-     
-       
-        {/* <form className="max-w-md mx-auto">
+
+      {/* <form className="max-w-md mx-auto">
           <Controller
             name="email"
             control={control}
@@ -213,9 +225,9 @@ function App() {
         </form>
         {/* <DropdownComponent items={dropdownItems} separator={true} alignment='right' /> */}
 
-        {/* <AppFileUploader />  */}
+      {/* <AppFileUploader />  */}
 
-        {/* <div className="p-4 w-5/6">
+      {/* <div className="p-4 w-5/6">
     
       <AppCountryDropdown
           name="country"
@@ -227,8 +239,7 @@ function App() {
     </div>
     </div> */}
     </div>
-   
   )
 }
 
-export default App;
+export default App

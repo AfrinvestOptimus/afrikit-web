@@ -48,7 +48,7 @@ const AppModal: React.FC<AppModalProps> = ({
   return (
     <div
       className={clsx(
-        'inset-0 bg-light-token-overlay dark:bg-dark-token-overlay fixed z-50 flex items-center justify-center',
+        'inset-0 fixed z-50 flex items-center justify-center bg-light-token-overlay dark:bg-dark-token-overlay',
         className,
       )}
       onClick={handleBackgroundClick}
@@ -74,7 +74,7 @@ const AppModal: React.FC<AppModalProps> = ({
             <h2
               id="modal-title"
               className={clsx(
-                'text-xl font-bold',
+                `text-xl font-bold ${mainTitleClass}`,
                 mainTitleAlign === 'center' ? 'flex-1 text-center' : 'text-left',
               )}>
               {mainTitle}

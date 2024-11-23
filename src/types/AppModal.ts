@@ -9,6 +9,7 @@ export interface AppModalProps {
   showButton?: boolean
   buttonText?: string // Text for the confirm button
   modalClassName?: string | string[] // Additional classes for the modal content
+  mainTitleClass?: string
   overlayColor?: string
   mainTitle?: string
   mainTitleAlign?: string // 'left' or 'center' for alignment
