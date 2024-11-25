@@ -15,6 +15,7 @@ const AppModal: React.FC<AppModalProps> = ({
   buttonText,
   modalClassName,
   mainTitle,
+  mainTitleClass = '',
   mainTitleAlign = 'center', // 'left' or 'center' for alignment
   onBack, // Optional onBack function for the back button
   ovelayShoudClose,

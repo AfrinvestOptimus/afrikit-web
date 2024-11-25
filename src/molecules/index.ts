@@ -2,7 +2,8 @@ export type {
   AppButtonProps,
   TSideBarBaseItemProps,
   TSideBarItem,
-  TSidebarDropdownBaseItemProps, IAppAvatarProps,
+  TSidebarDropdownBaseItemProps,
+  IAppAvatarProps,
 } from '../types'
 export type { TAppTopBarProps } from '../types/TAppTopBarProps'
 export { default as AppButton } from './AppButton'
@@ -21,4 +22,4 @@ export { default as AppCountryDropdown } from './AppCountryDropdown'
 export type { AppIconProps } from './AppIcon'
 export { default as AppIcon } from './AppIcon'
 export { default as AppFormDropdown } from './AppFormDropdown'
-
+export { default as AppAvatar } from './AppAvatar'
