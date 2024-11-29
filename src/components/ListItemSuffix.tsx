@@ -102,11 +102,11 @@ const Link = (props: { link: string; linkProps?: TAppTextProps }) => {
   const { link, linkProps } = props
   return (
     <AppText
-      {...linkProps}
       size={2}
       color="accent"
       weight="regular"
-      className="flex cursor-pointer items-center self-stretch">
+      className="flex cursor-pointer items-center self-stretch"
+      {...linkProps}>
       {link}
     </AppText> // TODO: Switch to AppLink component when available
   )
