@@ -7,6 +7,7 @@ import clsx from 'clsx'
 type AppSidebarProps = {
   links: TSideBarItem[]
   className?: string
+  logo: React.ReactNode
 }
 
 /**
@@ -34,15 +35,15 @@ type AppSidebarProps = {
  *
  * <AppSidebar links={links} />
  */
-const AppSidebar: React.FC<AppSidebarProps> = ({ links, className }) => {
+const AppSidebar: React.FC<AppSidebarProps> = ({ links, className, logo }) => {
   return (
     <div
       className={clsx(
-        'mr-auto flex h-screen w-[18rem] flex-col bg-light-page-bg py-xl dark:bg-dark-page-bg',
+        'mr-auto flex h-screen max-w-[18rem] flex-col bg-light-page-bg py-xl dark:bg-dark-page-bg',
         className,
       )}>
       <div className="px-lg pb-3xl pt-xl">
-        <img src={optimusLogo} className="" />
+        {logo ? logo : <img src={optimusLogo} className="" />}
       </div>
       <div className="flex flex-1 flex-col justify-between">
         <div className="flex flex-col space-y-lg">

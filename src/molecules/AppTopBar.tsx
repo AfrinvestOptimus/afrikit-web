@@ -33,6 +33,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
     subtitle,
     actions,
     backBtn,
+    logo,
     backBtnAction,
     className,
   } = props
@@ -53,7 +54,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
       )}>
       {isOnboarding ? (
         <div className="flex flex-row items-center justify-between px-3xl">
-          <img src={optimusLogo} />
+          {logo ? logo : <img src={optimusLogo} />}
 
           <div className="hidden cursor-pointer py-lg capitalize text-light-type-accent transition-all duration-300 type-base-head hover:text-light-type-accent-bold md:flex dark:text-dark-type-accent dark:hover:text-dark-type-accent-bold">
             {onboardLink ?? 'Open account'}
