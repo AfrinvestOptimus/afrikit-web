@@ -1678,10 +1678,10 @@ acorn@^8.12.0, acorn@^8.12.1:
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.12.1.tgz"
   integrity sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==
 
-afrikit-shared@^1.0.29:
-  version "1.0.29"
-  resolved "https://registry.npmjs.org/afrikit-shared/-/afrikit-shared-1.0.29.tgz"
-  integrity sha512-UJ+PFkSJAjrj3/Mq/+VaNMc2r81XP0QmK3nMsVppDOzeWSk8FuDF65IvJo1KY2hWAgKZ3P8WvDqw0oBmSLQlKg==
+afrikit-shared@^1.0.32:
+  version "1.0.32"
+  resolved "https://registry.yarnpkg.com/afrikit-shared/-/afrikit-shared-1.0.32.tgz#521db8f19583f92d0f963579032d4cc359e53741"
+  integrity sha512-k/UJxJbAXnRhDgWiBIlaV5JI7acb2ZO7885r33QOO8mKkjZWlzmhQ0onrtpwbl8mvIz0dwTb5Tsf4x7MZLAkXA==
   dependencies:
     "@radix-ui/colors" "^3.0.0"
 
@@ -4541,6 +4541,7 @@ storybook@^8.3.2:
     "@storybook/core" "8.3.5"
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -4613,6 +4614,7 @@ string.prototype.trimstart@^1.0.8:
     es-object-atoms "^1.0.0"
 
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==

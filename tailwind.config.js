@@ -1,6 +1,73 @@
 /** @type {import('tailwindcss').Config} */
 import plugin from 'tailwindcss/plugin'
 import afrikitConfig from 'afrikit-shared/dist'
+
+const getAfrikitColors = () => ({
+  colors: {
+    accent: {
+      light: {
+        accent1: 'var(--afrikit-accent-1)',
+        accent2: 'var(--afrikit-accent-2)',
+        accent3: 'var(--afrikit-accent-3)',
+        accent4: 'var(--afrikit-accent-4)',
+        accent5: 'var(--afrikit-accent-5)',
+        accent6: 'var(--afrikit-accent-6)',
+        accent7: 'var(--afrikit-accent-7)',
+        accent8: 'var(--afrikit-accent-8)',
+        accent9: 'var(--afrikit-accent-9)',
+        accent10: 'var(--afrikit-accent-10)',
+        accent11: 'var(--afrikit-accent-11)',
+        accent12: 'var(--afrikit-accent-12)',
+      },
+      dark: {
+        accent1: 'var(--afrikit-dark-accent-1)',
+        accent2: 'var(--afrikit-dark-accent-2)',
+        accent3: 'var(--afrikit-dark-accent-3)',
+        accent4: 'var(--afrikit-dark-accent-4)',
+        accent5: 'var(--afrikit-dark-accent-5)',
+        accent6: 'var(--afrikit-dark-accent-6)',
+        accent7: 'var(--afrikit-dark-accent-7)',
+        accent8: 'var(--afrikit-dark-accent-8)',
+        accent9: 'var(--afrikit-dark-accent-9)',
+        accent10: 'var(--afrikit-dark-accent-10)',
+        accent11: 'var(--afrikit-dark-accent-11)',
+        accent12: 'var(--afrikit-dark-accent-12)',
+      },
+      alphaLight: {
+        accentA1: 'var(--afrikit-accent-a-1)',
+        accentA2: 'var(--afrikit-accent-a-2)',
+        accentA3: 'var(--afrikit-accent-a-3)',
+        accentA4: 'var(--afrikit-accent-a-4)',
+        accentA5: 'var(--afrikit-accent-a-5)',
+        accentA6: 'var(--afrikit-accent-a-6)',
+        accentA7: 'var(--afrikit-accent-a-7)',
+        accentA8: 'var(--afrikit-accent-a-8)',
+        accentA9: 'var(--afrikit-accent-a-9)',
+        accentA10: 'var(--afrikit-accent-a-10)',
+        accentA11: 'var(--afrikit-accent-a-11)',
+        accentA12: 'var(--afrikit-accent-a-12)',
+      },
+      alphaDark: {
+        accentA1: 'var(--afrikit-dark-accent-a-1)',
+        accentA2: 'var(--afrikit-dark-accent-a-2)',
+        accentA3: 'var(--afrikit-dark-accent-a-3)',
+        accentA4: 'var(--afrikit-dark-accent-a-4)',
+        accentA5: 'var(--afrikit-dark-accent-a-5)',
+        accentA6: 'var(--afrikit-dark-accent-a-6)',
+        accentA7: 'var(--afrikit-dark-accent-a-7)',
+        accentA8: 'var(--afrikit-dark-accent-a-8)',
+        accentA9: 'var(--afrikit-dark-accent-a-9)',
+        accentA10: 'var(--afrikit-dark-accent-a-10)',
+        accentA11: 'var(--afrikit-dark-accent-a-11)',
+        accentA12: 'var(--afrikit-dark-accent-a-12)',
+      },
+      colorName: { base: 'accent', alpha: 'accentA' },
+    },
+  },
+})
+
+const afrikitSharedConfig = afrikitConfig(getAfrikitColors())
+
 export default {
   darkMode: 'selector',
   content: [
@@ -12,7 +79,7 @@ export default {
     './organisms/**/*.{js,ts,tsx,jsx}',
     './templates/**/*.{js,ts,tsx,jsx}',
   ],
-  presets: [afrikitConfig],
+  presets: [afrikitSharedConfig],
   theme: {
     fontFamily: {
       sans: ['Manrope', 'sans-serif'],
