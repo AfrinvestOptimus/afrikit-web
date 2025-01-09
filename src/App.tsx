@@ -141,14 +141,6 @@ function App() {
           component: <button className="text-black">Hello</button>,
         }}
       />
-      {/* <AppCountryDropdown
-        name="country"
-        countryList={countries}
-        onCountrySelect={handleCountrySelect}
-        placeholder="Country/Region"
-        error={error} // Display error message below the dropdown if any
-        label={'country'}
-      />
       <AppFormDropdown
         name="country" // Name for the dropdown
         itemList={itemList} // List of countries
@@ -158,6 +150,15 @@ function App() {
         error={error} // Error message (if any)
         label="Country" // Optional label
       />
+      {/* <AppCountryDropdown
+        name="country"
+        countryList={countries}
+        onCountrySelect={handleCountrySelect}
+        placeholder="Country/Region"
+        error={error} // Display error message below the dropdown if any
+        label={'country'}
+      />
+      
       <AppModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
