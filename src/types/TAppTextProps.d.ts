@@ -1,5 +1,7 @@
 import React from 'react'
-import colors from 'afrikit-shared/dist/colors'
+import afrikit from 'afrikit-shared'
+
+const colors = afrikit().theme.colors
 
 export type TAppTextProps = {
   size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
