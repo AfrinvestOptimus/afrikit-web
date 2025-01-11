@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import AppModal from './molecules/AppModal' // Assuming AppModal is properly imported
 import { Controller, useForm } from 'react-hook-form'
-import { AppCountryDropdown, AppInput } from './molecules'
+import { AppButton, AppCountryDropdown, AppInput } from './molecules'
 import DropdownComponent from './molecules/AppDropdownMenu'
 import AppFileUploader from './molecules/AppFileUpload'
 import AppFormDropdown from './molecules/AppFormDropdown'
@@ -225,6 +225,15 @@ function App() {
           />
         </form>
         {/* <DropdownComponent items={dropdownItems} separator={true} alignment='right' /> */}
+
+      <AppButton
+        size={3}
+        text={'Sign in'}
+        color="accent"
+        variant="solid"
+        iconStart={false}
+        classname="w-full"
+      />
 
       {/* <AppFileUploader />  */}
 
