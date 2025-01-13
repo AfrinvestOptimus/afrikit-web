@@ -7,7 +7,7 @@ import clsx from 'clsx'
 type AppSidebarProps = {
   links: TSideBarItem[]
   className?: string
-  logo: React.ReactNode
+  logo?: React.ReactNode
 }
 
 /**
