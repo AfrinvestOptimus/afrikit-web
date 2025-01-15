@@ -73,9 +73,9 @@ const AppButton: React.FC<AppButtonProps> = ({
         {/* Render the center  text */}
         <p className={`font-semibold ${combinedTextStyle}`}>
           {loading ? (
-            <div className="animate-spin">
+            <span className="animate-spin">
               <i className="ri-loader-2-line"></i>
-            </div>
+            </span>
           ) : (
             text
           )}
