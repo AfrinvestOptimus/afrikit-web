@@ -107,7 +107,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
             </div>
           </div>
         ) : (
-          <div className="space-y-sm">
+          <div className="flex flex-col items-center justify-center space-y-sm">
             <div className="rounded flex h-3xl w-3xl items-center justify-center rounded-xs-max border border-light-edge-gray-subtle dark:border-dark-edge-gray-subtle">
               <i className="ri-file-upload-fill text-light-type-gray dark:text-dark-type-gray" />
             </div>
