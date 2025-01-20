@@ -58,14 +58,12 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<
       {/* Set ref on the main container */}
       {/* Selected item display */}
       <div
-        className={
-          (clsx(
-            'rounded mb-sm flex h-[56px] cursor-pointer items-center justify-between rounded-sm border-0 bg-light-surface-gray px-xl outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray',
-          ),
+        className={clsx(
+          'rounded mb-sm flex h-[56px] cursor-pointer items-center justify-between rounded-sm border-0 bg-light-surface-gray px-xl outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray',
           selectedItem
             ? 'text-light-type-gray dark:text-dark-type-gray'
-            : 'text-light-type-gray-muted dark:text-dark-type-gray-muted')
-        }
+            : 'text-light-type-gray-muted dark:text-dark-type-gray-muted',
+        )}
         onClick={handleDropdownToggle}>
         <p className="font-medium">
           {selectedItem?.name || placeholder} {/* Show selected item's name or placeholder */}
