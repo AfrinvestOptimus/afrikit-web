@@ -70,7 +70,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
 
   return (
     <div
-      className={`rounded-lg border border-light-type-gray dark:border-dark-type-gray ${!uploadedImageUrl && !previewUrl ? 'border-dashed py-xl' : 'border-solid p-xs'} `}
+      className={`rounded-lg border border-light-edge-gray dark:border-dark-edge-gray ${!uploadedImageUrl && !previewUrl ? 'border-dashed py-xl' : 'border-solid p-xs'} `}
       style={{ width, maxHeight: height, overflow: 'hidden' }} // Set maxHeight and overflow hidden
     >
       <div
@@ -87,7 +87,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
         onClick={() => !isUploading && fileInputRef.current?.click()}
         style={{ width: '100%', minHeight: height }}>
         {uploadedImageUrl || previewUrl ? (
-          <div className="relative flex w-full flex-col items-center">
+          <div className="relative flex w-full flex-col items-center justify-center">
             <img
               src={uploadedImageUrl || previewUrl}
               alt="Uploaded file"
@@ -100,25 +100,27 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
               ) : (
                 <i className="ri-loader-4-line animate-spin text-lg text-light-type-accent dark:text-dark-type-accent"></i>
               )}
-              <p className="truncate text-sm text-light-type-gray dark:text-dark-type-gray">
+              <p className="truncate text-light-type-gray type-sm-title dark:text-dark-type-gray">
                 {file?.name}
               </p>
               <p className="text-light-type-accent dark:text-dark-type-accent">{uploadProgress}%</p>
             </div>
           </div>
         ) : (
-          <>
-            <i className="ri-file-upload-fill mb-2 text-light-type-gray dark:text-dark-type-gray"></i>
-            <p className="text-center text-sm text-light-type-gray dark:text-dark-type-gray">
-              <span className="text-sm font-semibold text-light-type-accent dark:text-dark-type-accent">
+          <div className="space-y-sm">
+            <div className="rounded flex h-3xl w-3xl items-center justify-center rounded-xs-max border border-light-edge-gray-subtle dark:border-dark-edge-gray-subtle">
+              <i className="ri-file-upload-fill text-light-type-gray dark:text-dark-type-gray" />
+            </div>
+            <p className="text-center text-light-type-gray type-sm-title dark:text-dark-type-gray">
+              <span className="text-light-type-accent dark:text-dark-type-accent">
                 Click to upload
               </span>{' '}
               or drag and drop
             </p>
-            <p className="mt-2 text-xs text-light-type-gray-muted dark:text-dark-type-gray-muted">
+            <p className="mt-xs text-light-type-gray-muted type-xs-body dark:text-dark-type-gray-muted">
               SVG, PNG, JPG or GIF (max. {maxSize / 1024}KB)
             </p>
-          </>
+          </div>
         )}
         <input
           type="file"
@@ -137,7 +139,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
           </div>
         )}
         {error && (
-          <p className="bottom-0 left-0 right-0 text-red-500 p-2 absolute bg-light-type-gray-inverse bg-opacity-75 text-center text-xs dark:bg-light-type-gray-inverse dark:bg-opacity-75">
+          <p className="bottom-0 left-0 right-0 absolute bg-light-type-gray-inverse bg-opacity-75 p-sm text-center text-light-type-error type-xs-body dark:bg-light-type-gray-inverse dark:bg-opacity-75 dark:text-dark-type-error">
             {error}
           </p>
         )}
