@@ -75,7 +75,7 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<
       {/* Dropdown with search */}
       {showDropdown && (
         <div
-          className="rounded mt-1 absolute z-10 max-h-[300px] w-full overflow-y-auto rounded-sm bg-light-solid px-md shadow-lg dark:bg-dark-solid"
+          className="rounded mt-1 absolute z-50 max-h-[300px] w-full overflow-y-auto rounded-sm bg-light-solid px-md shadow-lg dark:bg-dark-solid"
           style={{
             scrollbarWidth: 'none', // Firefox
             msOverflowStyle: 'none', // IE 10+
