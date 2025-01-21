@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React, { useState, useRef, useEffect } from 'react'
 
 interface Item {
-  id: number
+  id: number | string
   name: string
 }
 
