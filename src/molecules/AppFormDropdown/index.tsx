@@ -61,7 +61,7 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<
         className={clsx(
           'rounded mb-sm flex h-[56px] cursor-pointer items-center justify-between rounded-sm border-0 bg-light-surface-gray px-xl outline-none type-sm-head focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray',
           error
-            ? 'rounded-b-[0px] border-b-2 border-solid border-light-type-error dark:border-dark-type-error'
+            ? '!border border-solid border-light-type-error dark:border-dark-type-error'
             : 'border-0',
           selectedItem
             ? 'text-light-type-gray dark:text-dark-type-gray'
