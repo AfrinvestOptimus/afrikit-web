@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { AppPhoneInputProps } from '../../types';
 import NGNFlag from '../../assets/ngn-flag.svg';
+import clsx from 'clsx';
 
 const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
   (
@@ -51,11 +52,19 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
       <div className="relative w-full" ref={dropdownRef}>
         {/* Selected country display */}
         <div
-          className="flex justify-between h-[56px] rounded-sm cursor-pointer items-center border-0 bg-light-surface-gray px-xl text-light-type-gray outline-none focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray mb-sm"
+          className={clsx(
+            'rounded mb-sm flex h-[56px] cursor-pointer items-center justify-between rounded-sm border-0 bg-light-surface-gray px-xl outline-none type-sm-head focus:ring-0 dark:bg-dark-surface-gray dark:text-dark-type-gray',
+            error
+              ? '!border border-solid border-light-type-error dark:border-dark-type-error'
+              : 'border-0',
+            selected
+              ? 'text-light-type-gray dark:text-dark-type-gray'
+              : 'text-light-type-gray-muted dark:text-dark-type-gray-muted',
+          )}          
           onClick={handleSelect}
         >
-          <p className="text-light-gray11">
-            {selected.name || placeholder}  {/* Display "Country/Region" if none selected */}
+        <p className="font-medium">
+        {selected.name || placeholder}  {/* Display "Country/Region" if none selected */}
           </p>
           <div className="pl-sm">
             <i className="ri-arrow-down-s-line text-xl text-light-type-gray-muted dark:text-dark-type-gray-muted"></i>
@@ -64,7 +73,7 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
 
         {/* Country dropdown with search */}
         {showCountries && (
-          <div className="absolute z-10 w-full bg-white  rounded rounded-sm mt-1 max-h-[300px] overflow-y-auto shadow-lg" style={{
+          <div className="absolute z-10 w-full  bg-light-solid dark:bg-dark-solid  rounded rounded-sm mt-1 max-h-[300px] overflow-y-auto shadow-lg" style={{
             scrollbarWidth: 'none', // Firefox
             msOverflowStyle: 'none', // IE 10+
           }}>
@@ -76,7 +85,7 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search country..."
-                className="w-full border-none bg-transparent outline-none  text-light-type-gray dark:text-dark-type-gray dark:placeholder-dark-type-gray-muted"
+                className="w-full border-none bg-transparent outline-none text-light-type-gray dark:text-dark-type-gray dark:placeholder-dark-type-gray-muted"
               />
             </div>
 
