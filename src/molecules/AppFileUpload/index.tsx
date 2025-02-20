@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FileUploaderProps } from '../../types'
 
 export const AppFileUploader: React.FC<FileUploaderProps> = ({
-  maxSize = 800 * 400,
+  maxSize = 5242880,
   allowedTypes = ['image/svg+xml', 'image/png', 'image/jpeg', 'image/gif'],
   onUpload,
   width = '512px',
@@ -20,7 +20,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
   const handleFileChange = async (selectedFile: File | null) => {
     if (selectedFile) {
       if (selectedFile.size > maxSize) {
-        setError(`File size exceeds ${maxSize / 1024}KB limit`)
+        setError(`File size exceeds ${Math.round(maxSize / 1024 / 1024)} MB limit`);
         return
       }
       if (!allowedTypes.includes(selectedFile.type)) {
@@ -35,6 +35,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
   }
 
   const uploadFile = async (file: File) => {
+    setError('')
     setIsUploading(true)
     setUploadProgress(0)
     const interval = setInterval(() => {
@@ -118,7 +119,7 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
               or drag and drop
             </p>
             <p className="mt-xs text-light-type-gray-muted type-xs-body dark:text-dark-type-gray-muted">
-              SVG, PNG, JPG or GIF (max. {maxSize / 1024}KB)
+            PDF, PNG, or JPG  (max. 5mb)
             </p>
           </div>
         )}
