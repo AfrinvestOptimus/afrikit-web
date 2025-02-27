@@ -5,7 +5,7 @@ export type TAppTopBarProps = {
   className?: string
   logo?: React.ReactNode
 } & (
-    | {
+  | {
       isOnboarding: true
       onboardLink?: React.ReactNode
       pageTitle?: never
@@ -14,8 +14,16 @@ export type TAppTopBarProps = {
       backBtn?: never
       backBtnAction?: never
       actions?: never
+      notification?: never
+      profile?: never
+      searchComponent?: never
+      notificationComponent?: never
+      profileComponent?: never
+      searchAction?: never
+      notificationAction?: never
+      profileAction?: never
     }
-    | ({
+  | ({
       isOnboarding: false
       onboardLink?: never
       pageTitle: string | React.ReactNode
@@ -23,18 +31,32 @@ export type TAppTopBarProps = {
       search?: boolean
       backBtn?: boolean
       backBtnAction?: () => void
+      notification?: boolean
+      profile?: boolean
+      searchComponent?: React.ReactNode
+      notificationComponent?: React.ReactNode
+      profileComponent?: React.ReactNode
+      searchAction?: () => void
+      notificationAction?: () => void
+      profileAction?: () => void
     } & (
-        | {
+      | {
           actions: true
           buttonOne?: boolean
           buttonTwo?: boolean
           buttonThree?: boolean
         }
-        | {
+      | {
           actions: false
+          buttonOne?: never
+          buttonTwo?: never
+          buttonThree?: never
         }
-        | {
+      | {
           actions?: undefined
+          buttonOne?: never
+          buttonTwo?: never
+          buttonThree?: never
         }
-      ))
-  )
+    ))
+)

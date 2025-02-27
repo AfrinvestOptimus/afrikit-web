@@ -21,6 +21,14 @@ import TopBarRightContent from '../components/TopBarRightContent'
  * @param {React.ReactNode} [props.buttonOne] - The first action button.
  * @param {React.ReactNode} [props.buttonTwo] - The second action button.
  * @param {React.ReactNode} [props.buttonThree] - The third action button.
+ * @param {boolean} [props.notification] - Indicates if notification is enabled.
+ * @param {boolean} [props.profile] - Indicates if profile is enabled.
+ * @param {React.ReactNode} [props.searchComponent] - Custom search component.
+ * @param {React.ReactNode} [props.notificationComponent] - Custom notification component.
+ * @param {React.ReactNode} [props.profileComponent] - Custom profile component.
+ * @param {() => void} [props.searchAction] - Action for search button.
+ * @param {() => void} [props.notificationAction] - Action for notification button.
+ * @param {() => void} [props.profileAction] - Action for profile button.
  * @returns {JSX.Element} The rendered top bar component.
  */
 function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
@@ -38,9 +46,18 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
     className,
   } = props
 
+  // Type guard to check if we're in non-onboarding mode
+  const isNotOnboarding = (
+    p: TAppTopBarProps,
+  ): p is Extract<TAppTopBarProps, { isOnboarding: false }> => {
+    return p.isOnboarding === false
+  }
+
   // Type guard to check if actions are enabled
-  function hasActions(props: TAppTopBarProps): props is TAppTopBarProps & { actions: true } {
-    return !props.isOnboarding && props.actions === true
+  const hasActions = (
+    p: Extract<TAppTopBarProps, { isOnboarding: false }>,
+  ): p is Extract<TAppTopBarProps, { isOnboarding: false; actions: true }> => {
+    return p.actions === true
   }
 
   return (
@@ -80,17 +97,27 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
             </div>
           </div>
 
-          <TopBarRightContent
-            search={search}
-            actions={actions}
-            {...(hasActions(props) && 'buttonOne' in props
-              ? {
-                  buttonOne: props?.buttonOne,
-                  buttonTwo: props?.buttonTwo,
-                  buttonThree: props?.buttonThree,
-                }
-              : {})}
-          />
+          {isNotOnboarding(props) && (
+            <TopBarRightContent
+              search={search}
+              actions={actions}
+              {...(hasActions(props)
+                ? {
+                    buttonOne: props.buttonOne,
+                    buttonTwo: props.buttonTwo,
+                    buttonThree: props.buttonThree,
+                  }
+                : {})}
+              notification={props.notification}
+              profile={props.profile}
+              searchComponent={props.searchComponent}
+              notificationComponent={props.notificationComponent}
+              profileComponent={props.profileComponent}
+              searchAction={props.searchAction}
+              notificationAction={props.notificationAction}
+              profileAction={props.profileAction}
+            />
+          )}
         </div>
       )}
     </div>

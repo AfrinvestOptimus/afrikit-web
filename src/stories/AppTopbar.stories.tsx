@@ -19,6 +19,8 @@ const meta: Meta<typeof AppTopbar> = {
     buttonOne: { control: 'boolean', if: { arg: 'actions', eq: true } },
     buttonTwo: { control: 'boolean', if: { arg: 'actions', eq: true } },
     buttonThree: { control: 'boolean', if: { arg: 'actions', eq: true } },
+    notification: { control: 'boolean', if: { arg: 'isOnboarding', eq: false } },
+    profile: { control: 'boolean', if: { arg: 'isOnboarding', eq: false } },
   },
 }
 
@@ -118,6 +120,23 @@ export const OnlyThirdActionButton: Story = {
   },
 }
 
+// App Bar with Notification and Profile
+export const WithNotificationAndProfile: Story = {
+  args: {
+    isOnboarding: false,
+    theme: 'filled',
+    pageTitle: 'User Dashboard',
+    search: true,
+    backBtn: false,
+    actions: true,
+    buttonOne: true,
+    buttonTwo: false,
+    buttonThree: false,
+    notification: true,
+    profile: true,
+  },
+}
+
 // Customizable Playground
 const Template = (args: TAppTopBarProps) => <AppTopbar {...args} />
 
@@ -136,4 +155,6 @@ Playground.args = {
   buttonTwo: true,
   buttonThree: true,
   subtitle: 'Customize this top bar',
+  notification: true,
+  profile: true,
 }
