@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 import AppModal from './molecules/AppModal' // Assuming AppModal is properly imported
 import { Controller, useForm } from 'react-hook-form'
-import { AppButton, AppCountryDropdown, AppInput } from './molecules'
+import {
+  AppButton,
+  AppCountryDropdown,
+  AppInput,
+  AppSidebar,
+  AppTopbar,
+  TSideBarItem,
+} from './molecules'
 import DropdownComponent from './molecules/AppDropdownMenu'
 import AppFileUploader from './molecules/AppFileUpload'
 import AppFormDropdown from './molecules/AppFormDropdown'
@@ -114,6 +121,105 @@ function App() {
     },
   ]
 
+  const links: TSideBarItem[] = [
+    {
+      id: 'kyc',
+      position: 'top',
+      text: 'Get started',
+      color: 'accent',
+      iconOnly: false,
+      current: false,
+      icon: true,
+      iconName: 'ri-map-pin-time-fill',
+      linkAction: () => {},
+      hasDropdown: false,
+      badge: false,
+    },
+    {
+      id: 'home',
+      position: 'top',
+      text: 'Home',
+      color: 'accent',
+      iconOnly: false,
+      current: false,
+      icon: true,
+      iconName: 'ri-home-6-fill',
+      linkAction: () => {},
+      hasDropdown: false,
+      badge: false,
+    },
+    {
+      id: 'portfolio',
+      position: 'top',
+      text: 'Portfolio',
+      color: 'accent',
+      iconOnly: false,
+      current: false,
+      icon: true,
+      iconName: 'ri-bar-chart-fill',
+      linkAction: () => {},
+      hasDropdown: false,
+      badge: false,
+    },
+    {
+      id: 'invest',
+      position: 'top',
+      text: 'Invest',
+      color: 'neutral',
+      iconOnly: false,
+      current: false,
+      icon: true,
+      iconName: 'ri-copper-coin-fill',
+      linkAction: () => {},
+      hasDropdown: true,
+      openDropdown: false,
+      dropDownElement: [
+        {
+          text: 'Nigerian Stocks',
+          current: false,
+          linkAction: () => {},
+        },
+        {
+          text: 'Treasury Bills',
+          current: false,
+          linkAction: () => {},
+        },
+        {
+          text: 'Commercial Papers',
+          current: false,
+          linkAction: () => {},
+        },
+      ],
+      badge: false,
+    },
+    {
+      id: 'wallets',
+      position: 'bottom',
+      text: 'Wallets',
+      color: 'accent',
+      iconOnly: false,
+      current: false,
+      icon: true,
+      iconName: 'ri-wallet-fill',
+      linkAction: () => {},
+      hasDropdown: false,
+      badge: false,
+    },
+    {
+      id: 'history',
+      position: 'top',
+      text: 'History',
+      color: 'accent',
+      iconOnly: false,
+      current: false,
+      icon: true,
+      iconName: 'ri-file-history-fill',
+      linkAction: () => {},
+      hasDropdown: false,
+      badge: false,
+    },
+  ]
+
   const handleClearEmail = () => {
     setValue('email', '') // Clear the email value
   }
@@ -128,7 +234,7 @@ function App() {
 
   return (
     <div className="bg-white">
-      <AppListItem
+      {/* <AppListItem
         size={2}
         variant="1-line"
         title="Custom Suffix Example"
@@ -140,8 +246,8 @@ function App() {
         trailingProps={{
           component: <button className="text-black">Hello</button>,
         }}
-      />
-      <AppFormDropdown
+      /> */}
+      {/* <AppFormDropdown
         name="country" // Name for the dropdown
         itemList={itemList} // List of countries
         onItemSelect={handleItemSelect} // Handler for item selection
@@ -149,7 +255,7 @@ function App() {
         placeholder="Select a country" // Placeholder text
         error={error} // Error message (if any)
         label="Country" // Optional label
-      />
+      /> */}
       {/* <AppCountryDropdown
         name="country"
         countryList={countries}
@@ -226,14 +332,18 @@ function App() {
         </form>
         {/* <DropdownComponent items={dropdownItems} separator={true} alignment='right' /> */}
 
-      <AppButton
+      {/* <AppSidebar links={links} bottomComponent={<BottomComponent />} bottomType="component" /> */}
+
+      <AppTopbar isOnboarding={false} theme="filled" pageTitle="Dashboard" search={false} />
+
+      {/* <AppButton
         size={3}
         text={'Sign in'}
         color="accent"
         variant="solid"
         iconStart={false}
         classname="w-full"
-      />
+      /> */}
 
       {/* <AppFileUploader />  */}
 

@@ -124,7 +124,11 @@ export const AllTrailingElements: Story = {
         trailing="icon"
         trailingProps={{ iconClass: 'ri-arrow-right-s-line' }}
       />
-      <AppListItem title="Button" trailing="button" trailingProps={{}} />
+      <AppListItem
+        title="Button"
+        trailing="button"
+        trailingProps={{ btnProps: { size: 1, text: 'Button' } }}
+      />
       <AppListItem title="Switch" trailing="switch" trailingProps={{ checked: false }} />
     </div>
   ),
