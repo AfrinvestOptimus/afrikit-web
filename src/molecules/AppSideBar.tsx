@@ -4,10 +4,12 @@ import optimusLogo from '../assets/optimusLogo.svg'
 import { TSideBarItem } from '../types'
 import clsx from 'clsx'
 
-type AppSidebarProps = {
+export type AppSidebarProps = {
   links: TSideBarItem[]
   className?: string
   logo?: React.ReactNode
+  bottomType?: 'links' | 'component'
+  bottomComponent?: React.ReactNode
 }
 
 /**
@@ -35,7 +37,13 @@ type AppSidebarProps = {
  *
  * <AppSidebar links={links} />
  */
-const AppSidebar: React.FC<AppSidebarProps> = ({ links, className, logo }) => {
+const AppSidebar: React.FC<AppSidebarProps> = ({
+  links,
+  className,
+  logo,
+  bottomType,
+  bottomComponent,
+}) => {
   return (
     <div
       className={clsx(
@@ -54,13 +62,18 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ links, className, logo }) => {
             ))}
         </div>
 
-        <div className="flex flex-col space-y-sm">
-          {links
-            .filter(link => link.position === 'bottom')
-            .map(link => (
-              <SideBarBaseItem key={link.id} {...link} />
-            ))}
-        </div>
+        {bottomType === 'links' && (
+          <div className="flex flex-col space-y-sm">
+            {links
+              .filter(link => link.position === 'bottom')
+              .map(link => (
+                <SideBarBaseItem key={link.id} {...link} />
+              ))}
+          </div>
+        )}
+        {bottomType === 'component' && (
+          <div className="flex flex-col space-y-sm">{bottomComponent}</div>
+        )}
       </div>
     </div>
   )
