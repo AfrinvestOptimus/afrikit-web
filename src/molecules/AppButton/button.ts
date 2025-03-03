@@ -83,10 +83,10 @@ export const textColors: Record<ButtonColor, Record<ButtonVariant, string>> = {
   },
   neutral: {
     solid: 'text-light-contrast-accent dark:text-dark-contrast-accent',
-    soft: 'text-light-type-neutral dark:text-dark-type-neutral',
-    surface: 'text-light-type-neutral dark:text-dark-type-neutral',
-    outline: 'text-light-type-neutral dark:text-dark-type-neutral',
-    ghost: 'text-light-type-neutral dark:text-dark-type-neutral',
+    soft: 'text-light-type-gray dark:text-dark-type-gray',
+    surface: 'text-light-type-gray dark:text-dark-type-gray',
+    outline: 'text-light-type-gray dark:text-dark-type-gray',
+    ghost: 'text-light-type-gray dark:text-dark-type-gray',
   },
   error: {
     solid: 'text-light-contrast-accent dark:text-dark-contrast-accent',
