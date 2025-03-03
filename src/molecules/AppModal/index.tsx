@@ -75,7 +75,7 @@ const AppModal: React.FC<AppModalProps> = ({
             <h2
               id="modal-title"
               className={clsx(
-                `text-xl font-bold ${mainTitleClass}`,
+                `text-light-type-gray type-xl-bold dark:text-dark-type-gray ${mainTitleClass}`,
                 mainTitleAlign === 'center' ? 'flex-1 text-center' : 'text-left',
               )}>
               {mainTitle}
@@ -91,13 +91,17 @@ const AppModal: React.FC<AppModalProps> = ({
           )}
         </div>
         {title && !mainTitle && (
-          <h2 id="modal-title" className={clsx('xl-bold text-xl')}>
+          <h2
+            id="modal-title"
+            className={clsx('text-light-type-gray type-xl-bold dark:text-dark-type-gray')}>
             {title}
           </h2>
         )}
         {/* Subtitle */}
         {subtitle && !mainTitle && (
-          <p className="mb-lg text-sm text-light-gray11 dark:text-dark-gray11">{subtitle}</p>
+          <p className="mb-lg text-light-type-gray type-sm-body dark:text-dark-type-gray">
+            {subtitle}
+          </p>
         )}
 
         {/* Modal Content */}
