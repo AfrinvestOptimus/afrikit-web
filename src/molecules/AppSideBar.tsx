@@ -9,7 +9,8 @@ export type AppSidebarProps = {
   className?: string
   logo?: React.ReactNode
   bottomType?: 'links' | 'component'
-  bottomComponent?: React.ReactNode
+  bottomComponent?: React.ReactNode,
+  linksContainerClass?: string
 }
 
 /**
@@ -29,6 +30,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
   logo,
   bottomType,
   bottomComponent,
+  linksContainerClass,
 }) => {
   return (
     <div
@@ -39,7 +41,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
       <div className="px-lg pb-3xl pt-xl">
         {logo ? logo : <img src={optimusLogo} className="" />}
       </div>
-      <div className="flex flex-1 flex-col justify-between">
+      <div className={`flex flex-1 flex-col justify-between ${linksContainerClass}`}>
         <div className="flex flex-col space-y-lg">
           {links
             .filter(link => link.position === 'top')
