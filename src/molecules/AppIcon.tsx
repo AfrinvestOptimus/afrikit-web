@@ -6,7 +6,7 @@ export type AppIconProps = {
   iconClassName: string
   size: AppIconSize
   muted?: boolean
-  statusBadge?: 'interest' | 'pending' | 'failed'
+  statusBadge?: 'interest' | 'pending' | 'failed' | 'cancelled'
 }
 
 const AppIcon: FC<AppIconProps> = ({ iconClassName, size, muted, statusBadge }) => {
@@ -47,7 +47,7 @@ const AppIcon: FC<AppIconProps> = ({ iconClassName, size, muted, statusBadge }) 
             size === '98' ? 'h-xl w-xl' : 'h-lg w-lg',
             statusBadge === 'pending'
               ? 'bg-light-background-warning-base dark:bg-dark-background-warning-base'
-              : statusBadge === 'failed'
+              : statusBadge === 'failed' || statusBadge === 'cancelled'
                 ? 'bg-light-background-error-base dark:bg-dark-background-error-base'
                 : 'bg-light-background-success-base dark:bg-dark-background-success-base',
           )}>

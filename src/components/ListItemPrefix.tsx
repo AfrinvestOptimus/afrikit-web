@@ -139,7 +139,7 @@ const TxStatus = ({
   prop: {
     status: 'money-in' | 'swap' | 'money-out' | 'activity' | 'direct-debit'
     size?: 'default' | 'large'
-    badgeStatus?: 'interest' | 'pending' | 'failed'
+    badgeStatus?: 'interest' | 'pending' | 'failed' | 'cancelled'
   }
 }) => (
   <div className="relative">
