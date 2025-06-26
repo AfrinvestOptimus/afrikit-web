@@ -49,7 +49,7 @@ const AppModal: React.FC<AppModalProps> = ({
   return (
     <div
       className={clsx(
-        'inset-0 fixed z-50 flex items-center justify-center bg-light-token-overlay dark:bg-dark-token-overlay',
+        'inset-0 fixed z-50 flex items-center justify-center bg-light-token-overlay dark:bg-dark-token-overlay overflow-auto',
         className,
       )}
       onClick={handleBackgroundClick}
