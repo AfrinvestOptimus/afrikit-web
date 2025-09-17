@@ -233,7 +233,10 @@ function App() {
   }
 
   return (
+    <>
+   
     <div className="bg-white">
+      <AppTopbar isOnboarding={false} theme="filled" pageTitle="Dashboard" search={true} notification={true}  />
       {/* <AppListItem
         size={2}
         variant="1-line"
@@ -332,9 +335,9 @@ function App() {
         </form>
         {/* <DropdownComponent items={dropdownItems} separator={true} alignment='right' /> */}
 
-      {/* <AppSidebar links={links} bottomComponent={<BottomComponent />} bottomType="component" /> */}
+      {/* <AppSidebar links={links} bottomType="component" /> */}
 
-      <AppTopbar isOnboarding={false} theme="filled" pageTitle="Dashboard" search={false} />
+   
 
       {/* <AppButton
         size={3}
@@ -349,16 +352,20 @@ function App() {
 
       {/* <div className="p-4 w-5/6">
     
-      <AppCountryDropdown
+     
+    </div>
+    </div> */}
+     {/* <AppCountryDropdown
           name="country"
           countryList={countries}
           onCountrySelect={handleCountrySelect}
           placeholder="Select a country"
           error={error} // Display error message below the dropdown if any
-          label={'country'}      />
+          label={'country'}      /> */}
+   
     </div>
-    </div> */}
-    </div>
+    
+     </>
   )
 }
 

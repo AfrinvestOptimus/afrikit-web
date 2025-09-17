@@ -199,7 +199,7 @@ function TopBarRightContent({
         ) : (
           <BtnIcon
             icon="ri-search-line"
-            className="hidden md:inline-block"
+            className="inline-block"
             onClick={searchAction}
           />
         ))}
@@ -209,7 +209,7 @@ function TopBarRightContent({
         ) : (
           <BtnIcon
             icon="ri-notification-line"
-            className="hidden md:inline-block"
+            className="inline-block"
             onClick={notificationAction}
           />
         ))}

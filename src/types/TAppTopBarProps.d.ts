@@ -8,9 +8,9 @@ export type TAppTopBarProps = {
   | {
       isOnboarding: true
       onboardLink?: React.ReactNode
-      pageTitle?: never
+      pageTitle?: string | React.ReactNode
       subtitle?: never
-      search?: never
+      search?: boolean
       backBtn?: never
       backBtnAction?: never
       actions?: never
