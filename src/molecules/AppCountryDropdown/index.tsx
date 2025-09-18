@@ -73,12 +73,12 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
 
         {/* Country dropdown with search */}
         {showCountries && (
-          <div className="absolute z-10 w-full  bg-light-solid dark:bg-dark-solid  rounded rounded-sm mt-1 max-h-[300px] overflow-y-auto shadow-lg" style={{
+          <div className="absolute z-10 w-full bg-light-solid dark:bg-dark-solid rounded rounded-sm mt-1 max-h-[300px] shadow-lg flex flex-col" style={{
             scrollbarWidth: 'none', // Firefox
             msOverflowStyle: 'none', // IE 10+
           }}>
-            {/* Search bar */}
-            <div className="flex items-center space-x-md border-b border-light-neutral4 px-3 py-2 dark:border-dark-neutral4 py-md px-xl">
+            {/* Search bar - sticky */}
+            <div className="sticky top-0 z-20 flex items-center space-x-md border-b border-light-neutral4 px-3 py-2 dark:border-dark-neutral4 py-md px-xl bg-light-solid dark:bg-dark-solid">
               <i className="ri-search-line text-light-type-gray-muted dark:text-dark-type-gray-muted mr-2 text-xl"></i>
               <input
                 type="text"
@@ -89,7 +89,8 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
               />
             </div>
 
-            {/* Country List */}
+            {/* Country List - scrollable */}
+            <div className="overflow-y-auto flex-1">
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country, index) => (
                 <div
@@ -116,6 +117,7 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
             ) : (
               <div className="p-4 text-center text-gray-500 dark:text-gray-400">No results found</div>
             )}
+            </div>
           </div>
         )}
 

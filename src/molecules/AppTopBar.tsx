@@ -78,7 +78,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
           </div>
         </div>
       ) : (
-        <div className="flex flex-row items-center justify-between px-2xl py-lg">
+        <div className="flex flex-row items-center justify-between lg:px-2xl py-lg px-lg">
           <div className="flex flex-row items-end space-x-sm">
             {backBtn && (
               <button onClick={backBtnAction} className="hidden md:inline-block">
@@ -87,13 +87,16 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
                 </div>
               </button>
             )}
-            <div className="flex flex-col items-start gap-y-xs">
+            <div className='flex items-center gap-x-lg'>
+              <img src="/images/svg/menubar.svg" alt="menu-bar" className='lg:hidden block'/>
+              <div className="flex flex-col items-start gap-y-xs">
               <h2 className="text-center text-light-type-gray type-xl-bold dark:text-dark-type-gray">
                 {pageTitle}
               </h2>
               <p className="hidden text-light-type-gray-muted type-base-body md:block dark:text-dark-type-gray-muted">
                 {subtitle}
               </p>
+            </div>
             </div>
           </div>
 
