@@ -198,7 +198,7 @@ function TopBarRightContent({
           searchComponent
         ) : (
           <BtnIcon
-            icon="ri-search-line"
+            icon="ri-search-line lg:text-2xl text-lg"
             className="inline-block"
             onClick={searchAction}
           />
@@ -208,7 +208,7 @@ function TopBarRightContent({
           notificationComponent
         ) : (
           <BtnIcon
-            icon="ri-notification-line"
+            icon="ri-notification-line lg:text-2xl text-lg"
             className="inline-block"
             onClick={notificationAction}
           />
