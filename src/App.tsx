@@ -236,7 +236,7 @@ function App() {
     <>
    
     <div className="bg-white">
-      <AppTopbar isOnboarding={false} theme="filled" pageTitle="Dashboard" search={true} notification={true}  />
+      <AppTopbar isOnboarding={false} theme="filled" pageTitle="Dashboard" search={true} notification={true}  className='!p-8'/>
       {/* <AppListItem
         size={2}
         variant="1-line"
