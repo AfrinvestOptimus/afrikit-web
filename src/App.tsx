@@ -3,6 +3,7 @@ import AppModal from './molecules/AppModal' // Assuming AppModal is properly imp
 import { Controller, useForm } from 'react-hook-form'
 import {
   AppButton,
+  AppCodeInput,
   AppCountryDropdown,
   AppInput,
   AppSidebar,
@@ -236,7 +237,17 @@ function App() {
     <>
    
     <div className="bg-white">
-      <AppTopbar isOnboarding={false} theme="filled" pageTitle="Dashboard" search={true} notification={true}  className='!p-8'/>
+      <AppTopbar isOnboarding={false} theme="filled" pageTitle="Dashboard" search={true} notification={true} onClickMenu={
+        () => { console.log('Menu clicked') }
+      }/>
+      <AppCodeInput 
+      length={4}
+      secureEntry={false}
+      errorMessage=""
+      boxWidth={64}
+      boxHeight={74}
+      onChange={(code) => console.log('Entered code:', code)}
+      />
       {/* <AppListItem
         size={2}
         variant="1-line"
