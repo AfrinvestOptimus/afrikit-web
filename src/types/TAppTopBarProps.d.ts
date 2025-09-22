@@ -10,6 +10,7 @@ export type TAppTopBarProps = {
       onboardLink?: React.ReactNode
       pageTitle?: string | React.ReactNode
       subtitle?: never
+      onClickMenu?: () => void
       search?: boolean
       backBtn?: never
       backBtnAction?: never
@@ -31,6 +32,7 @@ export type TAppTopBarProps = {
       search?: boolean
       backBtn?: boolean
       backBtnAction?: () => void
+      onClickMenu?: () => void
       notification?: boolean
       profile?: boolean
       searchComponent?: React.ReactNode

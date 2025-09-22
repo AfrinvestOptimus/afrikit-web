@@ -29,7 +29,10 @@ import TopBarRightContent from '../components/TopBarRightContent'
  * @param {() => void} [props.searchAction] - Action for search button.
  * @param {() => void} [props.notificationAction] - Action for notification button.
  * @param {() => void} [props.profileAction] - Action for profile button.
+ * @param {() => void} [props.onClickMenu] - Action for mobile menu button.
  * @returns {JSX.Element} The rendered top bar component.
+ * 
+ * 
  */
 function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
   const {
@@ -44,6 +47,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
     logo,
     backBtnAction,
     className,
+    onClickMenu,
   } = props
 
   // Type guard to check if we're in non-onboarding mode
@@ -88,7 +92,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
               </button>
             )}
             <div className='flex items-center gap-x-lg'>
-             <button className="ri-menu-2-fill text-light-type-gray type-2xl-title dark:text-dark-type-gray lg:hidden">
+             <button className="ri-menu-2-fill text-light-type-gray type-2xl-title dark:text-dark-type-gray lg:hidden" onClick={onClickMenu}>
         <span className="sr-only">Menu</span>
       </button>
               <div className="flex flex-col items-start gap-y-xs">
