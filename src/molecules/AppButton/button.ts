@@ -4,17 +4,17 @@ export type ButtonColor = 'accent' | 'neutral' | 'error'
 export type ButtonState = 'default' | 'active' | 'disabled'
 
 export const buttonSizes: Record<ButtonSize, string> = {
-  1: 'h-lg rounded-xs-max px-xs sm:h-xl sm:px-sm', // mobile: h-lg px-xs, desktop: h-xl px-sm
-  2: 'h-xl rounded-xs-max px-sm sm:h-2xl sm:px-md', // mobile: h-xl px-sm, desktop: h-2xl px-md
-  3: 'h-2xl rounded-xs-max px-md py-xs sm:h-3xl sm:px-xl sm:py-sm', // mobile: h-2xl px-md py-xs, desktop: h-3xl px-xl py-sm
-  4: 'h-3xl rounded-xs-max px-xl sm:h-4xl sm:px-2xl', // mobile: h-3xl px-xl, desktop: h-4xl px-2xl
+  1: 'h-xl rounded-xs-max px-sm',
+  2: 'h-2xl rounded-xs-max px-md',
+  3: 'h-3xl rounded-xs-max px-xl py-sm',
+  4: 'h-4xl rounded-xs-max px-2xl',
 }
 
 export const textSizes: Record<ButtonSize, string> = {
-  1: 'type-xs-head sm:type-xs-head', // mobile: type-xs-head
-  2: 'type-xs-head sm:type-sm-head', // mobile: type-xs-head, desktop: type-sm-head
-  3: 'type-sm-head sm:type-base-head', // mobile: type-sm-head, desktop: type-base-head
-  4: 'type-base-head sm:type-lg-head', // mobile: type-base-head, desktop: type-lg-head
+  1: 'text-xs-head',
+  2: 'text-sm-head',
+  3: 'text-base-head',
+  4: 'text-lg-head',
 }
 
 export const buttonColors: Record<ButtonColor, Record<ButtonVariant, string>> = {
