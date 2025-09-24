@@ -248,6 +248,7 @@ function App() {
       boxHeight={74}
       onChange={(code) => console.log('Entered code:', code)}
       />
+
       {/* <AppListItem
         size={2}
         variant="1-line"
@@ -350,14 +351,14 @@ function App() {
 
    
 
-      {/* <AppButton
+      <AppButton
         size={3}
         text={'Sign in'}
         color="accent"
         variant="solid"
         iconStart={false}
         classname="w-full"
-      /> */}
+      />
 
       {/* <AppFileUploader />  */}
 
