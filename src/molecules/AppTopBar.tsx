@@ -83,26 +83,29 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
         </div>
       ) : (
         <div className="flex flex-row items-center justify-between lg:px-2xl lg:p-lg p-sm">
-          <div className="flex flex-row items-end space-x-sm">
+          <div className="flex  flex-row items-end space-x-sm">
             {backBtn && (
-              <button onClick={backBtnAction} className="hidden md:inline-block">
+              <button onClick={backBtnAction} className=" md:inline-block">
                 <div className="flex h-3xl w-3xl items-center justify-center rounded-full border border-light-neutralA7 hover:bg-light-neutralA3 dark:border-dark-neutralA7 dark:hover:bg-dark-neutralA3">
                   <i className="ri-arrow-left-wide-fill text-xl text-light-neutral12 dark:text-dark-neutral12" />
                 </div>
               </button>
             )}
-            <div className='flex items-center gap-x-lg'>
-             <button className="ri-menu-2-fill text-light-type-gray type-2xl-title dark:text-dark-type-gray lg:hidden" onClick={onClickMenu}>
-        <span className="sr-only">Menu</span>
-      </button>
+            <div className='flex items-center lg:gap-x-lg'>
+              {
+                !backBtn && <button className="ri-menu-2-fill text-light-type-gray type-2xl-title dark:text-dark-type-gray lg:hidden" onClick={onClickMenu}>
+                  <span className="sr-only">Menu</span>
+                </button>
+              }
+
               <div className="flex flex-col items-start gap-y-xs">
-              <h2 className="text-center text-light-type-gray type-xl-bold dark:text-dark-type-gray">
-                {pageTitle}
-              </h2>
-              <p className="hidden text-light-type-gray-muted type-base-body md:block dark:text-dark-type-gray-muted">
-                {subtitle}
-              </p>
-            </div>
+                <h2 className="text-center text-light-type-gray type-xl-bold dark:text-dark-type-gray">
+                  {pageTitle}
+                </h2>
+              <p className=" text-light-type-gray-muted type-base-body md:block dark:text-dark-type-gray-muted">
+                  {subtitle}
+                </p>
+              </div>
             </div>
           </div>
 
@@ -112,10 +115,10 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
               actions={actions}
               {...(hasActions(props)
                 ? {
-                    buttonOne: props.buttonOne,
-                    buttonTwo: props.buttonTwo,
-                    buttonThree: props.buttonThree,
-                  }
+                  buttonOne: props.buttonOne,
+                  buttonTwo: props.buttonTwo,
+                  buttonThree: props.buttonThree,
+                }
                 : {})}
               notification={props.notification}
               profile={props.profile}

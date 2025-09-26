@@ -237,7 +237,7 @@ function App() {
     <>
    
     <div className="bg-white">
-      <AppTopbar isOnboarding={false} theme="filled" pageTitle="Dashboard" search={true} notification={true} onClickMenu={
+      <AppTopbar backBtn={true} isOnboarding={false} theme="filled" pageTitle="Dashboard" search={true} notification={true} onClickMenu={
         () => { console.log('Menu clicked') }
       }/>
       <AppCodeInput 
@@ -352,7 +352,7 @@ function App() {
    
 
       <AppButton
-        size={3}
+        size={4}
         text={'Sign in'}
         color="accent"
         variant="solid"
