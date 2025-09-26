@@ -91,7 +91,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
                 </div>
               </button>
             )}
-            <div className='flex items-center lg:gap-x-lg'>
+            <div className='flex items-center gap-x-lg'>
               {
                 !backBtn && <button className="ri-menu-2-fill text-light-type-gray type-2xl-title dark:text-dark-type-gray lg:hidden" onClick={onClickMenu}>
                   <span className="sr-only">Menu</span>
