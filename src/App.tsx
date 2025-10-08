@@ -248,7 +248,41 @@ function App() {
       boxHeight={74}
       onChange={(code) => console.log('Entered code:', code)}
       />
-
+      <AppInput
+      name='email'
+        placeholder="Testing"
+        label=""
+        onInput={e => {
+          // Cast EventTarget to HTMLInputElement
+          const input = e.target as HTMLInputElement
+          // Prevent non-numeric input
+          // input.value = input.value.replace(/[^0-9]/g, '')
+          // field.onChange(input.value) // Update the form value
+        }}
+        // {...field} // Pass field props which includes value and onChange
+        // error={errors.email?.message}
+       
+      />
+<AppModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirm}
+        title="Choose how to verify your BVN"
+        subtitle="Are you sure you want to proceed?"
+        mainTitle="Choose how to verify your BVN">
+        <div className="p-lg"></div>
+          <p className="mb-lg">We only need access to your</p>
+          <ul className="mb-lg space-y-lg">
+            <li className="flex items-center">
+              <i className="ri-checkbox-circle-fill text-green-500 mr-md"></i>
+              Full name
+            </li>
+            <li className="flex items-center">
+              <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
+              Phone number
+              </li>
+              </ul>
+        </AppModal>
       {/* <AppListItem
         size={2}
         variant="1-line"
