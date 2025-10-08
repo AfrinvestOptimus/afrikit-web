@@ -33,8 +33,12 @@ const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
                 isFocused && error !== undefined ? 'border-b-2 border-solid border-light-type-error rounded-b-[0px] dark:border-dark-type-error' :
                   !isFocused && error !== undefined ? '!border border-solid border-light-type-error dark:border-dark-type-error rounded-md' : ''}
                 bg-light-surface-gray dark:bg-dark-surface-gray text-light-type-gray dark:text-dark-type-gray outline-none rounded-md 
-                focus:outline-none focus:z-10 appearance-none w-full h-[56px] px-md pb-lg !pt-2xl border-0 focus:ring-0 type-sm-head
-                  peer`)}
+                focus:outline-none focus:z-10 appearance-none w-full h-[56px] px-md  border-0 focus:ring-0 type-sm-head
+                  peer
+                  
+                  `,
+                  label ? 'pb-lg !pt-2xl' : 'py-lg',
+                )}
               placeholder={placeholder}
               value={value}
               onFocus={() => setIsFocused(true)}
