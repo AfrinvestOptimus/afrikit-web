@@ -18,12 +18,11 @@ jobs:
       - name: Checkout main branch
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js with npm registry
+      # Step 2: Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          registry-url: 'https://registry.npmjs.org'
 
       # Step 3: Install dependencies
       - name: Install dependencies
@@ -54,4 +53,6 @@ jobs:
 
       # Step 7: Publish the package to npm with provenance
       - name: Publish package
-        run: npm publish --access public --provenance
+        run: |
+          rm -f ~/.npmrc
+          npm publish --access public --provenance
