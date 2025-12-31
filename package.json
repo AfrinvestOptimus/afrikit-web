@@ -8,6 +8,10 @@
   "description": "Houses all components used in the web application",
   "author": "Afrinvest",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AfrinvestOptimus/afrikit-web"
+  },
   "files": [
     "dist/**/*"
   ],
