@@ -9,32 +9,33 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      id-token: write
+
     steps:
       # Step 1: Checkout the main branch
       - name: Checkout main branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js
+      # Step 2: Set up Node.js with npm registry
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
 
-      # Step 3: Configure npm to use the authentication token
-      - name: Configure npm to use the token
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-
-      # Step 4: Install dependencies
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: yarn install
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
 
-      # Step 5: Build the project
+      # Step 4: Build the project
       - name: Build project
         run: yarn build
 
-      # Step 6: Bump version automatically (patch by default, can be changed to minor/major)
+      # Step 5: Bump version automatically (patch by default, can be changed to minor/major)
       - name: Bump version and commit changes
         run: |
           yarn version --patch --no-git-tag-version  # Bump version
@@ -44,15 +45,13 @@ jobs:
           git commit -m "Bump version [skip ci]"
           git push origin HEAD:main
 
-      # Step 7: Push the tag to GitHub
+      # Step 6: Push the tag to GitHub
       - name: Tag version and push
         run: |
           VERSION=$(cat package.json | jq -r '.version')  # Get the new version
           git tag "v$VERSION"  # Create a new tag
           git push origin "v$VERSION"  # Push the tag
 
-      # Step 8: Publish the package to npm
+      # Step 7: Publish the package to npm with provenance
       - name: Publish package
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public --provenance
