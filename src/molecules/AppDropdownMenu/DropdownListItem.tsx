@@ -96,8 +96,14 @@ export const DropdownItem: React.FC<DropdownItemProps> = ({
   size,
   variant = 'default',
   alignment,
+  dataTestId,
+  ...rest
 }) => (
-  <DropdownMenu.Item className={` ${dropdownItemStyles({ size, variant, alignment, state })}`}>
+  <DropdownMenu.Item
+    className={` ${dropdownItemStyles({ size, variant, alignment, state })}`}
+    data-testid={dataTestId ?? 'DropdownListItem'}
+    {...rest}
+  >
     <div className="flex h-[32px] w-[100%] items-center space-x-sm px-sm py-xl">
       {hasAvatar && <Avatar src={avatarSrc} />}
       {hasIcon && (

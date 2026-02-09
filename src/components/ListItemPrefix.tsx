@@ -28,7 +28,8 @@ import US from '../assets/US'
  *
  * @returns {JSX.Element | null} The rendered leading element or null if the `leading` prop is 'none'.
  */
-export default function ListItemPrefix({ leading, leadingProps }: TListItemPrefixProps) {
+export default function ListItemPrefix({ leading, leadingProps, dataTestId, rest }: TListItemPrefixProps) {
+  const content = (() => {
   switch (leading) {
     case 'avatar':
       return <Avatar prop={leadingProps as IAppAvatarProps} />
@@ -69,6 +70,13 @@ export default function ListItemPrefix({ leading, leadingProps }: TListItemPrefi
     default:
       return null
   }
+  })()
+  if (content == null) return null
+  return (
+    <div data-testid={dataTestId ?? 'ListItemPrefix'} {...rest}>
+      {content}
+    </div>
+  )
 }
 
 const Avatar = ({ prop }: { prop: IAppAvatarProps }) => (

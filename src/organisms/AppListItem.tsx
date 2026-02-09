@@ -57,10 +57,14 @@ export default function AppListItem(props: TAppListItemProps) {
     title = 'list title',
     titleProps,
     isLink,
+    dataTestId,
+    rest,
   } = props
 
   return (
     <div
+      {...rest}
+      data-testid={dataTestId ?? 'AppListItem'}
       className={clsx(
         'flex flex-row items-center space-x-lg transition-all duration-500',
         isLink &&

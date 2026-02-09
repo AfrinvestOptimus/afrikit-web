@@ -28,4 +28,4 @@ import { IAppAvatarProps } from '../../types';
  * // Example usage with icon fallback
  * <AppAvatar size={5} fallBack="icon" />
  */
-export default function AppAvatar({ size, variant, color, highContrast, fallBack, initials, imageUrl, numberOfInitials, }: IAppAvatarProps): import("react/jsx-runtime").JSX.Element;
+export default function AppAvatar({ size, variant, color, highContrast, fallBack, initials, imageUrl, numberOfInitials, dataTestId, ...rest }: IAppAvatarProps): import("react/jsx-runtime").JSX.Element;

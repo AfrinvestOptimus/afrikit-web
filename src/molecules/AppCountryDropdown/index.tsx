@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
   (
-    { name, countryList, onCountrySelect, placeholder = "Country/Region", error, value, label, onChange, onClear, onBlur, ...props },
+    { name, countryList, onCountrySelect, placeholder = "Country/Region", error, value, label, onChange, onClear, onBlur, dataTestId, ...props },
     ref,
   ) => {
     const [showCountries, setShowCountries] = useState(false);
@@ -49,7 +49,7 @@ const AppCountryDropdown = React.forwardRef<HTMLInputElement, AppPhoneInputProps
     }, []);
 
     return (
-      <div className="relative w-full" ref={dropdownRef}>
+      <div className="relative w-full" ref={dropdownRef} {...props} data-testid={dataTestId ?? 'AppCountryDropdown'}>
         {/* Selected country display */}
         <div
           className={clsx(

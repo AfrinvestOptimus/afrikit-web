@@ -21,4 +21,4 @@ import { TListItemPrefixProps } from '../types';
  *
  * @returns {JSX.Element | null} The rendered leading element or null if the `leading` prop is 'none'.
  */
-export default function ListItemPrefix({ leading, leadingProps }: TListItemPrefixProps): import("react/jsx-runtime").JSX.Element;
+export default function ListItemPrefix({ leading, leadingProps, dataTestId, rest }: TListItemPrefixProps): import("react/jsx-runtime").JSX.Element;

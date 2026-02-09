@@ -10,10 +10,14 @@ import { TAppLoaderProps } from '../types'
  *
  * @returns {JSX.Element} The rendered loader component.
  */
-export default function AppLoader({ className }: TAppLoaderProps) {
+export default function AppLoader({ className, dataTestId, ...rest }: TAppLoaderProps) {
   return (
-      <div className="w-xl h-xl animate-spin rounded-xs-max flex items-center justify-center">
-        <i className={clsx('text-xl text-black dark:text-white ri-loader-4-line', className)} />
-      </div>
+    <div
+      className="w-xl h-xl animate-spin rounded-xs-max flex items-center justify-center"
+      data-testid={dataTestId ?? 'AppLoader'}
+      {...rest}
+    >
+      <i className={clsx('text-xl text-black dark:text-white ri-loader-4-line', className)} />
+    </div>
   )
 }

@@ -15,4 +15,4 @@ import { TAppTextProps } from '../types';
  *
  * @returns {JSX.Element} A paragraph element with the specified styles applied.
  */
-export default function AppText({ size, color, weight, highContrast, align, children, className, rest, }: TAppTextProps): JSX.Element;
+export default function AppText({ size, color, weight, highContrast, align, children, className, dataTestId, rest, }: TAppTextProps): JSX.Element;
