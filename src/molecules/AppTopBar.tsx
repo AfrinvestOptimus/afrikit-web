@@ -83,7 +83,7 @@ function AppTopbar(props: TAppTopBarProps): React.JSX.Element {
         </div>
       ) : (
         <div className="flex flex-row items-center justify-between lg:px-2xl lg:p-lg p-sm">
-          <div className="flex  flex-row items-end space-x-sm">
+          <div className="flex flex-row items-end space-x-sm">
             {backBtn && (
               <button onClick={backBtnAction} className=" md:inline-block">
                 <div className="flex h-3xl w-3xl items-center justify-center rounded-full border border-light-neutralA7 hover:bg-light-neutralA3 dark:border-dark-neutralA7 dark:hover:bg-dark-neutralA3">
