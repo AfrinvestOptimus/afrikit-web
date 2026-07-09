@@ -1,6 +1,6 @@
 {
   "name": "afrikit-web",
-  "version": "1.1.69",
+  "version": "1.1.70",
   "main": "dist/afrikit-web.umd.js",
   "module": "dist/afrikit-web.es.js",
   "type": "module",
@@ -19,13 +19,13 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "node init && vite",
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o ./docs",
-    "build": "tsc --declaration --emitDeclarationOnly && vite build",
+    "build-storybook": "node init && storybook build -o ./docs",
+    "build": "node init && tsc --declaration --emitDeclarationOnly && vite build",
     "postbuild": "cp -r types-dist/* dist/",
     "prepublishOnly": "yarn build"
   },
