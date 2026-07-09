@@ -1,22 +1,24 @@
 import React from 'react'
 import { type VariantProps } from 'class-variance-authority'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { dropdownItemStyles } from '../molecules/AppDropdownMenu/DropdownListItem'
 type IconSize = 'sm' | 'md' | 'lg';
 // Adjust these types to match your usage
- export interface DropdownItemProps {
-  label: string;
-  subLabel?: string;
-  hasIcon?: boolean;
-  hasAvatar?: boolean;
-  iconSize?: IconSize;
-  showCheck?: boolean;
-  avatarSrc?: string;
-  icon?: string;
-  state?: 'active' | 'disabled' | 'default';
-  size?: 'sm' | 'md' | 'lg' | null | undefined ;
-  variant?: 'default' | 'primary' | 'secondary' | null; // Ensure this matches your usage
-  alignment?: "left" | "center" | "right" | null | undefined;
-  subContent?: string[]; // Or adjust to the correct type
+export interface DropdownItemProps extends Omit<DropdownMenu.DropdownMenuItemProps, 'className'> {
+  label: string
+  subLabel?: string
+  hasIcon?: boolean
+  hasAvatar?: boolean
+  iconSize?: IconSize
+  showCheck?: boolean
+  avatarSrc?: string
+  icon?: string
+  state?: 'active' | 'disabled' | 'default'
+  size?: 'sm' | 'md' | 'lg' | null | undefined
+  variant?: 'default' | 'primary' | 'secondary' | null
+  alignment?: 'left' | 'center' | 'right' | null | undefined
+  subContent?: string[]
+  dataTestId?: string
 }
 
 

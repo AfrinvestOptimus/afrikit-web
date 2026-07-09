@@ -6,20 +6,21 @@ interface Item {
   name: string
 }
 
-export interface AppFormDropdownProps {
-  name: string // The name of the dropdown for form submission
-  itemList: Item[] // List of items to display in the dropdown
-  onItemSelect: (selectedItems: Item) => void // Callback for item selection
-  selectedItem?: Item // Currently selected item
-  placeholder: string // Placeholder text when no items are selected
-  error?: string // Error message to display
-  label?: string // Optional label for the dropdown
+export interface AppFormDropdownProps extends React.HTMLAttributes<HTMLDivElement> {
+  name: string
+  itemList: Item[]
+  onItemSelect: (selectedItems: Item) => void
+  selectedItem?: Item
+  placeholder: string
+  error?: string
+  label?: string
+  dataTestId?: string
 }
 
 const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<
   HTMLDivElement,
   AppFormDropdownProps
->(({ name, itemList, onItemSelect, placeholder, error, selectedItem, label, ...props }, ref) => {
+>(({ name, itemList, onItemSelect, placeholder, error, selectedItem, label, dataTestId, ...rest }, ref) => {
   const [showDropdown, setShowDropdown] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -53,7 +54,7 @@ const AppFormDropdown: React.FC<AppFormDropdownProps> = React.forwardRef<
   }, [])
 
   return (
-    <div className="relative w-full" ref={dropdownRef}>
+    <div className="relative w-full" ref={dropdownRef} {...rest} data-testid={dataTestId ?? 'AppFormDropdown'}>
       {' '}
       {/* Set ref on the main container */}
       {/* Selected item display */}

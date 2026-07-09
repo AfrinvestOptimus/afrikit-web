@@ -4,7 +4,7 @@ export declare const dropdownItemStyles: (props?: {
     size?: "sm" | "md" | "lg";
     variant?: "default" | "primary" | "secondary";
     state?: "default" | "active" | "disabled";
-    alignment?: "left" | "center" | "right";
+    alignment?: "center" | "left" | "right";
 } & import("class-variance-authority/dist/types").ClassProp) => string;
 export declare const iconStyles: (props?: {
     size?: "sm" | "md" | "lg";

@@ -1,4 +1,4 @@
-import { TListItemSuffixProps } from "../types";
+import { TListItemSuffixProps } from '../types';
 /**
  * ListItemSuffix Component
  *
@@ -17,5 +17,5 @@ import { TListItemSuffixProps } from "../types";
  *
  * @returns {JSX.Element | null} The rendered trailing element or null if the `suffix` prop is 'none'.
  */
-declare const ListItemSuffix: ({ suffix, trailingProps }: TListItemSuffixProps) => import("react/jsx-runtime").JSX.Element;
+declare const ListItemSuffix: ({ suffix, trailingProps, dataTestId, rest }: TListItemSuffixProps) => import("react/jsx-runtime").JSX.Element;
 export default ListItemSuffix;

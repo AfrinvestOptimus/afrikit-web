@@ -305,6 +305,7 @@ export default function AppText({
   align = 'left',
   children,
   className,
+  dataTestId,
   rest,
 }: TAppTextProps): JSX.Element {
   const variantClasses = useMemo(
@@ -312,7 +313,7 @@ export default function AppText({
     [size, weight, align, color, highContrast],
   )
   return (
-    <p className={clsx(variantClasses, className, '')} {...rest}>
+    <p className={clsx(variantClasses, className, '')} {...rest} data-testid={dataTestId ?? 'AppText'}>
       {children}
     </p>
   )

@@ -114,6 +114,8 @@ export type TAppListItemProps = {
   spacing?: 'default' | 'compact' | 'extra-relaxed'
   titleProps?: TAppTextProps
   isLink?: boolean
+  dataTestId?: string
+  rest?: React.HTMLAttributes<HTMLDivElement>
 } & subTriggered &
   overlined &
   subTitleProps &
@@ -123,9 +125,13 @@ export type TAppListItemProps = {
 export type TListItemPrefixProps = {
   leading: Exclude<LeadingType, 'none'>
   leadingProps: LeadingProps[Exclude<LeadingType, 'none'>]
+  dataTestId?: string
+  rest?: React.HTMLAttributes<HTMLDivElement>
 }
 
 export type TListItemSuffixProps = {
   suffix: Exclude<SuffixType, 'none'>
   trailingProps: SuffixProps[Exclude<SuffixType, 'none'>]
+  dataTestId?: string
+  rest?: React.HTMLAttributes<HTMLDivElement>
 }

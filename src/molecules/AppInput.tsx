@@ -5,16 +5,17 @@ export interface AppInputProps extends React.InputHTMLAttributes<HTMLInputElemen
   name: string
   placeholder?: string
   type?: string
-  value?: string // Accept current value
+  value?: string
   label?: string
   error?: string
   className?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onClear?: () => void
+  dataTestId?: string
 }
 
 const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
-  ({ name, placeholder, error, value, label, className, onChange, onClear, onBlur, ...props }, ref) => {
+  ({ name, placeholder, error, value, label, className, onChange, onClear, onBlur, dataTestId, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false)
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
@@ -46,6 +47,7 @@ const AppInput = React.forwardRef<HTMLInputElement, AppInputProps>(
               onChange={onChange}
               ref={ref}
               {...props}
+              data-testid={dataTestId ?? 'AppInput'}
               autoComplete="off"
             />
             {

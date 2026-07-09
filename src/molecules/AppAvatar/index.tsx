@@ -51,6 +51,8 @@ export default function AppAvatar({
   initials = '',
   imageUrl,
   numberOfInitials = 1,
+  dataTestId,
+  ...rest
 }: IAppAvatarProps) {
   const avatarSizeStyle = sizeStyles[size]
   const textColor = highContrast
@@ -94,5 +96,9 @@ export default function AppAvatar({
     }
   }, [fallBack, avatarSizeStyle, avatarColor, textColor, textSizeStyle, imageUrl, initials, numberOfInitials])
 
-  return <>{renderAvatar}</>
+  return (
+    <div data-testid={dataTestId ?? 'AppAvatar'} {...rest}>
+      {renderAvatar}
+    </div>
+  )
 }
