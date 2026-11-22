@@ -19,13 +19,13 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "node init && vite",
+    "dev": "vite",
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "node init && storybook build -o ./docs",
-    "build": "node init && tsc --declaration --emitDeclarationOnly && vite build",
+    "build-storybook": "storybook build -o ./docs",
+    "build": "tsc --declaration --emitDeclarationOnly && vite build",
     "postbuild": "cp -r types-dist/* dist/",
     "prepublishOnly": "yarn build"
   },
