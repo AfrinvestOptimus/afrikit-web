@@ -42,10 +42,14 @@ function hasBadge(
 
 export default function SideBarBaseItem(props: TSideBarBaseItemProps) {
   const [opendrop, setOpendrop] = useState<boolean>(false)
-  const { text, color, iconOnly, current, linkAction } = props
+  const { text, color, iconOnly, current, linkAction, dataTestId, rest } = props
   return (
     <Collapsible.Root onOpenChange={openState => setOpendrop(openState)}>
-      <div className={clsx('flex-row items-center space-x-md pr-lg', iconOnly ? '' : 'flex')}>
+      <div
+        className={clsx('flex-row items-center space-x-md pr-lg', iconOnly ? '' : 'flex')}
+        {...rest}
+        data-testid={dataTestId ?? 'SideBarBaseItem'}
+      >
         {current && !iconOnly && (
           <div className="h-lg w-xs rounded-br-xs rounded-tr-xs bg-light-background-accent-base" />
         )}

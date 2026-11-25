@@ -22,7 +22,8 @@ import { AppButton } from '../molecules'
  *
  * @returns {JSX.Element | null} The rendered trailing element or null if the `suffix` prop is 'none'.
  */
-const ListItemSuffix = ({ suffix, trailingProps }: TListItemSuffixProps) => {
+const ListItemSuffix = ({ suffix, trailingProps, dataTestId, rest }: TListItemSuffixProps) => {
+  const content = (() => {
   switch (suffix) {
     case 'textContent':
       return (
@@ -73,6 +74,13 @@ const ListItemSuffix = ({ suffix, trailingProps }: TListItemSuffixProps) => {
     default:
       return null
   }
+  })()
+  if (content == null) return null
+  return (
+    <div data-testid={dataTestId ?? 'ListItemSuffix'} {...rest}>
+      {content}
+    </div>
+  )
 }
 
 export default ListItemSuffix

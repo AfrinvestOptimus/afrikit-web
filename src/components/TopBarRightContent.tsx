@@ -1,7 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
 import AppButton from '../molecules/AppButton'
-export interface ITopBarContentProps {
+
+export interface ITopBarContentProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
   search?: boolean
   actions: boolean | undefined
   buttonOne?: boolean
@@ -15,6 +16,7 @@ export interface ITopBarContentProps {
   searchAction?: () => void
   notificationAction?: () => void
   profileAction?: () => void
+  dataTestId?: string
 }
 
 /**
@@ -187,9 +189,11 @@ function TopBarRightContent({
   searchAction,
   notificationAction,
   profileAction,
+  dataTestId,
+  ...rest
 }: ITopBarContentProps): React.JSX.Element {
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center" {...rest} data-testid={dataTestId ?? 'TopBarRightContent'}>
       {actions && (
         <ActionButtons buttonOne={buttonOne} buttonTwo={buttonTwo} buttonThree={buttonThree} />
       )}

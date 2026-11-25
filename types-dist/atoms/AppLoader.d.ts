@@ -8,4 +8,4 @@ import { TAppLoaderProps } from '../types';
  *
  * @returns {JSX.Element} The rendered loader component.
  */
-export default function AppLoader({ className }: TAppLoaderProps): import("react/jsx-runtime").JSX.Element;
+export default function AppLoader({ className, dataTestId, ...rest }: TAppLoaderProps): import("react/jsx-runtime").JSX.Element;

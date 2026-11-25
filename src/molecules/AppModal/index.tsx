@@ -16,9 +16,11 @@ const AppModal: React.FC<AppModalProps> = ({
   modalClassName,
   mainTitle,
   mainTitleClass = '',
-  mainTitleAlign = 'center', // 'left' or 'center' for alignment
-  onBack, // Optional onBack function for the back button
+  mainTitleAlign = 'center',
+  onBack,
   ovelayShoudClose,
+  dataTestId,
+  rest,
 }) => {
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
@@ -55,7 +57,9 @@ const AppModal: React.FC<AppModalProps> = ({
       onClick={handleBackgroundClick}
       role="dialog"
       aria-modal="true"
-      aria-labelledby="modal-title">
+      aria-labelledby="modal-title"
+      {...rest}
+      data-testid={dataTestId ?? 'AppModal'}>
       <div
         className={clsx(
           'relative w-full max-w-md rounded-xl bg-light-page-bg2 p-lg shadow-light-neutral3 dark:bg-dark-page-bg2 dark:shadow-dark-neutral3',

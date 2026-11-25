@@ -12,21 +12,23 @@ import {
   textStates,
 } from './button' // Import various styles and variants for button customization
 
-// Define the AppButton functional component with props defined by AppButtonProps interface
 const AppButton: React.FC<AppButtonProps> = ({
-  size = 2, // Default button size is 2
-  variant = 'solid', // Default variant of the button is 'solid'
-  color = 'accent', // Default color of the button is 'accent'
-  highContrast = false, // Flag for high contrast styles
-  state = 'default', // Default state of the button
-  iconStart = true, // Flag to determine if the start icon should be displayed
-  iconEnd = false, // Flag to determine if the end icon should be displayed
-  iconStartName = 'ri-home-line', // Class name for the start icon
-  iconEndName = 'ri-home-line', // Class name for the end icon
-  text, // Text to display in the button
-  loading = false, // Flag to determine if the button is in a loading state
-  onClick, // Function to call on button click
+  size = 2,
+  variant = 'solid',
+  color = 'accent',
+  highContrast = false,
+  state = 'default',
+  iconStart = true,
+  iconEnd = false,
+  iconStartName = 'ri-home-line',
+  iconEndName = 'ri-home-line',
+  text,
+  loading = false,
+  onClick,
   classname,
+  dataTestId,
+  accessibilityLabel,
+  ...rest
 }) => {
   // Get the corresponding styles based on the provided props
   const sizeStyle = buttonSizes[size] // Get size styles
@@ -61,9 +63,13 @@ const AppButton: React.FC<AppButtonProps> = ({
 
   return (
     <button
+      type="button"
+      {...rest}
       onClick={onClick}
-      className={`flex items-center justify-center ${combinedButtonStyles} ${classname}`} // Set combined styles
-      disabled={state === 'disabled'}>
+      className={`flex items-center justify-center ${combinedButtonStyles} ${classname}`}
+      disabled={state === 'disabled'}
+      data-testid={dataTestId ?? 'AppButton'}
+      aria-label={accessibilityLabel ?? text}>
       <div className="flex items-center justify-between space-x-lg">
         {iconStart && ( // Conditionally render left icon
           <div>

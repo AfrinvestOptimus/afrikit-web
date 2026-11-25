@@ -3,14 +3,15 @@ import React, { useState } from 'react'
 export interface AppPasswordInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string
   placeholder?: string
-  value?: string // Accept current value
+  value?: string
   label: string
   error?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  dataTestId?: string
 }
 
 const AppPasswordInput = React.forwardRef<HTMLInputElement, AppPasswordInputProps>(
-  ({ name, placeholder, error, value, label, onChange, onBlur, ...props }, ref) => {
+  ({ name, placeholder, error, value, label, onChange, onBlur, dataTestId, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false)
 
     const [passwordVisible, setPasswordVisible] = useState(false)
@@ -55,6 +56,7 @@ const AppPasswordInput = React.forwardRef<HTMLInputElement, AppPasswordInputProp
             onChange={onChange}
             ref={ref}
             {...props}
+            data-testid={dataTestId ?? 'AppInputPassword'}
             autoComplete="off"
           />
           <label

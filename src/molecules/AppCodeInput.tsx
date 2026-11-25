@@ -8,6 +8,7 @@ interface AppCodeInputProps {
   boxHeight?: number
   value?: string
   onChange?: (code: string) => void
+  dataTestId?: string
 }
 
 const AppCodeInput: React.FC<AppCodeInputProps> = ({
@@ -18,6 +19,7 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
   boxHeight,
   boxWidth,
   value = '',
+  dataTestId,
 }) => {
   const inputs = useRef<(HTMLInputElement | null)[]>([])
 
@@ -85,7 +87,7 @@ const AppCodeInput: React.FC<AppCodeInputProps> = ({
   }
 
   return (
-    <div>
+    <div data-testid={dataTestId ?? 'AppCodeInput'}>
       <div id="code-input" className="flex space-x-sm">
         {Array.from({ length }).map((_, index) => (
           <input

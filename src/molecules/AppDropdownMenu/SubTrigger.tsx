@@ -40,19 +40,18 @@ const subTriggerStyles = cva(
   },
 )
 
-// SubTrigger component props
-interface SubTriggerProps extends VariantProps<typeof subTriggerStyles> {
+interface SubTriggerProps extends VariantProps<typeof subTriggerStyles>, React.HTMLAttributes<HTMLDivElement> {
   label: string
   showArrow?: boolean
   hasAvatar?: boolean
   hasIcon?: boolean
-  iconSize?: "sm" | "md" | "lg" 
+  iconSize?: 'sm' | 'md' | 'lg'
   avatarSrc?: string
   icon?: string
   subLabel?: string
+  dataTestId?: string
 }
 
-// SubTrigger component
 const SubTrigger: React.FC<SubTriggerProps> = ({
   label,
   hasAvatar,
@@ -63,8 +62,14 @@ const SubTrigger: React.FC<SubTriggerProps> = ({
   icon,
   subLabel,
   state,
+  dataTestId,
+  ...rest
 }) => (
-  <div className="flex items-center justify-between flex-1 space-x-md space-y-sm">
+  <div
+    className="flex items-center justify-between flex-1 space-x-md space-y-sm"
+    data-testid={dataTestId ?? 'SubTrigger'}
+    {...rest}
+  >
     <div className="flex items-center justify-center space-x-sm">
       {hasAvatar && <Avatar src={avatarSrc || 'images/jpg/avatar1.jpeg'} />}
       {hasIcon && (

@@ -4,7 +4,9 @@ export type AvatarColor = 'accent' | 'neutral' | 'success' | 'error' | 'warning'
 export type AvatarFallback = 'image' | 'initials' | 'icon'
 export type NumberOfInitials = 1 | 2
 
-export interface IAppAvatarProps {
+import type { HTMLAttributes } from 'react'
+
+export interface IAppAvatarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className' | 'style'> {
   size?: AvatarSize
   variant?: AvatarVariant
   color?: AvatarColor
@@ -15,4 +17,5 @@ export interface IAppAvatarProps {
   imageUrl?: string
   icon?: React.ReactNode
   numberOfInitials?: NumberOfInitials
+  dataTestId?: string
 }

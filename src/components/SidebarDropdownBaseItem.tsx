@@ -14,10 +14,13 @@ import { TSidebarDropdownBaseItemProps } from '../types'
  * @returns {JSX.Element} A styled button element representing a sidebar dropdown item.
  */
 export default function SidebarDropdownBaseItem(props: TSidebarDropdownBaseItemProps) {
-  const { text, current, linkAction } = props
+  const { text, current, linkAction, dataTestId, ...rest } = props
   return (
     <button
+      type="button"
       onClick={linkAction}
+      {...rest}
+      data-testid={dataTestId ?? 'SidebarDropdownBaseItem'}
       className={clsx(
         'group/dropdownItem box-border flex w-full flex-1 cursor-pointer flex-row items-center space-x-[22px] rounded-full border-2 border-light-background-neutral-transparent px-md py-sm pl-[18px] transition-all duration-500 dark:border-dark-background-neutral-transparent',
         current

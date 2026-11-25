@@ -6,7 +6,9 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
   allowedTypes = ['image/svg+xml', 'image/png', 'image/jpeg', 'image/gif'],
   onUpload,
   width = '512px',
-  height = '224', // Change to auto for flexible height
+  height = '224',
+  dataTestId,
+  ...rest
 }) => {
   const [file, setFile] = useState<File | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -72,7 +74,9 @@ export const AppFileUploader: React.FC<FileUploaderProps> = ({
   return (
     <div
       className={`rounded-lg border border-light-edge-gray dark:border-dark-edge-gray ${!uploadedImageUrl && !previewUrl ? 'border-dashed py-xl' : 'border-solid p-xs'} `}
-      style={{ width, maxHeight: height, overflow: 'hidden' }} // Set maxHeight and overflow hidden
+      style={{ width, maxHeight: height, overflow: 'hidden' }}
+      {...rest}
+      data-testid={dataTestId ?? 'AppFileUploader'}
     >
       <div
         className={`relative flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${isDragging ? 'bg-blue-50 dark:bg-blue-900' : ''} ${isUploading ? 'cursor-not-allowed opacity-50' : 'hover:bg-blue-50 dark:hover:bg-blue-900 cursor-pointer'}`}

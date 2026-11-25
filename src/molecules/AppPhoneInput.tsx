@@ -12,7 +12,7 @@ const items = [
 ]
 const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
   (
-    { name, countryList, onCountrySelect, placeholder, error, value, label, onChange, onClear, onBlur, ...props },
+    { name, countryList, onCountrySelect, placeholder, error, value, label, onChange, onClear, onBlur, dataTestId, ...props },
     ref,
   ) => {
     
@@ -132,6 +132,7 @@ const AppPhoneInput = React.forwardRef<HTMLInputElement, AppPhoneInputProps>(
                 onChange={onChange}
                 ref={ref}
                 {...props}
+                data-testid={dataTestId ?? 'AppPhoneInput'}
                 autoComplete="off"
               />
               <label

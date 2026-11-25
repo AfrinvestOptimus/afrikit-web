@@ -132,7 +132,7 @@ function App() {
       current: false,
       icon: true,
       iconName: 'ri-map-pin-time-fill',
-      linkAction: () => {},
+      linkAction: () => { },
       hasDropdown: false,
       badge: false,
     },
@@ -145,7 +145,7 @@ function App() {
       current: false,
       icon: true,
       iconName: 'ri-home-6-fill',
-      linkAction: () => {},
+      linkAction: () => { },
       hasDropdown: false,
       badge: false,
     },
@@ -158,7 +158,7 @@ function App() {
       current: false,
       icon: true,
       iconName: 'ri-bar-chart-fill',
-      linkAction: () => {},
+      linkAction: () => { },
       hasDropdown: false,
       badge: false,
     },
@@ -171,24 +171,24 @@ function App() {
       current: false,
       icon: true,
       iconName: 'ri-copper-coin-fill',
-      linkAction: () => {},
+      linkAction: () => { },
       hasDropdown: true,
       openDropdown: false,
       dropDownElement: [
         {
           text: 'Nigerian Stocks',
           current: false,
-          linkAction: () => {},
+          linkAction: () => { },
         },
         {
           text: 'Treasury Bills',
           current: false,
-          linkAction: () => {},
+          linkAction: () => { },
         },
         {
           text: 'Commercial Papers',
           current: false,
-          linkAction: () => {},
+          linkAction: () => { },
         },
       ],
       badge: false,
@@ -202,7 +202,7 @@ function App() {
       current: false,
       icon: true,
       iconName: 'ri-wallet-fill',
-      linkAction: () => {},
+      linkAction: () => { },
       hasDropdown: false,
       badge: false,
     },
@@ -215,7 +215,7 @@ function App() {
       current: false,
       icon: true,
       iconName: 'ri-file-history-fill',
-      linkAction: () => {},
+      linkAction: () => { },
       hasDropdown: false,
       badge: false,
     },
@@ -235,42 +235,55 @@ function App() {
 
   return (
     <>
-   
-    <div className="bg-white">
-      <AppTopbar backBtn={true} isOnboarding={false} theme="filled" pageTitle="Dashboard" search={true} notification={true} onClickMenu={
-        () => { console.log('Menu clicked') }
-      }/>
-      <AppCodeInput 
-      length={4}
-      secureEntry={false}
-      errorMessage=""
-      boxWidth={64}
-      boxHeight={74}
-      onChange={(code) => console.log('Entered code:', code)}
-      />
-      <AppInput
-      name='email'
-        placeholder="Testing"
-        label=""
-        onInput={e => {
-          // Cast EventTarget to HTMLInputElement
-          const input = e.target as HTMLInputElement
-          // Prevent non-numeric input
-          // input.value = input.value.replace(/[^0-9]/g, '')
-          // field.onChange(input.value) // Update the form value
-        }}
+
+      <div className="bg-white">
+        <AppTopbar backBtn={true} isOnboarding={false} theme="filled" pageTitle="Dashboard" search={true} notification={true}
+          onClickMenu={
+            () => { console.log('Menu clicked') }
+
+          }
+          notificationAction={() => { alert('Notification clicked') }}
+        />
+        <AppCodeInput
+          length={4}
+          secureEntry={false}
+          errorMessage=""
+          boxWidth={64}
+          boxHeight={74}
+          onChange={(code) => console.log('Entered code:', code)}
+        />
+        <AppInput
+          name='email'
+          placeholder="Testing"
+          label=""
+          onInput={e => {
+            // Cast EventTarget to HTMLInputElement
+            const input = e.target as HTMLInputElement
+            // Prevent non-numeric input
+            // input.value = input.value.replace(/[^0-9]/g, '')
+            // field.onChange(input.value) // Update the form value
+          }}
         // {...field} // Pass field props which includes value and onChange
         // error={errors.email?.message}
-       
-      />
-<AppModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onConfirm={handleConfirm}
-        title="Choose how to verify your BVN"
-        subtitle="Are you sure you want to proceed?"
-        mainTitle="Choose how to verify your BVN">
-        <div className="p-lg"></div>
+
+        />
+        <AppFormDropdown
+          name="country" // Name for the dropdown
+          itemList={itemList} // List of countries
+          onItemSelect={handleItemSelect} // Handler for item selection
+          selectedItem={selectedItem} // Currently selected item
+          placeholder="Select a country" // Placeholder text
+          error={error} // Error message (if any)
+          label="Country" // Optional label
+        />
+        {/* <AppModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          onConfirm={handleConfirm}
+          title="Choose how to verify your BVN"
+          subtitle="Are you sure you want to proceed?"
+          mainTitle="Choose how to verify your BVN">
+          <div className="p-lg"></div>
           <p className="mb-lg">We only need access to your</p>
           <ul className="mb-lg space-y-lg">
             <li className="flex items-center">
@@ -280,10 +293,10 @@ function App() {
             <li className="flex items-center">
               <i className="ri-checkbox-circle-fill text-green-500 mr-2"></i>
               Phone number
-              </li>
-              </ul>
-        </AppModal>
-      {/* <AppListItem
+            </li>
+          </ul>
+        </AppModal> */}
+        {/* <AppListItem
         size={2}
         variant="1-line"
         title="Custom Suffix Example"
@@ -296,7 +309,7 @@ function App() {
           component: <button className="text-black">Hello</button>,
         }}
       /> */}
-      {/* <AppFormDropdown
+        {/* <AppFormDropdown
         name="country" // Name for the dropdown
         itemList={itemList} // List of countries
         onItemSelect={handleItemSelect} // Handler for item selection
@@ -305,7 +318,7 @@ function App() {
         error={error} // Error message (if any)
         label="Country" // Optional label
       /> */}
-      {/* <AppCountryDropdown
+        {/* <AppCountryDropdown
         name="country"
         countryList={countries}
         onCountrySelect={handleCountrySelect}
@@ -346,17 +359,17 @@ function App() {
           </div>
         </div>
       </AppModal> */}
-      {/* <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
+        {/* <div className="flex flex-col justify-center items-center min-h-screen bg-light-page-bg2 dark:bg-dark-page-bg2 font-sans antialiased mx-auto">
       {/* Button to trigger modal opening */}
-      {/* <button
+        {/* <button
         onClick={handleOpenModal} 
         className="bg-blue-500 text-white p-3 rounded-lg">
         Open Modal
       </button> */}
 
-      {/* Conditionally render the AppModal based on the state */}
+        {/* Conditionally render the AppModal based on the state */}
 
-      {/* <form className="max-w-md mx-auto">
+        {/* <form className="max-w-md mx-auto">
           <Controller
             name="email"
             control={control}
@@ -381,37 +394,37 @@ function App() {
         </form>
         {/* <DropdownComponent items={dropdownItems} separator={true} alignment='right' /> */}
 
-      {/* <AppSidebar links={links} bottomType="component" /> */}
+        {/* <AppSidebar links={links} bottomType="component" /> */}
 
-   
 
-      <AppButton
-        size={4}
-        text={'Sign in'}
-        color="accent"
-        variant="solid"
-        iconStart={false}
-        classname="w-full"
-      />
 
-      {/* <AppFileUploader />  */}
+        <AppButton
+          size={4}
+          text={'Sign in'}
+          color="accent"
+          variant="solid"
+          iconStart={false}
+          classname="w-full"
+        />
 
-      {/* <div className="p-4 w-5/6">
+        {/* <AppFileUploader />  */}
+
+        {/* <div className="p-4 w-5/6">
     
      
     </div>
     </div> */}
-     {/* <AppCountryDropdown
+        {/* <AppCountryDropdown
           name="country"
           countryList={countries}
           onCountrySelect={handleCountrySelect}
           placeholder="Select a country"
           error={error} // Display error message below the dropdown if any
           label={'country'}      /> */}
-   
-    </div>
-    
-     </>
+
+      </div>
+
+    </>
   )
 }
 

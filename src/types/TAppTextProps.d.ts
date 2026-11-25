@@ -12,5 +12,6 @@ export type TAppTextProps = {
   align?: 'left' | 'center' | 'right'
   className?: string | string[]
   children?: string | React.ReactHTMLElement
+  dataTestId?: string
   rest?: React.HTMLAttributes<HTMLParagraphElement>
 }
